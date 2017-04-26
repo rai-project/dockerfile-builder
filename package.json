@@ -34,7 +34,6 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
-  "gitDir": "../",
   "verbose": true,
   "lint-staged": {
     "*.js": [
