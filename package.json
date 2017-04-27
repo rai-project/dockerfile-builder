@@ -11,6 +11,8 @@
     "cerebral-router": "next",
     "classnames": "^2.2.5",
     "codemirror": "^5.25.2",
+    "grommet": "^1.3.4",
+    "grommet-css": "^1.0.0",
     "hterm-umdjs": "^1.1.4",
     "js-logger": "^1.3.0",
     "monaco-editor": "^0.8.3",
@@ -24,6 +26,7 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.0.0",
     "css-loader": "^0.28.0",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",

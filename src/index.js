@@ -3,6 +3,8 @@ import {render} from 'react-dom'
 import controller from './controller'
 import {Container} from 'cerebral/react'
 
+import '../node_modules/grommet-css'
+
 import './styles.css'
 
 import App from './components/App'
