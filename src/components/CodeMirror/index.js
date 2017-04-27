@@ -1,21 +1,22 @@
 import React from "react";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import '!style!css!./../../../node_modules/codemirror/lib/codemirror.css'
+import "!style!css!./../../../node_modules/codemirror/lib/codemirror.css";
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import '!style!css!./codemirror.css'
+import "!style!css!./codemirror.css";
 
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
 import classnames from "classnames";
-import CodeMirror from 'codemirror'
+import CodeMirror from "codemirror";
 
 import styles from "./styles.css";
 
 import "codemirror/mode/dockerfile/dockerfile.js";
 
-const requireSourceURL = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js';
-const monacoSourceURL = 'https://unpkg.com/monaco-editor@0.8.3/min/vs';
+const requireSourceURL =
+  "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
+const monacoSourceURL = "https://unpkg.com/monaco-editor@0.8.3/min/vs";
 
 const content = String.raw`FROM rai/nccl:8.0
 MAINTAINER Abdul Dakkak <dakkak@illinois.edu>
@@ -35,46 +36,48 @@ RUN cd /usr/local/cumf_sgd/data/netflix && \
     ./transform netflix_mm
     `;
 
-export default connect({}, 
-class CodeEditor extends React.Component  {
-    constructor (props) {
-      super(props)
+export default connect(
+  {},
+  class CodeEditor extends React.Component {
+    constructor(props) {
+      super(props);
     }
-    componentDidMount () {
-      this.codeElement.style.opacity = '1'
+    componentDidMount() {
+      this.codeElement.style.opacity = "1";
       this.codemirror = CodeMirror(this.codeElement, {
         value: content,
-        mode: 'dockerfile',
+        mode: "dockerfile",
         autofocus: true,
-        theme: 'wgx',
-        matchTags: {bothTags: true},
+        theme: "wgx",
+        matchTags: { bothTags: true },
         autoCloseTags: true,
-        gutters: ['CodeMirror-lint-markers'],
+        gutters: ["CodeMirror-lint-markers"],
         lint: false,
         lineNumbers: true,
-        readOnly: this.props.readOnly ? 'nocursor' : false,
+        readOnly: this.props.readOnly ? "nocursor" : false,
         indentUnit: 2,
         extraKeys: {
-          Tab (cm) {
-            const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+          Tab(cm) {
+            const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
 
-            cm.replaceSelection(spaces)
+            cm.replaceSelection(spaces);
           }
         }
-      })
-    //   this.codemirror.on('change', this.onCodeChange)
-    //   this.codemirror.on('cursorActivity', this.onCursorChange)
+      });
+      //   this.codemirror.on('change', this.onCodeChange)
+      //   this.codemirror.on('cursorActivity', this.onCursorChange)
     }
-  render() {
-    return (
+    render() {
+      return (
         <div className={styles.wrapper}>
           <div
-            ref={(node) => {
-              this.codeElement = node
+            ref={node => {
+              this.codeElement = node;
             }}
-            className={styles.codeWrapper} />
+            className={styles.codeWrapper}
+          />
         </div>
-    );
+      );
+    }
   }
-});
-
+);

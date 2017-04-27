@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
 import classnames from "classnames";
-import MonacoEditor from 'react-monaco-editor';
+import MonacoEditor from "react-monaco-editor";
 
 import styles from "./styles.css";
 
-
-const requireSourceURL = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js';
-const monacoSourceURL = 'https://unpkg.com/monaco-editor@0.8.3/min/vs';
+const requireSourceURL =
+  "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
+const monacoSourceURL = "https://unpkg.com/monaco-editor@0.8.3/min/vs";
 
 const dockerfile = String.raw`FROM rai/nccl:8.0
 MAINTAINER Abdul Dakkak <dakkak@illinois.edu>
@@ -28,25 +28,26 @@ RUN cd /usr/local/cumf_sgd/data/netflix && \
     ./transform netflix_mm
     `;
 
-export default connect({}, 
-class CodeEditor extends React.Component  {
-  render() {
-    const requireConfig = {
-      url: requireSourceURL,
-      paths: {
-        'vs': monacoSourceURL
-      }
-    };
-    return (
-      <MonacoEditor
-        width="100%"
-        height="600"
-        language="dockerfile"
-        value={dockerfile}
-        requireConfig={requireConfig}
-        theme="vs-dark"
-      />
-    );
+export default connect(
+  {},
+  class CodeEditor extends React.Component {
+    render() {
+      const requireConfig = {
+        url: requireSourceURL,
+        paths: {
+          vs: monacoSourceURL
+        }
+      };
+      return (
+        <MonacoEditor
+          width="100%"
+          height="600"
+          language="dockerfile"
+          value={dockerfile}
+          requireConfig={requireConfig}
+          theme="vs-dark"
+        />
+      );
+    }
   }
-});
-
+);
