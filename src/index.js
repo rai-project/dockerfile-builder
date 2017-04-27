@@ -1,6 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import "./index.css";
+import React from 'react'
+import {render} from 'react-dom'
+import controller from './controller'
+import {Container} from 'cerebral/react'
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import './styles.css'
+
+import App from './components/App'
+
+render((
+  <Container controller={controller}>
+    <App />
+  </Container>
+), document.querySelector('#root'))
