@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/google-protobuf": "^3.2.5",
     "ansi_up": "^1.3.0",
     "better-react-spinkit": "^2.0.0-6",
     "bulma": "^0.4.1",
@@ -16,8 +17,10 @@
     "classnames": "^2.2.5",
     "codemirror": "^5.25.2",
     "function-tree": "next",
+    "google-protobuf": "^3.2.0",
     "grommet": "^1.3.4",
     "grommet-css": "^1.0.0",
+    "grpc-web-client": "^0.2.1",
     "hterm-umdjs": "^1.1.4",
     "js-logger": "^1.3.0",
     "monaco-editor": "^0.8.3",
@@ -33,6 +36,7 @@
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.2",
     "store2": "^2.5.1",
+    "ts-protoc-gen": "^0.2.2",
     "uppy": "^0.15.0",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^2.0.3"
@@ -60,6 +64,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "bundle": "node build.js",
+    "build:proto": "./protogen.sh",
     "deploy": "yarn run build && surge -p build -d dockerfile-builder.surge.sh"
   },
   "verbose": true,
