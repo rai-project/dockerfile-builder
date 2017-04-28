@@ -15,10 +15,10 @@ const controller = Controller({
         // By default the devtools tries to reconnect
         // to debugger when it can not be reached, but
         // you can turn it off
-        reconnect: true
+        reconnect: true,
       }),
   state: {},
-  signals: {}
+  signals: {},
 });
 
 export default controller;

@@ -14,8 +14,7 @@ import styles from "./styles.css";
 
 import "codemirror/mode/dockerfile/dockerfile.js";
 
-const requireSourceURL =
-  "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
+const requireSourceURL = "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
 const monacoSourceURL = "https://unpkg.com/monaco-editor@0.8.3/min/vs";
 
 const content = String.raw`FROM rai/nccl:8.0
@@ -49,7 +48,9 @@ export default connect(
         mode: "dockerfile",
         autofocus: true,
         theme: "wgx",
-        matchTags: { bothTags: true },
+        matchTags: {
+          bothTags: true,
+        },
         autoCloseTags: true,
         gutters: ["CodeMirror-lint-markers"],
         lint: false,
@@ -61,8 +62,8 @@ export default connect(
             const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
 
             cm.replaceSelection(spaces);
-          }
-        }
+          },
+        },
       });
       //   this.codemirror.on('change', this.onCodeChange)
       //   this.codemirror.on('cursorActivity', this.onCursorChange)
@@ -75,7 +76,7 @@ export default connect(
               this.codeElement = node;
             }}
             className={styles.codeWrapper}
-          />
+          />{" "}
         </div>
       );
     }

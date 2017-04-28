@@ -1,5 +1,6 @@
-import React from "react";
 import { connect } from "cerebral/react";
+import React from "react";
+
 import CodeEditor2 from "../CodeMirror";
 import CodeEditor from "../Monaco";
 
@@ -18,9 +19,7 @@ import placeholder from "!raw!./placeholder.svg";
 
 function placeholderImage(width, height) {
   // We need to base64 encode this because otherwise FF will add extra escape chars
-  const dataUri = btoa(
-    placeholder.replace(/{{w}}/g, width).replace(/{{h}}/g, height).trim()
-  );
+  const dataUri = btoa(placeholder.replace(/{{w}}/g, width).replace(/{{h}}/g, height).trim());
   console.log("data:image/svg+xml;base64," + dataUri);
   return "data:image/svg+xml;base64," + dataUri;
 }

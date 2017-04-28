@@ -58,6 +58,6 @@
     "*.js": [
       "prettier --write",
       "git add"
-    ]
+    ] 
   }
 }

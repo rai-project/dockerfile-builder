@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import controller from "./controller";
 import { Container } from "cerebral/react";
 
+import "semantic-ui-css/semantic.min.css";
+
 import "../node_modules/grommet-css";
 
 import "./styles.css";

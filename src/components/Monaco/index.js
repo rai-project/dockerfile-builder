@@ -6,8 +6,7 @@ import MonacoEditor from "react-monaco-editor";
 
 import styles from "./styles.css";
 
-const requireSourceURL =
-  "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
+const requireSourceURL = "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js";
 const monacoSourceURL = "https://unpkg.com/monaco-editor@0.8.3/min/vs";
 
 const dockerfile = String.raw`FROM rai/nccl:8.0
@@ -35,8 +34,8 @@ export default connect(
       const requireConfig = {
         url: requireSourceURL,
         paths: {
-          vs: monacoSourceURL
-        }
+          vs: monacoSourceURL,
+        },
       };
       return (
         <MonacoEditor
