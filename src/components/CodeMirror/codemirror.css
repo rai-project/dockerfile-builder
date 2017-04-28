@@ -1,143 +1,147 @@
-/* wgx theme for codemirror */
+/* rai theme for codemirror */
 
 .CodeMirror {
-    /* Set height, width, borders, and global font properties here */
-    font-family: "Roboto Mono", 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
-    height: inherit;
-    color: black;
+  /* Set height, width, borders, and global font properties here */
+  font-family: "Roboto Mono", 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  height: inherit;
+  color: black;
 }
 
 
 /* Color scheme */
 
-.cm-s-wgx .CodeMirror {
-    font-family: "Roboto Mono", 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
-    background-color: #ffffff;
-    color: #2e383c;
-    font-size: 16px;
-    line-height: 1.3em;
-    height: 100% !important;
+.cm-s-rai .CodeMirror {
+  font-family: "Roboto Mono", 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  background-color: #ffffff;
+  color: #2e383c;
+  font-size: 16px;
+  line-height: 1.3em;
+  height: 100% !important;
 }
 
-.cm-s-wgx .CodeMirror:hover {
-    cursor: text;
+.cm-s-rai .CodeMirror:hover {
+  cursor: text;
 }
 
-.cm-s-wgx .CodeMirror-line {
-    text-indent: 4px;
+.cm-s-rai .CodeMirror-line {
+  text-indent: 4px;
 }
 
-.cm-s-wgx .CodeMirror-lines {
-    text-indent: 4px;
+.cm-s-rai .CodeMirror-lines {
+  text-indent: 4px;
 }
 
-.cm-s-wgx .CodeMirror-linenumbers {}
+.cm-s-rai .CodeMirror-linenumbers {}
 
-.cm-s-wgx .CodeMirror-linenumber {
-    padding-right: 10px;
-    min-width: 20px;
-    text-align: right;
-    color: #999;
-    white-space: nowrap;
+.cm-s-rai .CodeMirror-linenumber {
+  padding-right: 10px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
 }
 
-.cm-s-wgx .CodeMirror .cm-matchhighlight:not(.CodeMirror-selectedtext) {
-    outline: 1px solid #bbb;
+.cm-s-rai .CodeMirror .cm-matchhighlight:not(.CodeMirror-selectedtext) {
+  outline: 1px solid #bbb;
 }
 
-.cm-s-wgx .cm-tab {
-    background-position: right;
-    background-repeat: no-repeat;
+.cm-s-rai .cm-tab {
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
-.cm-s-wgx .cm-meta {
-    color: #1d75b3;
-    font-weight: bold;
-    border-bottom: 1px dashed #eee;
+.cm-s-rai .cm-meta {
+  color: #1d75b3;
+  font-weight: bold;
+  border-bottom: 1px dashed #fff;
 }
 
-.cm-s-wgx .cm-def {
-    color: #20b3a4;
-    text-decoration: none;
-    border-bottom: 1px dashed #20b3a4;
-    border-bottom: 1px dashed rgba(32, 179, 164, 0.5);
+.cm-s-rai .cm-def {
+  color: #20b3a4;
+  text-decoration: none;
+  border-bottom: 1px dashed #20b3a4;
+  border-bottom: 1px dashed rgba(32, 179, 164, 0.5);
 }
 
-.cm-s-wgx .cm-variable-2 {
-    color: #1d75b3;
+.cm-s-rai .cm-variable-2 {
+  color: #1d75b3;
 }
 
-.cm-s-wgx .cm-variable-3 {
-    color: #1d75b3;
+.cm-s-rai .cm-variable-3 {
+  color: #1d75b3;
 }
 
-.cm-s-wgx .cm-comment {
-    color: #75787b;
+.cm-s-rai .cm-comment {
+  color: #75787b;
 }
 
-.cm-s-wgx .cm-keyword,
-.cm-s-wgx .cm-property {
-    line-height: 1em;
-    font-weight: bold;
-    color: #1d75b3;
+.cm-s-rai .cm-keyword,
+.cm-s-rai .cm-property {
+  line-height: 1em;
+  font-weight: bold;
+  color: #1d75b3;
 }
 
-.cm-s-wgx .cm-atom,
-.cm-s-wgx .cm-number {
-    color: #75438a;
+.cm-s-rai .cm-atom,
+.cm-s-rai .cm-number {
+  color: #75438a;
 }
 
-.cm-s-wgx .cm-node,
-.cm-s-wgx .cm-tag {
-    color: #9c3328;
+.cm-s-rai .cm-node,
+.cm-s-rai .cm-tag {
+  color: #9c3328;
 }
 
-.cm-s-wgx .cm-string {
-    color: #b35e14;
+.cm-s-rai .cm-string {
+  color: #b35e14;
 }
 
-.cm-s-wgx .cm-variable {
-    color: #047d65;
+.cm-s-rai .cm-variable {
+  color: #047d65;
 }
 
-.cm-s-wgx .cm-qualifier {
-    color: #27b3a4;
+.cm-s-rai .cm-qualifier {
+  color: #27b3a4;
 }
 
 
 /* Editor styling */
 
-.cm-s-wgx pre {
-    padding: 0;
+.cm-s-rai pre {
+  padding: 0;
 }
 
-.cm-s-wgx .CodeMirror-gutters {
-    border: none;
-    background: #eee;
-    border-right: 2px solid #eee;
+.cm-s-rai .CodeMirror-gutters {
+  border: none;
+  background: #fff;
+  border-right: 2px solid #fff;
 }
 
-.cm-s-wgx .CodeMirror-gutters:hover {
-    cursor: default;
+.cm-s-rai .CodeMirror-gutters:hover {
+  cursor: default;
 }
 
-.cm-s-wgx .CodeMirror-guttermarker {
-    color: #1d75b3;
+.cm-s-rai .CodeMirror-guttermarker {
+  color: #1d75b3;
 }
 
-.cm-s-wgx .CodeMirror-guttermarker-subtle {
-    color: #e0e2e5;
+.cm-s-rai .CodeMirror-guttermarker-subtle {
+  color: #e0e2e5;
 }
 
-.cm-s-wgx .CodeMirror-line>span::selection {
-    background: color(rgb(11, 46, 70, 0.1) alpha(10%));
+.cm-s-rai .CodeMirror-line>span::selection {
+  background: color(rgb(11, 46, 70, 0.1) alpha(10%));
 }
 
-.cm-s-wgx .CodeMirror-activeline-background {
-    background: #eee;
+.cm-s-rai .CodeMirror-activeline-background {
+  background: #ccc;
 }
 
-.cm-s-wgx .CodeMirror-matchingbracket {
-    outline: 1px solid grey;
-    color: black !important;
+.cm-s-rai .CodeMirror-matchingbracket {
+  outline: 1px solid grey;
+  color: black !important;
+}
+
+.cm-s-rai .CodeMirror-linenumber {
+  color: #ccc;
 }

@@ -33,7 +33,7 @@ if (process.env.IO_UI_BUILD) buildType = process.env.IO_UI_BUILD;
 async.waterfall(
 	[
 		function(cb) {
-			rimraf.sync('server/assets.go');
+			rimraf.sync(assetsFileName);
 			rimraf.sync('build');
 			var cmd = 'yarn build';
 			console.log('Running', cmd);
@@ -48,7 +48,7 @@ async.waterfall(
 			if (!stdout) throw new Error('commitId is empty');
 			commitId = stdout.replace('\n', '');
 			if (commitId.length !== 40) throw new Error('commitId invalid : ' + commitId);
-			var cmd = 'go-bindata-assetfs -pkg server -nocompress=false -o ' + assetsFileName + ' build/...';
+			var cmd = 'go-bindata-assetfs -pkg server -nocompress=false build/...';
 			console.log(cmd);
 			console.log('Running', cmd);
 			exec(cmd, cb);
@@ -59,6 +59,7 @@ async.waterfall(
 			exec(cmd, cb);
 		},
 		function(stdout, stderr, cb) {
+			fs.renameSync('bindata_assetfs.go', assetsFileName);
 			fs.appendFileSync(assetsFileName, '\n');
 			fs.appendFileSync(assetsFileName, 'var UIReleaseTag = "' + releaseTag + '"\n');
 			fs.appendFileSync(assetsFileName, 'var UIBuildType = "' + buildType + '"\n');
