@@ -30,6 +30,13 @@ const controller = Controller({
 			'cmd+s': 'app.saveClicked',
 			'ctrl+s': 'app.saveClicked',
 		}),
+		useragent: UseragentModule({
+			media: {
+				unsupported: '(max-width: 550px)',
+				mobile: '(max-width: 700px)',
+				desktop: '(min-width: 701px)',
+			},
+		}),
 	},
 	providers: [
 		// FirebaseProvider({
