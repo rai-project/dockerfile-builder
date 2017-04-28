@@ -27,7 +27,7 @@ var date = moment.utc();
 var version = date.format('YYYY-MM-DDTHH:mm:ss') + 'Z';
 var releaseTag = date.format('YYYY-MM-DDTHH-mm-ss') + 'Z';
 var buildType = 'production';
-var assetsFileName = 'server/bindata_assets.go';
+var assetsFileName = 'server/bindata_assetfs.go';
 if (process.env.IO_UI_BUILD) buildType = process.env.IO_UI_BUILD;
 
 async.waterfall(
@@ -48,7 +48,7 @@ async.waterfall(
 			if (!stdout) throw new Error('commitId is empty');
 			commitId = stdout.replace('\n', '');
 			if (commitId.length !== 40) throw new Error('commitId invalid : ' + commitId);
-			var cmd = 'go-bindata-assetfs -pkg server -nocompress=false build/...';
+			var cmd = 'go-bindata-assetfs -pkg server -nocompress=true -o ' + assetsFileName + ' build/...';
 			console.log(cmd);
 			console.log('Running', cmd);
 			exec(cmd, cb);
@@ -59,7 +59,6 @@ async.waterfall(
 			exec(cmd, cb);
 		},
 		function(stdout, stderr, cb) {
-			fs.renameSync('bindata_assetfs.go', assetsFileName);
 			fs.appendFileSync(assetsFileName, '\n');
 			fs.appendFileSync(assetsFileName, 'var UIReleaseTag = "' + releaseTag + '"\n');
 			fs.appendFileSync(assetsFileName, 'var UIBuildType = "' + buildType + '"\n');

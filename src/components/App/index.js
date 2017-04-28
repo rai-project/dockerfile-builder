@@ -51,7 +51,7 @@ export default connect(
 							</Title>
 						</Header>
 						<Article scrollStep={false} controls={true} justify={'between'} pad={'none'}>
-							<Section alignContent={'start'} justify={'start'}>
+							<Section alignContent={'start'} justify={'start'} pad="large">
 								{/*<Heading margin={'none'} justify={'left'}>
 									CodeMirror
 								</Heading>*/}

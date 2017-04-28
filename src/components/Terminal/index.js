@@ -6,7 +6,6 @@ import { Terminal as Term } from 'react-term';
 import DockerCommands from '../DockerCommands';
 
 import './styles.css';
-import './ansitheme.scss';
 
 export default connect(
 	{},
