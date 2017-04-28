@@ -41,6 +41,7 @@
     "prettier": "^1.2.2",
     "raw-loader": "^0.5.1",
     "react-scripts": "0.9.5",
+    "rimraf": "^2.6.1",
     "shelljs": "^0.7.7",
     "style-loader": "^0.16.1",
     "surge": "^0.19.0"
@@ -51,6 +52,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
+    "bundle": "node build.js",
     "deploy": "yarn run build && surge -p build -d dockerfile-builder.surge.sh"
   },
   "verbose": true,
@@ -58,6 +60,6 @@
     "*.js": [
       "prettier --write",
       "git add"
-    ] 
+    ]
   }
 }

@@ -1,0 +1,84 @@
+language: go
+go:
+- '1.8'
+sudo: true
+before_install:
+- sudo add-apt-repository ppa:masterminds/glide -y
+- sudo apt-get update -q
+- sudo apt-get install glide -y
+install:
+- glide install
+- go get github.com/mjibson/esc
+- go get github.com/ahmetb/govvv
+- go get github.com/franciscocpg/gox
+- go get github.com/tcnksm/ghr
+- go get github.com/sanbornm/go-selfupdate
+script:
+- cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
+- VERSION=$(cat ./VERSION)
+- echo "VERSION = ${VERSION}"
+- DIST=${TRAVIS_BUILD_DIR}/dist/raid/stable
+- CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6
+  armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
+  -flags) -s -w -X main.AppSecret=${APP_SECRET} -extldflags
+  \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}" .
+before_deploy:
+- echo "go-selfupdate generating bindiffs"
+- mkdir -p ${DIST}/${VERSION}/binaries
+- mkdir -p ${DIST}/latest
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/darwin-386     ${DIST}/${VERSION}/darwin-386/raid        ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/darwin-amd64   ${DIST}/${VERSION}/darwin-amd64/raid      ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-386      ${DIST}/${VERSION}/linux-386/raid         ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-amd64    ${DIST}/${VERSION}/linux-amd64/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-armv5    ${DIST}/${VERSION}/linux-armv5/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-armv6    ${DIST}/${VERSION}/linux-armv6/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-armv7    ${DIST}/${VERSION}/linux-armv7/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-arm64    ${DIST}/${VERSION}/linux-arm64/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-ppc64    ${DIST}/${VERSION}/linux-ppc64/raid       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-ppc64le  ${DIST}/${VERSION}/linux-ppc64le/raid     ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/windows-386    ${DIST}/${VERSION}/windows-386/raid.exe   ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/windows-amd64  ${DIST}/${VERSION}/windows-amd64/raid.exe
+  ${TRAVIS_BUILD_DIR}/LICENSE.TXT ${TRAVIS_BUILD_DIR}/VERSION
+- go-selfupdate -o ${DIST}/updates ${DIST}/${VERSION}/binaries/ ${VERSION}
+- cp ${DIST}/${VERSION}/binaries/darwin-386    ${DIST}/latest/darwin-386.tar.gz
+- cp ${DIST}/${VERSION}/binaries/darwin-amd64  ${DIST}/latest/darwin-amd64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-386     ${DIST}/latest/linux-386.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-amd64   ${DIST}/latest/linux-amd64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-armv5   ${DIST}/latest/linux-armv5.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-armv6   ${DIST}/latest/linux-armv6.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-armv7   ${DIST}/latest/linux-armv7.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-arm64   ${DIST}/latest/linux-arm64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-ppc64   ${DIST}/latest/linux-ppc64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-ppc64le ${DIST}/latest/linux-ppc64le.tar.gz
+- cp ${DIST}/${VERSION}/binaries/windows-386   ${DIST}/latest/windows-386.tar.gz
+- cp ${DIST}/${VERSION}/binaries/windows-amd64 ${DIST}/latest/windows-amd64.tar.gz
+- rm -fr ${DIST}/${VERSION}/binaries
+- echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
+- cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
+deploy:
+  provider: s3
+  access_key_id: AKIAIAFSJLCCOYB5V3EQ
+  secret_access_key:
+    secure: ttpg/QvD7TcPUw7tqoluO/Wa7Q+tCEfqefbZfbnGMp1gZOawn9rk8cH2KQ6/2z9bXaK24hOw8ixqk/rn7LhJ1b5NxODogJaONhphs7sDIfDarieyNMwjLtgfvQruX04cxacYq8GqTP1hG+9AgXgpJiDkYmixfPrzfUuvc2DKM/DfEk0gywDdNEoTkgsPvsC0aTCZF2fBi1vxmpUFqk3oQTRmYFJeBJ/L28gxQuXjQk0ymL7rk428S9hQw5BRtRNJhdnozUXse3uGVG2UbG+m7KGTmCScb+8At3SaeVqHSzzFupWgcWCCJyBlpqXX0RzKiW3/sXeM1ryuyfJ68a7pPUEQuuwOWEcYX9HgnFjRWc7lS47serYIkaFMhp0EYJGP1eWF9hm78LP9C6nMTU/Dr0Hk0xnSX5Gv7sIn0wx0NovV78ofsSBvUxvln8V1cng9cIgFSuxAgQqfGaaeUg4JKZSb9hxhXs6Xh8Ya+LOuS7CJCPQ+VqNuvhl4Hg/0Hi3S/zpsO+PEJoUfnJPohIDxQbFMiqW21Py4taJK0kVRFOJgxyx7o2Kvp9w8GIV6obZVFXfbG7t2RzXc1n8L5O2uo4SDCOGDLFuFeROpzE/UwdCoKQVHQspjGc+ysOOqeULT/OzwD0v9NsRVrC63qISgzEQ6hkjY/NzS3DjQzmZeINM=
+  bucket: files.rai-project.com
+  local-dir: dist
+  upload-dir: dist
+  acl: private
+  skip_cleanup: true
+  detect_encoding: true
+  on:
+    repo: rai-project/raid
+env:
+  global:
+    secure: tf8wXElHB7N6RmHIGLzfr/K4XUlDdwIGRMuXSXnbk9bHf7t5rKGbhj3Ogbbf8/Myg4BnAnPtV7fvQL7+0KPc+9lUY5XVBIFGm5W77p85NKVVwxTT1jRtWPhuXPUQOjT5v9WQcfoHMqUNU31uJErzdo891JHENNSYbouZENec/gxbYyNAoCkcAUG1mqLHDPyUrOo6WtH5iFJm2I7GU1R590/UAJU69WRX6Aeuv2jfJYIslXxNH0AxztzDGIsgsGE8dbmosQdTmQncIHmxriNsfUjO6UvQFbJBxez+5w/xAVVgdW5Yquy8ckRhxP5sYrpiopA8oOSuCEAKyi16lGD4Jn+7N4tLA+r11qMyud7UEvcCua1BzmQXu6zRkVf3u3aWSH4LcUYozUUYXQWvWUa9Tz9ZyM4/isgxHrzUdruQDMzLaFKyydVjVyVghvmQe6PI+AdVwUXXuk0r7TKFL84B6GLMx4hN+CST5xEE9QVkSWU/iQzqCsB8J2FUBdIbLJufih9ebcw55NWjGfCjYghrLihOkyw0tYPdRdkgG82UZH2sDhy0pSQSCiguOqKmMgix8ymwdlG/IcGKqVECY5yFDgnhdxd/7gt6eX69nMZbBmBKqJ3f4G3FhGc6TU/LxMllsVktMD7IxUwP7hu3JLMzHiG0iYrS4fc6ERIWbONicrA=
