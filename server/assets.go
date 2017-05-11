@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
 )
@@ -25,6 +26,15 @@ type assetsManifestTy struct {
 
 var assetsManifest assetsManifestTy
 
+func getAssetFS() *assetfs.AssetFS {
+	return &assetfs.AssetFS{
+		Asset:     Asset,
+		AssetDir:  AssetDir,
+		AssetInfo: AssetInfo,
+		Prefix:    "build",
+	}
+}
+
 func assetsRoutes(e *echo.Echo) {
 	index := func(c echo.Context) error {
 		html, err := buildIndexHtmlBytes()
@@ -44,8 +54,8 @@ func assetsRoutes(e *echo.Echo) {
 	e.GET("/", index)
 	e.GET("/index.html", index)
 	e.GET("/favicon.ico", favicon)
-	e.GET("/vendor/*", echo.WrapHandler(http.FileServer(assetFS())))
-	e.GET("/static/*", echo.WrapHandler(http.FileServer(assetFS())))
+	e.GET("/vendor/*", echo.WrapHandler(http.FileServer(getAssetFS())))
+	e.GET("/static/*", echo.WrapHandler(http.FileServer(getAssetFS())))
 
 }
 

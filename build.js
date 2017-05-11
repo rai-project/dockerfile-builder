@@ -48,7 +48,7 @@ async.waterfall(
 			if (!stdout) throw new Error('commitId is empty');
 			commitId = stdout.replace('\n', '');
 			if (commitId.length !== 40) throw new Error('commitId invalid : ' + commitId);
-			var cmd = 'go-bindata-assetfs -pkg server -nocompress=true -o ' + assetsFileName + ' build/...';
+			var cmd = 'go-bindata-assetfs -pkg server -nocompress=false -o ' + assetsFileName + ' build/...';
 			console.log(cmd);
 			console.log('Running', cmd);
 			exec(cmd, cb);

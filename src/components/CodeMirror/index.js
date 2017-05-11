@@ -4,17 +4,23 @@ import '!style!css!./../../../node_modules/codemirror/lib/codemirror.css';
 import '!style!css!./codemirror.css';
 
 import React from 'react';
-import { connect } from 'cerebral/react';
-import { state, signal } from 'cerebral/tags';
+import {
+  connect
+} from 'cerebral/react';
+import {
+  state,
+  signal
+} from 'cerebral/tags';
 import classnames from 'classnames';
 import CodeMirror from 'codemirror';
+import 'whatwg-fetch';
 
 import Button from '../Button';
 import './styles.css';
 
 import 'codemirror/mode/dockerfile/dockerfile.js';
 
-const content = String.raw`FROM rai/nccl:8.0
+const content = String.raw `FROM rai/nccl:8.0
 MAINTAINER Abdul Dakkak <dakkak@illinois.edu>
 
 WORKDIR /usr/local
@@ -32,70 +38,87 @@ RUN cd /usr/local/cumf_sgd/data/netflix && \
     ./transform netflix_mm
     `;
 
-export default connect(
-	{
-		buttonClicked: signal`app.codeEditorButtonClicked`,
-	},
-	class CodeEditor extends React.Component {
-		constructor(props) {
-			super(props);
-			this.onButtonClick = this.onButtonClick.bind(this);
-		}
-		onButtonClick() {
-			console.log('button clicked');
-			this.props.buttonClicked();
-		}
-		componentDidMount() {
-			this.codeElement.style.opacity = '1';
-			this.codemirror = CodeMirror(this.codeElement, {
-				value: content,
-				mode: 'dockerfile',
-				autofocus: true,
-				theme: 'rai',
-				matchTags: {
-					bothTags: true,
-				},
-				autoCloseTags: true,
-				gutters: ['CodeMirror-lint-markers'],
-				lint: false,
-				lineNumbers: true,
-				readOnly: this.props.readOnly ? 'nocursor' : false,
-				indentUnit: 2,
-				extraKeys: {
-					Tab(cm) {
-						const spaces = Array(cm.getOption('indentUnit') + 1).join(' ');
+export default connect({
+  buttonClicked: signal `app.codeEditorButtonClicked`,
+},
+class CodeEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+  onButtonClick() {
+    console.log('button clicked');
+    fetch("/api/build_docker", {
+        method: 'POST',
+        body: JSON.stringify({
+          content: this.codemirror.getValue(),
+        })
+      })
+      .then(console.log)
+      .catch((err) => console.log(err));
+    this.props.buttonClicked();
+  }
+  componentDidMount() {
+    this.codeElement.style.opacity = '1';
+    this.codemirror = CodeMirror(this.codeElement, {
+      value: content,
+      mode: 'dockerfile',
+      autofocus: true,
+      theme: 'rai',
+      matchTags: {
+        bothTags: true,
+      },
+      autoCloseTags: true,
+      gutters: ['CodeMirror-lint-markers'],
+      lint: false,
+      lineNumbers: true,
+      readOnly: this.props.readOnly ? 'nocursor' : false,
+      indentUnit: 2,
+      extraKeys: {
+        Tab(cm) {
+          const spaces = Array(cm.getOption('indentUnit') + 1).join(' ');
 
-						cm.replaceSelection(spaces);
-					},
-				},
-			});
-			//   this.codemirror.on('change', this.onCodeChange)
-			//   this.codemirror.on('cursorActivity', this.onCursorChange)
-		}
-		render() {
-			const onButtonClick = this.onButtonClick;
-			return (
-				<div className="wrapper">
-					<div
-						ref={node => {
-							this.codeElement = node;
-						}}
-						className="editor"
-					/>
+          cm.replaceSelection(spaces);
+        },
+      },
+    });
+    //   this.codemirror.on('change', this.onCodeChange)
+    //   this.codemirror.on('cursorActivity', this.onCursorChange)
+  }
+  render() {
+    const onButtonClick = this.onButtonClick;
+    return ( < div className = "wrapper" >
+        <
+        div ref = {
+          node => {
+            this.codeElement = node;
+          }
+        }
+        className = "editor" /
+        >
 
-					<div className="button">
-						<Button
-							label="Build"
-							onClick={onButtonClick}
-							href="#"
-							plain={false}
-							accent={false}
-							type="submit"
-						/>
-					</div>
-					{' '}
-				</div>
-			);
-		}
-	}
+        <
+        div className = "button" >
+        <
+        Button label = "Build"
+        onClick = {
+          onButtonClick
+        }
+        href = "#"
+        plain = {
+          false
+        }
+        accent = {
+          false
+        }
+        type = "submit" /
+        >
+        <
+        /div> {
+        ' '
+      } <
+      /div>
+  );
+}
+}
 );

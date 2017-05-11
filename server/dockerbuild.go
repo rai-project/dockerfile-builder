@@ -1,11 +1,16 @@
 package server
 
-import pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
+import (
+	"context"
 
-type dockerbuildService struct {
-  *pb.DockerServiceServer
-}
+	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
+)
 
-func (service dockerbuildService)	Build(context.Context, *pb.DockerBuildRequest) (*pb.DockerBuildResponse, error){
-  return nil, nil
+type dockerbuildService struct{}
+
+//   *pb.DockerServiceServer
+// }
+
+func (service dockerbuildService) Build(context.Context, *pb.DockerBuildRequest) (*pb.DockerBuildResponse, error) {
+	return nil, nil
 }
