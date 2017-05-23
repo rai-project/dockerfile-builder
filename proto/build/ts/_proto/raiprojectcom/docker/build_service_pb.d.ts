@@ -5,6 +5,9 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 
 export class DockerBuildRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   getContent(): string;
   setContent(value: string): void;
 
@@ -20,11 +23,15 @@ export class DockerBuildRequest extends jspb.Message {
 
 export namespace DockerBuildRequest {
   export type AsObject = {
+    id: string,
     content: string,
   }
 }
 
 export class DockerBuildResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   getContent(): string;
   setContent(value: string): void;
 
@@ -45,6 +52,7 @@ export class DockerBuildResponse extends jspb.Message {
 
 export namespace DockerBuildResponse {
   export type AsObject = {
+    id: string,
     content: string,
     error?: ErrorStatus.AsObject,
   }
