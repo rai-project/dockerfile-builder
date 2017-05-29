@@ -18,7 +18,7 @@ import Anchor from "grommet/components/Anchor";
 import Heading from "grommet/components/Heading";
 
 import CodeMirror from "../CodeMirror";
-import Monaco from "../Monaco";
+// import Monaco from "../Monaco";
 import Logo from "../Logo";
 import Terminal from "../AnsiTerminal";
 

@@ -1,6 +1,7 @@
 import React from "react";
+import createFragment from "react-addons-create-fragment";
 import { connect } from "cerebral/react";
-import { state, signal } from "cerebral/tags";
+import { state } from "cerebral/tags";
 
 import uuid from "uuid";
 
@@ -17,22 +18,22 @@ export default connect(
     if (terminalOutput.length === 0) {
       return null;
     }
-
-    var frag = document.createDocumentFragment();
-    terminalOutput.map(elem => {
-      var div = document.createElement("div");
-      div.className = "line";
-      div.innerHTML = ansi_up.ansi_to_html(elem.content, { use_classes: true });
-      frag.appendChild(div);
+    const body = terminalOutput.map(elem => {
+      return (
+        <div
+          className="line"
+          key={elem.id}
+          dangerouslySetInnerHTML={{
+            __html: ansi_up.ansi_to_html(elem.content, { use_classes: true })
+          }}
+        />
+      );
     });
     return (
       <div className="ansiterm">
-        <div
-          className="tomorrow-night-eighties-ansi-theme"
-          ref={node => {
-            node.appendChild(frag);
-          }}
-        />
+        <div className="tomorrow-night-eighties-ansi-theme">
+          {body}
+        </div>
       </div>
     );
   }
