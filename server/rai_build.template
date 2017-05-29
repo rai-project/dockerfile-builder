@@ -7,6 +7,6 @@ resources:
   network: false
 commands:
   build_image:
-    image_name: {{ImageName}}
+    image_name: {{ .ImageName }}
     dockerfile: "./Dockerfile"
     no_cache: true

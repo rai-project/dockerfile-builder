@@ -35,10 +35,6 @@ var (
 	}
 )
 
-func NewDockerbuildService() *dockerbuildService {
-	return &dockerbuildService{}
-}
-
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
 
 	messages := make(chan string)
@@ -167,14 +163,15 @@ func validateDockerfile(content string) error {
 }
 
 func init() {
+	config.AfterInit(func() {
+		raiBuildTemplateContent, err := _escFSString(false, "/server/rai_build.template")
+		if err != nil {
+			log.WithError(err).Fatal("cannot get /server/rai_build.template template file. make sure to run go generate on the main package.")
+		}
 
-	raiBuildTemplateContent, err := _escFSString(false, "/server/rai_build.template")
-	if err != nil {
-		log.WithError(err).Fatal("cannot get /server/rai_build.template template file. make sure to run go generate on the main package.")
-	}
-
-	raiBuildTemplate, err = template.New("rai_build_template").Parse(raiBuildTemplateContent)
-	if err != nil {
-		log.WithError(err).Fatal("cannot parse /server/rai_build.template template file.")
-	}
+		raiBuildTemplate, err = template.New("rai_build_template").Parse(raiBuildTemplateContent)
+		if err != nil {
+			log.WithError(err).Fatal("cannot parse /server/rai_build.template template file.")
+		}
+	})
 }

@@ -190,12 +190,12 @@ var _escData = map[string]*_escFile{
 
 	"/server/rai_build.template": {
 		local:   "./server/rai_build.template",
-		size:    187,
-		modtime: 1495525009,
+		size:    190,
+		modtime: 1496081974,
 		compressed: `
-H4sIAAAAAAAA/zyMPa7CMBCEe59ilQPkPSFE4ZqGhitEy2ZCrPgnWttQRLk7ipGoZj59mjHKzhqiFzS7
-FC399yejyKmqIB9G1noEEavMrkBKVVhaV7mcPQxRRHknXSxN7DOMpBA4jm37qM6Pgwv8xPej1SFygKVt
-ux1054B9b3ZMskAn52Gp6/+uP+yajmkQlhmWilaYTwAAAP//t9H4J7sAAAA=
+H4sIAAAAAAAA/zyMPa7CMBCEe59ilQPkPSFE4ZqGhitEy2ZCrPgnWttQRLk7ipGodj99M2OUnTVEL2h2
+KVr6709GkVNVQT6MrPU4RKwyuwIpVWFpXeVy9jBEEeWddLE0sc8wkkLgOLbuozo/Di7wE9+N9g6RAyxt
+G/W3g+8cQPveAmOSBTo5D0td/3f9Ydd0TIOwzLBUtMJ8AgAA//+1or2QvgAAAA==
 `,
 	},
 
