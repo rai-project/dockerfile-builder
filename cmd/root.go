@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	sourcepath "github.com/GeertJohan/go-sourcepath"
+	"github.com/fatih/color"
 	"github.com/rai-project/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -56,6 +57,7 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
+	color.NoColor = false
 	opts := []config.Option{
 		config.AppName("dockerfile-builder"),
 		config.ConfigFileAbsolutePath(filepath.Join(sourcepath.MustAbsoluteDir(), "..", ".dockerfile_builder_config.yml")),

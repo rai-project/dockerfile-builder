@@ -20,7 +20,7 @@ import Heading from "grommet/components/Heading";
 import CodeMirror from "../CodeMirror";
 import Monaco from "../Monaco";
 import Logo from "../Logo";
-import Terminal from "../Terminal";
+import Terminal from "../AnsiTerminal";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import placeholder from "!raw!./placeholder.svg";

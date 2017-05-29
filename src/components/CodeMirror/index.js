@@ -4,7 +4,6 @@ import "!style!css!./../../../node_modules/codemirror/lib/codemirror.css";
 import "!style!css!./codemirror.css";
 
 import React from "react";
-import { grpc, BrowserHeaders } from "grpc-web-client";
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
 import classnames from "classnames";
@@ -14,16 +13,6 @@ import uuid from "uuid";
 
 import Button from "../Button";
 import "./styles.css";
-
-// Import code-generated data structures.
-import {
-  DockerService
-} from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
-import {
-  DockerBuildRequest,
-  DockerBuildResponse,
-  ErrorStatus
-} from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
 
 import "codemirror/mode/dockerfile/dockerfile.js";
 
@@ -59,22 +48,8 @@ export default connect(
       if (this.codemirror === null) {
         return;
       }
-      const buildDockerRequest = new DockerBuildRequest();
-      buildDockerRequest.setId(uuid.v4());
-      buildDockerRequest.setContent(this.codemirror.getValue());
-      grpc.invoke(DockerService.Build, {
-        request: buildDockerRequest,
-        host: "/api",
-        onMessage: message => {
-          console.log("got message: ", message.toObject());
-        },
-        onEnd: (code, msg, trailers) => {
-          if (code == grpc.Code.OK) {
-            console.log("all ok");
-          } else {
-            console.log("hit an error", code, msg, trailers);
-          }
-        }
+      this.props.buttonClicked({
+        codeEditorValue: this.codemirror.getValue()
       });
     }
     componentWillUnmount() {
@@ -110,7 +85,7 @@ export default connect(
     render() {
       const onButtonClick = this.onButtonClick;
       return (
-        <div className="wrapper">
+        <div className="codemirrorwrapper">
           <div
             ref={node => {
               this.codeElement = node;

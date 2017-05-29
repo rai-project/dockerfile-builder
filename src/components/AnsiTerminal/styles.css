@@ -1,0 +1,13 @@
+.ansiterm {
+  /*height: 60rem;*/
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #3A3A3A;
+}
+
+.line {
+  font-family: monospace, serif;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  line-height: 20px;
+}

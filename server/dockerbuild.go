@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/fatih/color"
 	"github.com/gorilla/websocket"
 
 	"github.com/pkg/errors"
@@ -33,6 +34,7 @@ var (
 		ReadBufferSize:  1024,
 		WriteBufferSize: 1024,
 	}
+	colored = color.New(color.FgWhite, color.BgBlack)
 )
 
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
@@ -44,7 +46,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		for msg := range messages {
 
 			e := srv.Send(&pb.DockerBuildResponse{
-				Id:      id,
+				Id:      uuid.NewV4(),
 				Content: msg,
 			})
 			if e != nil {
@@ -57,7 +59,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	defer func() {
 		if err != nil {
 			e := srv.Send(&pb.DockerBuildResponse{
-				Id: id,
+				Id: uuid.NewV4(),
 				Error: &pb.ErrorStatus{
 					Message: err.Error(),
 				}})
@@ -150,7 +152,9 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		return
 	}
 
-	messages <- "✱ Uploaded your docker build with key = " + key
+	for ii := 0; ii < 10; ii++ {
+		messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build with key = %s %d", key, ii)
+	}
 
 	// need to publish to queue
 
