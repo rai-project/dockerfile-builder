@@ -8,56 +8,82 @@ import (
 	"text/template"
 	"time"
 
-	"golang.org/x/net/context"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/gorilla/websocket"
 
 	"github.com/pkg/errors"
 
 	"github.com/docker/docker/builder/dockerfile/parser"
 	"github.com/rai-project/archive"
+	"github.com/rai-project/aws"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 	"github.com/rai-project/store"
 	"github.com/rai-project/store/s3"
+	"github.com/rai-project/uuid"
 )
 
 type dockerbuildService struct {
-  	awsSession  *session.Session
+	awsSession *session.Session
 }
 
 var (
 	raiBuildTemplate *template.Template
+	upgrader         = websocket.Upgrader{
+		ReadBufferSize:  1024,
+		WriteBufferSize: 1024,
+	}
 )
 
-func NewDockerbuildService() (*dockerbuildService, error) {
+func NewDockerbuildService() *dockerbuildService {
+	return &dockerbuildService{}
+}
 
+func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
+
+	messages := make(chan string)
+	id := uuid.NewV4()
+
+	go func() {
+		for msg := range messages {
+
+			e := srv.Send(&pb.DockerBuildResponse{
+				Id:      id,
+				Content: msg,
+			})
+			if e != nil {
+				log.WithError(err).Error("Unable to write websocket message")
+			}
+
+		}
+	}()
+
+	defer func() {
+		if err != nil {
+			e := srv.Send(&pb.DockerBuildResponse{
+				Id: id,
+				Error: &pb.ErrorStatus{
+					Message: err.Error(),
+				}})
+			if e != nil {
+				log.WithError(err).Error("Unable to write websocket message")
+			}
+		}
+	}()
 
 	// Create an AWS session
 	session, err := aws.NewSession(
 		aws.Region(aws.AWSRegionUSEast1),
 		aws.AccessKey(aws.Config.AccessKey),
 		aws.SecretKey(aws.Config.SecretKey),
-		aws.Sts(c.ID),
+		aws.Sts(id),
 	)
 	if err != nil {
-		return nil, err
+		return
 	}
 
-  return &dockerbuildService{
-    awsSession: session,
-  }
-}
-
-func (service *dockerbuildService) Build(ctx context.Context, req *pb.DockerBuildRequest) (resp *pb.DockerBuildResponse, err error) {
-	defer func() {
-		if err != nil {
-			resp.Error = &pb.ErrorStatus{
-				Message: err.Error(),
-			}
-		}
-	}()
-
 	st, err := s3.New(
-		s3.Session(service.awsSession),
+		s3.Session(session),
 		store.Bucket(Config.UploadBucketName),
 	)
 	if err != nil {
@@ -128,8 +154,9 @@ func (service *dockerbuildService) Build(ctx context.Context, req *pb.DockerBuil
 		return
 	}
 
-  // need to publish to queue
-  // create a webs socket to relay information to user [at the beginning]
+	messages <- "✱ Uploaded your docker build with key = " + key
+
+	// need to publish to queue
 
 	return
 }

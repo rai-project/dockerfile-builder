@@ -22,5 +22,5 @@ message ErrorStatus {
 }
 
 service DockerService {
-  rpc Build(DockerBuildRequest) returns (DockerBuildResponse) {}
+  rpc Build(DockerBuildRequest) returns (stream DockerBuildResponse) {}
 }

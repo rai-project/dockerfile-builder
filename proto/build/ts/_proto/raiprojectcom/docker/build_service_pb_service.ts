@@ -11,7 +11,7 @@ export namespace DockerService {
     static methodName = "Build";
     static service = DockerService;
     static requestStream = false;
-    static responseStream = false;
+    static responseStream = true;
     static requestType = raiprojectcom_docker_build_service_pb.DockerBuildRequest;
     static responseType = raiprojectcom_docker_build_service_pb.DockerBuildResponse;
   }
