@@ -242,9 +242,6 @@ func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
 		if body == "" {
 			return
 		}
-		if config.IsVerbose {
-			target <- colored.Add(color.FgBlue).Sprintf("[ " + resp.CreatedAt.String() + "] ")
-		}
 		target <- colored.Sprintf(body)
 	}
 	for msg := range msgs {
