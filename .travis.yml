@@ -17,7 +17,6 @@ addons:
     packages:
       - glide
       - yarn
-      - nodejs
       - build-essential
 install:
 - cd ${TRAVIS_BUILD_DIR}
