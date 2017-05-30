@@ -22,7 +22,6 @@ addons:
       - glide
       - yarn
       - build-essential
-      - nodejs
 install:
 - cd ${TRAVIS_BUILD_DIR}
 - glide install
