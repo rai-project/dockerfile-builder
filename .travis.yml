@@ -7,7 +7,7 @@ cache:
     - node_modules
 sudo: true
 node_js:
-  - "node"
+  - "7"
 addons:
   apt:
     sources:
