@@ -78,6 +78,8 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		}
 	}()
 
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Submitting your docker build")
+
 	// Create an AWS session
 	session, err := aws.NewSession(
 		aws.Region(aws.AWSRegionUSEast1),
@@ -198,6 +200,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	if err != nil {
 		return err
 	}
+	defer brkr.Disconnect()
 
 	err = brkr.Publish(
 		Config.BrokerQueueName,
@@ -214,14 +217,13 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		return err
 	}
 
-	for ii := 0; ii < 10; ii++ {
-		messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build with key = %s %d", uploadKey, ii)
-	}
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build request")
 
 	redisConn, err := redis.New()
 	if err != nil {
 		return errors.Wrap(err, "cannot create a redis connection")
 	}
+	defer redisConn.Close()
 
 	subscribeChannel := Config.BrokerQueueName + "/log-" + id
 	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
