@@ -9,7 +9,7 @@ import (
 	"text/template"
 	"time"
 
-	yaml "gopkg.in/yaml.v1"
+	yaml "gopkg.in/yaml.v2"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
