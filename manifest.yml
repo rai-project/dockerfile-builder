@@ -7,3 +7,6 @@ applications:
   disk_quota: 1024M
   command: dockerfile-builder
   buildpack: https://github.com/cloudfoundry/go-buildpack.git
+  env:
+    GOPACKAGENAME: dockerfile-builder
+    GO_LINKER_SYMBOL: main.AppSecret

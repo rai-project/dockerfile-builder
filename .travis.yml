@@ -63,6 +63,8 @@ before_deploy:
 - rm -fr ${DIST}/${VERSION}/binaries
 - echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
 - cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
+- export GO_LINKER_VALUE=${APP_SECRET}
+- echo "GO_LINKER_VALUE: ${APP_SECRET}" >> ${TRAVIS_BUILD_DIR}/manifest.yml
 after_deploy:
 - cf logs dockerfile-builder --recent
 - echo "releasing v${VERSION}..."
