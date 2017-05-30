@@ -1,11 +1,17 @@
 language: go
 go:
 - 1.8.x
-sudo: true
-before_install:
-- sudo add-apt-repository ppa:masterminds/glide -y
-- sudo apt-get update -q
-- sudo apt-get install glide -y
+cache:
+  yarn: true
+  directories:
+    - node_modules
+sudo: false
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:masterminds/glide'
+    packages:
+      - glide
 install:
 - glide install
 - go get github.com/mjibson/esc
