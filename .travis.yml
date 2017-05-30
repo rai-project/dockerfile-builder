@@ -16,13 +16,13 @@ addons:
       - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
         key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
       - sourceline: 'ppa:ubuntu-toolchain-r/test'
+      - sourceline: 'deb https://deb.nodesource.com/setup_7.x trusty main'
+        key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     packages:
       - glide
       - yarn
       - build-essential
-before_install:
-- curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-- sudo apt-get install -y nodejs
+      - nodejs
 install:
 - cd ${TRAVIS_BUILD_DIR}
 - glide install
