@@ -12,9 +12,12 @@ addons:
       - sourceline: 'ppa:masterminds/glide'
       - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
         key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
+      - sourceline: 'https://deb.nodesource.com/setup_7.x'
     packages:
       - glide
       - yarn
+      - nodejs
+      - build-essential
 install:
 - glide install
 - go get github.com/mjibson/esc
