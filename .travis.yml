@@ -19,11 +19,15 @@ install:
 - go get github.com/franciscocpg/gox
 - go get github.com/tcnksm/ghr
 - go get github.com/sanbornm/go-selfupdate
+- go get github.com/jteeuwen/go-bindata/...
+- go get github.com/elazarl/go-bindata-assetfs/...
 script:
 - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
 - VERSION=$(cat ./VERSION)
 - echo "VERSION = ${VERSION}"
 - DIST=${TRAVIS_BUILD_DIR}/dist/dockerfile-builder/stable
+- yarn install
+- yarn bundle
 - CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6
   armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
   -flags) -s -w -X main.AppSecret=${APP_SECRET} -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
