@@ -8,6 +8,7 @@ import (
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/labstack/echo"
+	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 )
 
@@ -25,5 +26,8 @@ func apiRoutes(e *echo.Echo) {
 
 	wrappedGrpc := grpcweb.WrapServer(grpcServer)
 
+	api.GET("/version", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, config.App.Version)
+	})
 	api.POST("/*", echo.WrapHandler(http.StripPrefix("/api", wrappedGrpc)))
 }
