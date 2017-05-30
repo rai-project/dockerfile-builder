@@ -3,9 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 
-	sourcepath "github.com/GeertJohan/go-sourcepath"
 	"github.com/fatih/color"
 	"github.com/rai-project/config"
 	"github.com/spf13/cobra"
@@ -15,6 +13,7 @@ import (
 var (
 	isDebug   bool
 	isVerbose bool
+	appSecret string
 )
 
 // RootCmd represents the base command when called without any subcommands
@@ -46,11 +45,16 @@ func init() {
 
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
+	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret.")
+
+	// mark secret flag hidden
+	RootCmd.PersistentFlags().MarkHidden("secret")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
+	viper.BindPFlag("app.secret", RootCmd.PersistentFlags().Lookup("secret"))
 	viper.BindPFlag("app.debug", RootCmd.PersistentFlags().Lookup("debug"))
 	viper.BindPFlag("app.verbose", RootCmd.PersistentFlags().Lookup("verbose"))
 }
@@ -60,7 +64,11 @@ func initConfig() {
 	color.NoColor = false
 	opts := []config.Option{
 		config.AppName("dockerfile-builder"),
-		config.ConfigFileAbsolutePath(filepath.Join(sourcepath.MustAbsoluteDir(), "..", ".dockerfile_builder_config.yml")),
+		config.ColorMode(true),
+		config.ConfigString(_escFSMustString(false, "/.dockerfile_builder_config.yml")),
+	}
+	if appSecret != "" {
+		opts = append(opts, config.AppSecret(appSecret))
 	}
 	config.Init(opts...)
 }

@@ -31,9 +31,9 @@ func Start(addr string) {
 	assetsRoutes(e)
 	apiRoutes(e)
 
-	log.WithField("address", pprintAddr(addr)).Info("🌎 Webserver started.")
+	fmt.Println("🌎  Webserver started at address", pprintAddr(addr))
 	defer func() {
-		log.Info("🌀 Webserver stopped.")
+		fmt.Println("🌀  Webserver stopped.")
 	}()
 	defer func() {
 		if r := recover(); r != nil {
