@@ -7,6 +7,7 @@ import (
 )
 
 type dockerbuilderConfig struct {
+	BrokerQueueName            string        `json:"broker_queue_name" config:"dockerbuilder.broker_queue_name" default:"rai"`
 	UploadBucketName           string        `json:"upload_bucket" config:"dockerbuilder.upload_bucket" default:"files.rai-project.com"`
 	UploadDestinationDirectory string        `json:"upload_destination_directory" config:"dockerbuilder.upload_destination_directory" default:"userdata"`
 	done                       chan struct{} `json:"-" config:"-"`

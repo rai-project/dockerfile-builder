@@ -2,11 +2,17 @@ package server
 
 import (
 	"bytes"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 	"time"
+
+	"cloud.google.com/go/pubsub"
+
+	yaml "gopkg.in/yaml.v1"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
@@ -17,8 +23,13 @@ import (
 	"github.com/docker/docker/builder/dockerfile/parser"
 	"github.com/rai-project/archive"
 	"github.com/rai-project/aws"
+	"github.com/rai-project/broker"
+	"github.com/rai-project/broker/sqs"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
+	"github.com/rai-project/model"
+	"github.com/rai-project/pubsub/redis"
+	"github.com/rai-project/serializer/json"
 	"github.com/rai-project/store"
 	"github.com/rai-project/store/s3"
 	"github.com/rai-project/uuid"
@@ -114,17 +125,30 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		ImageName string
 	}
 
-	railBuildYmlPath := filepath.Join(tempDir, "rai_build.yml")
-	railBuildYmlContent := new(bytes.Buffer)
-	if err = raiBuildTemplate.Execute(
-		railBuildYmlContent,
-		raiBuildParams{
-			ImageName: req.GetId(),
+	buildSpec := model.BuildSpecification{
+		RAI: model.RAIBuildSpecification{
+			Version:        "2.0",
+			ContainerImage: "",
 		},
-	); err != nil {
+		Resources: model.Resources{
+			CPU: model.CPUResources{
+				Architecture: "ppc64le",
+			},
+		},
+		Commands: model.CommandsBuildSpecification{
+			BuildImage: &model.BuildImageSpecification{
+				ImageName:  req.GetId(),
+				Dockerfile: "./Dockerfile",
+				NoCache:    true,
+			},
+		},
+	}
+	railBuildYmlContent, err := yaml.Marshal(buildSpec)
+	if err != nil {
 		return
 	}
-	if err = ioutil.WriteFile(railBuildYmlPath, railBuildYmlContent.Bytes(), 0644); err != nil {
+	railBuildYmlPath := filepath.Join(tempDir, "rai_build.yml")
+	if err = ioutil.WriteFile(railBuildYmlPath, railBuildYmlContent, 0644); err != nil {
 		return
 	}
 
@@ -136,7 +160,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 	uploadKey := Config.UploadDestinationDirectory + "/" + filepath.Base(tempDir) + "." + archive.Extension()
 
-	key, err := st.UploadFrom(
+	uploadKey, err = st.UploadFrom(
 		zippedReader,
 		uploadKey,
 		s3.Lifetime(time.Hour),
@@ -152,13 +176,97 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		return
 	}
 
-	for ii := 0; ii < 10; ii++ {
-		messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build with key = %s %d", key, ii)
+	serializer := json.New()
+
+	jobRequest := model.JobRequest{
+		Base: model.Base{
+			ID:        id,
+			CreatedAt: time.Now(),
+		},
+		UploadKey:          uploadKey,
+		BuildSpecification: buildSpec,
 	}
 
-	// need to publish to queue
+	body, err := serializer.Marshal(jobRequest)
+	if err != nil {
+		return err
+	}
+
+	brkr, err := sqs.New(
+		sqs.QueueName(Config.BrokerQueueName),
+		broker.Serializer(serializer),
+		sqs.Session(session),
+	)
+	if err != nil {
+		return err
+	}
+
+	err = brkr.Publish(
+		Config.BrokerQueueName,
+		&broker.Message{
+			ID: id,
+			Header: map[string]string{
+				"id":         id,
+				"upload_key": uploadKey,
+			},
+			Body: body,
+		},
+	)
+	if err != nil {
+		return err
+	}
+
+	for ii := 0; ii < 10; ii++ {
+		messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build with key = %s %d", uploadKey, ii)
+	}
+
+	redisConn, err := redis.New()
+	if err != nil {
+		return errors.Wrap(err, "cannot create a redis connection")
+	}
+
+	subscribeChannel := Config.BrokerQueueName + "/log-" + id
+	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
+	if err != nil {
+		return errors.Wrap(err, "cannot create redis subscriber")
+	}
+
+	resultHandler(messages, subscriber.Start())
 
 	return
+}
+
+func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
+	formatPrint := func(w io.WriteCloser, resp model.JobResponse) {
+		body := strings.TrimSpace(string(resp.Body))
+		if body == "" {
+			return
+		}
+		if config.IsVerbose {
+			target <- colored.Add(color.FgBlue).Sprintf("[ " + resp.CreatedAt.String() + "] ")
+		}
+		target <- colored.Sprintf(body)
+	}
+	for msg := range msgs {
+		var data model.JobResponse
+
+		if c.spinner != nil {
+			c.spinner.Stop()
+			c.spinner = nil
+		}
+		err := msg.Unmarshal(&data)
+		if err != nil {
+			log.WithError(err).Debug("failed to unmarshal response data")
+			continue
+		}
+		if data.Kind == model.StderrResponse {
+			formatPrint(c.options.stderr, data)
+		} else if data.Kind == model.StdoutResponse {
+			formatPrint(c.options.stderr, data)
+		}
+	}
+
+	return nil
 }
 
 func validateDockerfile(content string) error {
