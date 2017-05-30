@@ -12,7 +12,8 @@ addons:
       - sourceline: 'ppa:masterminds/glide'
       - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
         key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
-      - sourceline: 'https://deb.nodesource.com/setup_7.x'
+      - sourceline: 'deb https://deb.nodesource.com/node_7.x trusty main'
+        key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     packages:
       - glide
       - yarn
@@ -85,11 +86,20 @@ before_deploy:
 - echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
 - cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
 after_deploy:
+- cf logs dockerfile-builder --recent
 - echo "releasing v${VERSION}..."
 - ghr -t "$GITHUB_TOKEN" -u rai-project -r dockerfile-builder --replace "v${VERSION}"
   "${DIST}/latest"
 - cd ${TRAVIS_BUILD_DIR}
 deploy:
+- provider: cloudfoundry
+  api: https://api.ng.bluemix.net
+  username: "$BLUEMIX_USERNAME"
+  password: "$BLUEMIX_PASSWORD"
+  organization: IBM-ILLINOIS-C3SR
+  space: dev
+  on:
+    repo: rai-project/dockerfile-builder
 - provider: s3
   access_key_id: AKIAIAFSJLCCOYB5V3EQ
   secret_access_key:
@@ -100,14 +110,6 @@ deploy:
   acl: public_read
   skip_cleanup: true
   detect_encoding: true
-  on:
-    repo: rai-project/dockerfile-builder
-- provider: cloudfoundry
-  api: https://api.ng.bluemix.net
-  username: "$BLUEMIX_USERNAME"
-  password: "$BLUEMIX_PASSWORD"
-  organization: IBM-ILLINOIS-C3SR
-  space: dev
   on:
     repo: rai-project/dockerfile-builder
 env:
