@@ -10,8 +10,11 @@ addons:
   apt:
     sources:
       - sourceline: 'ppa:masterminds/glide'
+      - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
+        key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
     packages:
       - glide
+      - yarn
 install:
 - glide install
 - go get github.com/mjibson/esc
