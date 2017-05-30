@@ -5,7 +5,8 @@ go:
 #   yarn: true
 #   directories:
 #     - node_modules
-sudo: true
+dist: trusty
+sudo: required
 node_js:
   - "7"
 addons:
