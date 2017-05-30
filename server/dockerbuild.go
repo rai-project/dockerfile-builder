@@ -2,15 +2,12 @@ package server
 
 import (
 	"bytes"
-	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
-
-	"cloud.google.com/go/pubsub"
 
 	yaml "gopkg.in/yaml.v1"
 
@@ -28,6 +25,7 @@ import (
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 	"github.com/rai-project/model"
+	"github.com/rai-project/pubsub"
 	"github.com/rai-project/pubsub/redis"
 	"github.com/rai-project/serializer/json"
 	"github.com/rai-project/store"
@@ -237,7 +235,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 }
 
 func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
-	formatPrint := func(w io.WriteCloser, resp model.JobResponse) {
+	formatPrint := func(resp model.JobResponse) {
 		body := strings.TrimSpace(string(resp.Body))
 		if body == "" {
 			return
@@ -250,19 +248,13 @@ func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
 	for msg := range msgs {
 		var data model.JobResponse
 
-		if c.spinner != nil {
-			c.spinner.Stop()
-			c.spinner = nil
-		}
 		err := msg.Unmarshal(&data)
 		if err != nil {
 			log.WithError(err).Debug("failed to unmarshal response data")
 			continue
 		}
-		if data.Kind == model.StderrResponse {
-			formatPrint(c.options.stderr, data)
-		} else if data.Kind == model.StdoutResponse {
-			formatPrint(c.options.stderr, data)
+		if data.Kind == model.StderrResponse || data.Kind == model.StdoutResponse {
+			formatPrint(data)
 		}
 	}
 
@@ -272,18 +264,4 @@ func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
 func validateDockerfile(content string) error {
 	_, err := parser.Parse(bytes.NewReader([]byte(content)))
 	return err
-}
-
-func init() {
-	config.AfterInit(func() {
-		raiBuildTemplateContent, err := _escFSString(false, "/server/rai_build.template")
-		if err != nil {
-			log.WithError(err).Fatal("cannot get /server/rai_build.template template file. make sure to run go generate on the main package.")
-		}
-
-		raiBuildTemplate, err = template.New("rai_build_template").Parse(raiBuildTemplateContent)
-		if err != nil {
-			log.WithError(err).Fatal("cannot parse /server/rai_build.template template file.")
-		}
-	})
 }
