@@ -32,14 +32,14 @@ install:
 - go get github.com/sanbornm/go-selfupdate
 - go get github.com/jteeuwen/go-bindata/...
 - go get github.com/elazarl/go-bindata-assetfs/...
-- yarn global add create-react-app grpcc
+# - yarn global add create-react-app grpcc
+# - yarn install
 script:
 - cd ${TRAVIS_BUILD_DIR} && go generate
 - VERSION=$(cat ./VERSION)
 - echo "VERSION = ${VERSION}"
 - DIST=${TRAVIS_BUILD_DIR}/dist/dockerfile-builder/stable
-- yarn install
-- yarn bundle
+# - yarn bundle
 - CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
   -flags) -s -w -X main.AppSecret=${APP_SECRET} -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
   .
