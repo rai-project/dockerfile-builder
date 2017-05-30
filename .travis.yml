@@ -20,8 +20,8 @@ script:
 - DIST=${TRAVIS_BUILD_DIR}/dist/dockerfile-builder/stable
 - CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6
   armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
-  -flags) -s -w -X main.AppSecret=${APP_SECRET} -extldflags
-  \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}" .
+  -flags) -s -w -X main.AppSecret=${APP_SECRET} -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
+  .
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - mkdir -p ${DIST}/${VERSION}/binaries
@@ -66,23 +66,24 @@ before_deploy:
 - rm -fr ${DIST}/${VERSION}/binaries
 - echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
 - cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
+after_deploy:
+- echo "releasing v${VERSION}..."
+- ghr -t "$GITHUB_TOKEN" -u rai-project -r dockerfile-builder --replace "v${VERSION}"
+  "${DIST}/latest"
+- cd ${TRAVIS_BUILD_DIR}
 deploy:
   provider: s3
   access_key_id: AKIAIAFSJLCCOYB5V3EQ
   secret_access_key:
-    secure: ttpg/QvD7TcPUw7tqoluO/Wa7Q+tCEfqefbZfbnGMp1gZOawn9rk8cH2KQ6/2z9bXaK24hOw8ixqk/rn7LhJ1b5NxODogJaONhphs7sDIfDarieyNMwjLtgfvQruX04cxacYq8GqTP1hG+9AgXgpJiDkYmixfPrzfUuvc2DKM/DfEk0gywDdNEoTkgsPvsC0aTCZF2fBi1vxmpUFqk3oQTRmYFJeBJ/L28gxQuXjQk0ymL7rk428S9hQw5BRtRNJhdnozUXse3uGVG2UbG+m7KGTmCScb+8At3SaeVqHSzzFupWgcWCCJyBlpqXX0RzKiW3/sXeM1ryuyfJ68a7pPUEQuuwOWEcYX9HgnFjRWc7lS47serYIkaFMhp0EYJGP1eWF9hm78LP9C6nMTU/Dr0Hk0xnSX5Gv7sIn0wx0NovV78ofsSBvUxvln8V1cng9cIgFSuxAgQqfGaaeUg4JKZSb9hxhXs6Xh8Ya+LOuS7CJCPQ+VqNuvhl4Hg/0Hi3S/zpsO+PEJoUfnJPohIDxQbFMiqW21Py4taJK0kVRFOJgxyx7o2Kvp9w8GIV6obZVFXfbG7t2RzXc1n8L5O2uo4SDCOGDLFuFeROpzE/UwdCoKQVHQspjGc+ysOOqeULT/OzwD0v9NsRVrC63qISgzEQ6hkjY/NzS3DjQzmZeINM=
+    secure: SmAJqNftOvfIClayyLJalKqkdvx/AU1ovDsDTXXgC3rTDT4JyuVUejyQYO2OCDZzMq4WAtZ1zhhNngy7T5E3LUhpUXCsOP1PaxGUkdLVPWbZ9I0SsPZbJ8u/UUyaMNlDNfumlPs9iQhhmwIAJ6ryHIzlcGbqVSGA8BPg77rLdbV4RTxEmOeICpcO1egs/7/FqCRUMTJm3765tzWKdDfCfUKImuDlif2lYmY6ED+gTNBJr2qgJ08QnJwyxnqdPoZVGdOFWE+wV1YbsdL7hkelbXlRab6ofRgd2BoyeD3X1lUBQQEISS8HEpmoH5PdrCGXwz/szWhZfdMBJ0tYqLukr9dORHTkvhs0S78Sghj/gj/c1doudZnrt9PnpMm72ZJuUTfh+b3BLZ7heMLvaMVS9uu345eSVi7Diw/Hvqvl4c7CU0RoXl6MPLw1Q258D8HQABehMsaXBF/pkB4/DuU3oQWeE3dLSQLocKQyE6uJKHD4PYt859WKT6gz9KR/iYOG705Oo/x4R1un+t5oJjbjkf6Nh5OXVpUzrxBhcuhO+tb3azVA+5UQUr2iTw/uyibcHJq48h6piAnKbe4ALkY6nN/6PImoGJ0MbArNszXyckEccuvz4iX+R2Y/nE5SFdHIxBGR6iqX9SoGLP1KooM+Cn0MsnN3wCx++y7R7jk8cqQ=
   bucket: files.rai-project.com
   local-dir: dist
   upload-dir: dist
-  acl: private
+  acl: public_read
   skip_cleanup: true
   detect_encoding: true
   on:
     repo: rai-project/dockerfile-builder
-after_deploy:
-- echo "releasing v${VERSION}..."
-- ghr -t "$GITHUB_TOKEN" -u rai-project -r dockerfile-builder --replace "v${VERSION}" "${DIST}/latest"
-- cd ${TRAVIS_BUILD_DIR}
 env:
   global:
-    secure: tf8wXElHB7N6RmHIGLzfr/K4XUlDdwIGRMuXSXnbk9bHf7t5rKGbhj3Ogbbf8/Myg4BnAnPtV7fvQL7+0KPc+9lUY5XVBIFGm5W77p85NKVVwxTT1jRtWPhuXPUQOjT5v9WQcfoHMqUNU31uJErzdo891JHENNSYbouZENec/gxbYyNAoCkcAUG1mqLHDPyUrOo6WtH5iFJm2I7GU1R590/UAJU69WRX6Aeuv2jfJYIslXxNH0AxztzDGIsgsGE8dbmosQdTmQncIHmxriNsfUjO6UvQFbJBxez+5w/xAVVgdW5Yquy8ckRhxP5sYrpiopA8oOSuCEAKyi16lGD4Jn+7N4tLA+r11qMyud7UEvcCua1BzmQXu6zRkVf3u3aWSH4LcUYozUUYXQWvWUa9Tz9ZyM4/isgxHrzUdruQDMzLaFKyydVjVyVghvmQe6PI+AdVwUXXuk0r7TKFL84B6GLMx4hN+CST5xEE9QVkSWU/iQzqCsB8J2FUBdIbLJufih9ebcw55NWjGfCjYghrLihOkyw0tYPdRdkgG82UZH2sDhy0pSQSCiguOqKmMgix8ymwdlG/IcGKqVECY5yFDgnhdxd/7gt6eX69nMZbBmBKqJ3f4G3FhGc6TU/LxMllsVktMD7IxUwP7hu3JLMzHiG0iYrS4fc6ERIWbONicrA=
+    secure: oi0yifu6wbyFdpNPU80dnpnw81H2li6pz1jCAtq2MPFUU6UFbx5ilT39YXP5D95GAocN4sQBx/tDFjoxkWnr+m9ERUD4mpPBXWjvWkUJYvIRDW+w8gY6WMru4L0BlfnRw++BtYva7TC3Cl16pxyjAQUn/qC+xSNMvy2Z5voEDq8VIPjXGEcd9Gf2pP+Txi6kxkPJHCoCTpElwA2ONCFVCjIYuJ+gXxczF2SdHq4gNOrAHIbzOvtOvKWiOyM4tHNhyw+Ckjjf2EcVFNFJtMO+PL5HTRJZTUi8B0O0AR9S23fibJz0DxWymMsK8HlsOQ2VNMG9eG5fUyzfv+vJ4wgQVniCTlkqovic5W6fWoHjRsUhcEhSSQ9ixWSV4o9gfT63W5cihlxDOuvLBBujhNcNEbWr0P1Zd55+DB9Cu3agZp7q3BwB6CO4uo2yGUU7IwvKvl1GaWc18Iqz7uq2zhGKyQ1gIFG96dXwtFg7CpitS6PHGxXFFMRDnVB95RkjxONGgQeLlxfKDH8MXvdB2bL8Bup2dtI9MW/9nF/XdzapzWSuXGOJCC4ntYzD+SUDwzzcedGrq/iSlgMVtVta/+x+voKi4+wD7er6zptDHtoQj5Efeb9ieyoWkFq/6s5oBsThEz+aVtFII5ohsr4yLB8D3ivEFRhCtp7Ad8NhAYTA+aQ=
