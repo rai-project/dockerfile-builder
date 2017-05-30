@@ -14,6 +14,7 @@ addons:
         key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
       - sourceline: 'deb https://deb.nodesource.com/node_7.x precise main'
         key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+      - sourceline: 'ppa:ubuntu-toolchain-r/test'
     packages:
       - glide
       - yarn
