@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  name: dockerfile-builder
+  host: dockerfile-builder
+  disk_quota: 1024M
+  command: dockerfile-builder
+  buildpack: https://github.com/cloudfoundry/go-buildpack.git

@@ -72,18 +72,26 @@ after_deploy:
   "${DIST}/latest"
 - cd ${TRAVIS_BUILD_DIR}
 deploy:
-  provider: s3
-  access_key_id: AKIAIAFSJLCCOYB5V3EQ
-  secret_access_key:
-    secure: SmAJqNftOvfIClayyLJalKqkdvx/AU1ovDsDTXXgC3rTDT4JyuVUejyQYO2OCDZzMq4WAtZ1zhhNngy7T5E3LUhpUXCsOP1PaxGUkdLVPWbZ9I0SsPZbJ8u/UUyaMNlDNfumlPs9iQhhmwIAJ6ryHIzlcGbqVSGA8BPg77rLdbV4RTxEmOeICpcO1egs/7/FqCRUMTJm3765tzWKdDfCfUKImuDlif2lYmY6ED+gTNBJr2qgJ08QnJwyxnqdPoZVGdOFWE+wV1YbsdL7hkelbXlRab6ofRgd2BoyeD3X1lUBQQEISS8HEpmoH5PdrCGXwz/szWhZfdMBJ0tYqLukr9dORHTkvhs0S78Sghj/gj/c1doudZnrt9PnpMm72ZJuUTfh+b3BLZ7heMLvaMVS9uu345eSVi7Diw/Hvqvl4c7CU0RoXl6MPLw1Q258D8HQABehMsaXBF/pkB4/DuU3oQWeE3dLSQLocKQyE6uJKHD4PYt859WKT6gz9KR/iYOG705Oo/x4R1un+t5oJjbjkf6Nh5OXVpUzrxBhcuhO+tb3azVA+5UQUr2iTw/uyibcHJq48h6piAnKbe4ALkY6nN/6PImoGJ0MbArNszXyckEccuvz4iX+R2Y/nE5SFdHIxBGR6iqX9SoGLP1KooM+Cn0MsnN3wCx++y7R7jk8cqQ=
-  bucket: files.rai-project.com
-  local-dir: dist
-  upload-dir: dist
-  acl: public_read
-  skip_cleanup: true
-  detect_encoding: true
-  on:
-    repo: rai-project/dockerfile-builder
+  - provider: s3
+    access_key_id: AKIAIAFSJLCCOYB5V3EQ
+    secret_access_key:
+      secure: SmAJqNftOvfIClayyLJalKqkdvx/AU1ovDsDTXXgC3rTDT4JyuVUejyQYO2OCDZzMq4WAtZ1zhhNngy7T5E3LUhpUXCsOP1PaxGUkdLVPWbZ9I0SsPZbJ8u/UUyaMNlDNfumlPs9iQhhmwIAJ6ryHIzlcGbqVSGA8BPg77rLdbV4RTxEmOeICpcO1egs/7/FqCRUMTJm3765tzWKdDfCfUKImuDlif2lYmY6ED+gTNBJr2qgJ08QnJwyxnqdPoZVGdOFWE+wV1YbsdL7hkelbXlRab6ofRgd2BoyeD3X1lUBQQEISS8HEpmoH5PdrCGXwz/szWhZfdMBJ0tYqLukr9dORHTkvhs0S78Sghj/gj/c1doudZnrt9PnpMm72ZJuUTfh+b3BLZ7heMLvaMVS9uu345eSVi7Diw/Hvqvl4c7CU0RoXl6MPLw1Q258D8HQABehMsaXBF/pkB4/DuU3oQWeE3dLSQLocKQyE6uJKHD4PYt859WKT6gz9KR/iYOG705Oo/x4R1un+t5oJjbjkf6Nh5OXVpUzrxBhcuhO+tb3azVA+5UQUr2iTw/uyibcHJq48h6piAnKbe4ALkY6nN/6PImoGJ0MbArNszXyckEccuvz4iX+R2Y/nE5SFdHIxBGR6iqX9SoGLP1KooM+Cn0MsnN3wCx++y7R7jk8cqQ=
+    bucket: files.rai-project.com
+    local-dir: dist
+    upload-dir: dist
+    acl: public_read
+    skip_cleanup: true
+    detect_encoding: true
+    on:
+      repo: rai-project/dockerfile-builder
+  - provider: cloudfoundry
+    api: https://api.ng.bluemix.net
+    username: "$BLUEMIX_USERNAME"
+    password: "$BLUEMIX_PASSWORD"
+    organization: IBM-ILLINOIS-C3SR
+    space: dev
+    on:
+      repo: rai-project/dockerfile-builder
 env:
   global:
   - secure: HYq9aHpCsdGvJ/6BdYqBKRNMdHkzc0z57jcs9vI2GVR4kA46667BS9YsNxcPe6yknZaTHAmqnCAY7Bp5x0lRcFEhRQVntuseF4uF1geR1BsY3FbYn52TsB9f5t5EZNCAvroTXhzMH/+NBG952QvdUG2YIiKC3O/Cie/YYmwitSWXKy6R9Dbcqcm9quq1uUxKwjdWfbfSv/DRp1mR6fid3WwjiLuHMW04dwfKDs07rLOb5nU5bxGZvP7W86oZX+mhzayAu3AfvJxPIEpgLqd53VSWwqcG6+FSfgGrWbZB61L1B4n4NHBlw2QZNMKTBdQkCDAnhF3GTAql/0Ryd/OFAFnYTG9ANEOcVXSoPQL6y1siQtJ59BWyTR96z4RdOKkXss/F1L8vWEVysr+9lsTo7BDRf7232Z0PiKyl41/3/7g3oZXsEBWIfUcmgvruwD4rxdKnX3/2ygVWCLL7QQtd1lgoKSmXK8ZwR4PbcgPr+RvW0OdJLODta6EeNb9LBv3AhV3exWAxT4fXxQWJh9OgFI7ITCLBRudkV1ns0HoEbXnfHJJ6MJGGw9JPGuMYHYWUhhN6fRSHS8+l+Y7YO+4yoBT5cmUjbd3HR05it/uVmbZIsk9Ru+hRojU5IvElVUANMwzJsGKd8EX02HRUtmIHfOUosa2dAWSPqAQGGNiMuhA=
