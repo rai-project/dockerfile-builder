@@ -1,11 +1,8 @@
 import React from "react";
-import createFragment from "react-addons-create-fragment";
 import { connect } from "cerebral/react";
 import { state } from "cerebral/tags";
-
-import uuid from "uuid";
-
 import ansi_up from "ansi_up";
+
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import "!style!css!sass!./ansitheme.scss";
 import "./styles.css";

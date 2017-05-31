@@ -3,19 +3,13 @@ import { state } from "cerebral/tags";
 import React from "react";
 
 import { default as GrommetApp } from "grommet/components/App";
-import Headline from "grommet/components/Headline";
 import Header from "grommet/components/Header";
 import Title from "grommet/components/Title";
-import Image from "grommet/components/Image";
 import Article from "grommet/components/Article";
 import Section from "grommet/components/Section";
 import Footer from "grommet/components/Footer";
 import Paragraph from "grommet/components/Paragraph";
-// import Logo from 'grommet/components/Logo';
 import Box from "grommet/components/Box";
-import Menu from "grommet/components/Menu";
-import Anchor from "grommet/components/Anchor";
-import Heading from "grommet/components/Heading";
 
 import CodeMirror from "../CodeMirror";
 // import Monaco from "../Monaco";
@@ -23,16 +17,14 @@ import Logo from "../Logo";
 import Terminal from "../AnsiTerminal";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import placeholder from "!raw!./placeholder.svg";
+// import placeholder from "!raw!./placeholder.svg";
 
-function placeholderImage(width, height) {
-  // We need to base64 encode this because otherwise FF will add extra escape chars
-  const dataUri = btoa(
-    placeholder.replace(/{{w}}/g, width).replace(/{{h}}/g, height).trim()
-  );
-  console.log("data:image/svg+xml;base64," + dataUri);
-  return "data:image/svg+xml;base64," + dataUri;
-}
+// function placeholderImage(width, height) {
+//   // We need to base64 encode this because otherwise FF will add extra escape chars
+//   const dataUri = btoa(placeholder.replace(/{{w}}/g, width).replace(/{{h}}/g, height).trim());
+//   console.log("data:image/svg+xml;base64," + dataUri);
+//   return "data:image/svg+xml;base64," + dataUri;
+// }
 
 export default connect(
   { title: state`app.name` },

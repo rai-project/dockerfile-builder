@@ -2,9 +2,8 @@ import { Controller } from "cerebral";
 import Devtools from "cerebral/devtools";
 
 import { ContextProvider } from "cerebral/providers";
-import UseragentModule from "cerebral-module-useragent";
-import FirebaseProvider from "cerebral-provider-firebase";
-import HttpProvider from "cerebral-provider-http";
+import UseragentModule from "@cerebral/useragent";
+import HttpProvider from "@cerebral/http";
 
 import uuid from "uuid";
 

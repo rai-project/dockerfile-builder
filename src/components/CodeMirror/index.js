@@ -5,13 +5,11 @@ import "!style!css!./codemirror.css";
 
 import React from "react";
 import { connect } from "cerebral/react";
-import { state, signal } from "cerebral/tags";
-import classnames from "classnames";
+import { signal } from "cerebral/tags";
 import CodeMirror from "codemirror";
 import "whatwg-fetch";
-import uuid from "uuid";
-
 import Button from "../Button";
+
 import "./styles.css";
 
 import "codemirror/mode/dockerfile/dockerfile.js";
