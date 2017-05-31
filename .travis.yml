@@ -20,7 +20,6 @@ addons:
     - build-essential
 install:
 - cd ${TRAVIS_BUILD_DIR}
-- glide install
 - go get github.com/mjibson/esc
 - go get github.com/ahmetb/govvv
 - go get github.com/franciscocpg/gox
@@ -28,6 +27,9 @@ install:
 - go get github.com/sanbornm/go-selfupdate
 - go get github.com/jteeuwen/go-bindata/...
 - go get github.com/elazarl/go-bindata-assetfs/...
+- yarn install
+- yarn build
+- glide install
 script:
 - cd ${TRAVIS_BUILD_DIR} && go generate
 - VERSION=$(cat ./VERSION)
