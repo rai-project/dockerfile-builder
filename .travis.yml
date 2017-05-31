@@ -28,7 +28,7 @@ install:
 - go get github.com/jteeuwen/go-bindata/...
 - go get github.com/elazarl/go-bindata-assetfs/...
 - yarn install
-- yarn build
+- yarn bundle
 - glide install
 script:
 - cd ${TRAVIS_BUILD_DIR} && go generate
