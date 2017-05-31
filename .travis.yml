@@ -3,6 +3,10 @@ go:
 - 1.8.x
 dist: trusty
 sudo: false
+cache:
+  yarn: true
+  directories:
+    - node_modules
 node_js:
 - '7'
 addons:
