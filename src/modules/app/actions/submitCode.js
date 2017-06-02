@@ -1,12 +1,12 @@
 // Import code-generated data structures.
 import {
   DockerService
-} from "../../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
+} from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
 import {
   DockerBuildRequest
   // DockerBuildResponse,
   // ErrorStatus
-} from "../../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
+} from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
 
 import { grpc } from "grpc-web-client";
 

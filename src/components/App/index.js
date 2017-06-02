@@ -52,14 +52,8 @@ export default connect(
               pad={"none"}
             >
               <Section alignContent={"start"} justify={"start"} pad="large">
-                {/*<Heading margin={'none'} justify={'left'}>
-									CodeMirror
-								</Heading>*/}
                 <CodeMirror />
                 <Terminal />
-              </Section>
-              <Section alignContent={"start"} justify={"start"}>
-                {/*<Terminal />*/}
               </Section>
             </Article>
             <Footer

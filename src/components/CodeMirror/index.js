@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import "!style!css!./../../../node_modules/codemirror/lib/codemirror.css";
+import "!style-loader!css-loader!./../../../node_modules/codemirror/lib/codemirror.css";
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import "!style!css!./codemirror.css";
+import "!style-loader!css-loader!./codemirror.css";
 
 import React from "react";
 import { connect } from "cerebral/react";
