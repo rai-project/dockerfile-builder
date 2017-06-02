@@ -43,6 +43,13 @@ func assetsRoutes(e *echo.Echo) {
 		}
 		return c.HTML(http.StatusOK, string(html))
 	}
+	serviceWorker := func(c echo.Context) error {
+		js, err := buildServiceWorkerJsBytes()
+		if err != nil {
+			return err
+		}
+		return c.Blob(http.StatusOK, "application/javascript", js)
+	}
 	favicon := func(c echo.Context) error {
 		ico, err := buildFaviconIcoBytes()
 		if err != nil {
@@ -54,6 +61,7 @@ func assetsRoutes(e *echo.Echo) {
 	e.GET("/", index)
 	e.GET("/index.html", index)
 	e.GET("/favicon.ico", favicon)
+	e.GET("/service-worker.js", serviceWorker)
 	e.GET("/vendor/*", echo.WrapHandler(http.FileServer(getAssetFS())))
 	e.GET("/static/*", echo.WrapHandler(http.FileServer(getAssetFS())))
 
