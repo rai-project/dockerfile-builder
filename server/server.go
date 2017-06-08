@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
