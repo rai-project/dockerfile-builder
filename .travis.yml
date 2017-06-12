@@ -43,7 +43,9 @@ install:
 - yarn install
 - yarn build
 - yarn bundle
-- glide --debug install --force 
+- glide --debug install --force
+- rm -fr vendor/github.com/Sirupsen
+  - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 script:
 - cd ${TRAVIS_BUILD_DIR} && go generate
 - VERSION=$(cat ./VERSION)
