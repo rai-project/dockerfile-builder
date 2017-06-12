@@ -43,7 +43,7 @@ install:
 - yarn install
 - yarn build
 - yarn bundle
-- glide install --force --debug
+- glide --debug install --force 
 script:
 - cd ${TRAVIS_BUILD_DIR} && go generate
 - VERSION=$(cat ./VERSION)
