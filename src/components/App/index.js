@@ -4,16 +4,11 @@ import { Helmet } from "react-helmet";
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
 import { Sidebar, Container } from "semantic-ui-react";
+import styled from "styled-components";
 
 import Navbar from "./Navbar";
 import Header from "./Header";
-import {
-  FrameworkSummaryPage,
-  HomePage,
-  ModelInformationPage,
-  ModelSummaryPage,
-  PredictionResultsPage
-} from "../Pages";
+import { HomePage } from "../Pages";
 import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 
@@ -23,6 +18,13 @@ import Logo from "./Logo";
 import Terminal from "../Terminal";
 
 import "./App.css";
+
+const Body = styled.section`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 7em;
+`;
 
 export default connect(
   {
@@ -57,8 +59,8 @@ export default connect(
             <link rel="canonical" href={websiteUrl} />
           </Helmet>
           <Sidebar.Pusher style={{ border: 0, borderRadius: 0 }}>
-            <main>
-              <Snackbar />
+            <Body>
+              {/* <Snackbar /> */}
               <div className="App-content">
                 <Navbar />
                 <Header />
@@ -72,7 +74,7 @@ export default connect(
               <div className="App-footer">
                 <Footer />
               </div>
-            </main>
+            </Body>
           </Sidebar.Pusher>
         </div>
       );

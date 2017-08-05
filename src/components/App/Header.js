@@ -6,15 +6,15 @@ import { Header as UIHeader, Container } from "semantic-ui-react";
 
 export default connect(
   {
-    currentPage: state`app.currentPage`,
-    appName: state`app.name`
+    appName: state`app.name`,
+    currentPage: state`app.currentPage`
   },
   function Header({ appName, currentPage }) {
     const showTagLine = currentPage === "Home";
     return (
       <div className="App-header">
         <Container textAlign={"center"}>
-          <UIHeader size="huge">
+          <UIHeader size="large">
             {appName}
           </UIHeader>
           {showTagLine

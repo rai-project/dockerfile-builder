@@ -40,6 +40,7 @@
     "semantic-ui-css": "^2.2.11",
     "semantic-ui-react": "^0.71.3",
     "store2": "^2.5.1",
+    "styled-components": "^2.1.2",
     "ts-protoc-gen": "^0.3.3",
     "uuid": "^3.1.0",
     "whatwg-fetch": "^2.0.3"
