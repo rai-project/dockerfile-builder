@@ -11,7 +11,7 @@ import "./styles.css";
 
 export default connect(
   { terminalOutput: state`app.terminalOutput` },
-  function AnsiTerminal({ terminalOutput }) {
+  function Terminal({ terminalOutput }) {
     if (terminalOutput.length === 0) {
       return null;
     }

@@ -1,88 +1,79 @@
-import { connect } from "cerebral/react";
-import { state } from "cerebral/tags";
 import React from "react";
+import { Helmet } from "react-helmet";
 
-import { default as GrommetApp } from "grommet/components/App";
-import Header from "grommet/components/Header";
-import Title from "grommet/components/Title";
-import Article from "grommet/components/Article";
-import Section from "grommet/components/Section";
-import Footer from "grommet/components/Footer";
-import Paragraph from "grommet/components/Paragraph";
-import Box from "grommet/components/Box";
+import { connect } from "cerebral/react";
+import { state, signal } from "cerebral/tags";
+import { Sidebar, Container } from "semantic-ui-react";
+
+import Navbar from "./Navbar";
+import Header from "./Header";
+import {
+  FrameworkSummaryPage,
+  HomePage,
+  ModelInformationPage,
+  ModelSummaryPage,
+  PredictionResultsPage
+} from "../Pages";
+import Footer from "./Footer";
+import Snackbar from "./Snackbar";
 
 import CodeMirror from "../CodeMirror";
 // import Monaco from "../Monaco";
-import Logo from "../Logo";
-import Terminal from "../AnsiTerminal";
+import Logo from "./Logo";
+import Terminal from "../Terminal";
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-// import placeholder from "!raw!./placeholder.svg";
-
-// function placeholderImage(width, height) {
-//   // We need to base64 encode this because otherwise FF will add extra escape chars
-//   const dataUri = btoa(placeholder.replace(/{{w}}/g, width).replace(/{{h}}/g, height).trim());
-//   console.log("data:image/svg+xml;base64," + dataUri);
-//   return "data:image/svg+xml;base64," + dataUri;
-// }
+import "./App.css";
 
 export default connect(
-  { title: state`app.name` },
+  {
+    // eslint-disable-next-line
+    title: state`app.name`,
+    currentPage: state`app.currentPage`,
+    appLoaded: signal`app.appLoaded`,
+    appName: state`app.name`,
+    websiteUrl: state`websiteUrl`
+  },
   class App extends React.Component {
+    componentDidMount() {
+      // this.props.appLoaded();
+    }
     render() {
-      const title = this.props.title;
+      const { title, currentPage, websiteUrl } = this.props;
+
+      let Page = null;
+      switch (currentPage) {
+        default:
+          Page = HomePage;
+          break;
+      }
+
       return (
-        <div id={"app-wrapper"}>
-          <GrommetApp>
-            <Header
-              size="large"
-              pad={{ horizontal: "medium", between: "small" }}
-              responsive={false}
-              justify="between"
-            >
-              <Title responsive={true}>
-                <Logo size={"thumb"} fit={"contain"} />
-                <h1>{title}</h1>
-              </Title>
-            </Header>
-            <Article
-              scrollStep={false}
-              controls={true}
-              justify={"between"}
-              pad={"none"}
-            >
-              <Section alignContent={"start"} justify={"start"} pad="large">
-                <CodeMirror />
-                <Terminal />
-              </Section>
-            </Article>
-            <Footer
-              float={true}
-              pad={{
-                vertical: "small",
-                horizontal: "medium",
-                between: "medium"
-              }}
-              wrap={true}
-              direction="row"
-              justify="center"
-              align="center"
-            >
-              <Box direction="row" align="center" pad={{ between: "medium" }}>
-                <Paragraph margin="none">
-                  © 2017 Abdul Dakkak
-                </Paragraph>
-                {/*<Menu direction="row" size="small" dropAlign={{ right: 'right' }}>
-									<Anchor href="#">
-										Contact
-									</Anchor>
-									<Anchor href="#">
-										About
-									</Anchor>
-								</Menu>*/}
-              </Box>
-            </Footer>
-          </GrommetApp>
+        <div className="App">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>
+              {title}
+            </title>
+            <link rel="canonical" href={websiteUrl} />
+          </Helmet>
+          <Sidebar.Pusher style={{ border: 0, borderRadius: 0 }}>
+            <main>
+              <Snackbar />
+              <div className="App-content">
+                <Navbar />
+                <Header />
+                <Container
+                  className="App-body"
+                  style={{ borderRadius: 0, border: 0 }}
+                >
+                  <Page key={"page-" + currentPage} />
+                </Container>
+              </div>
+              <div className="App-footer">
+                <Footer />
+              </div>
+            </main>
+          </Sidebar.Pusher>
         </div>
       );
     }
