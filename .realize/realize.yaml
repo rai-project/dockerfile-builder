@@ -1,0 +1,35 @@
+settings:
+  resources:
+    outputs: outputs.log
+    logs: logs.log
+    errors: errors.log
+  server:
+    status: true
+    open: false
+    host: localhost
+    port: 5001
+projects:
+- name: dockerfile-builder
+  path: .
+  fmt: true
+  generate: true
+  test: false
+  bin: true
+  build: true
+  run: true
+  params:
+  - web -d -v
+  watcher:
+    preview: true
+    paths:
+    - pkg
+    ignore_paths:
+    - src
+    - vendor
+    exts:
+    - .go
+  streams:
+    cli_out: true
+    file_out: true
+    file_log: true
+    file_err: true
