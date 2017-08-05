@@ -57,17 +57,17 @@ export default class Editor extends React.Component<Props, Props, void> {
         import("./mode/cuda.js");
         return "text/x-cuda-src";
       case "docker":
-        await import("codemirror/mode/dockerfile/dockerfile.js");
+        import("codemirror/mode/dockerfile/dockerfile");
         return "docker";
       case "c":
       case "cpp":
-        await import("codemirror/mode/clike/clike.js");
+        import("codemirror/mode/clike/clike");
         return mode;
       case "css":
-        await import("codemirror/mode/css/css");
+        import("codemirror/mode/css/css");
         return "css";
       case "html":
-        await import("codemirror/mode/htmlmixed/htmlmixed");
+        import("codemirror/mode/htmlmixed/htmlmixed");
         return "htmlmixed";
     }
 
