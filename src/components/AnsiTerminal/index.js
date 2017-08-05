@@ -4,7 +4,7 @@ import { state } from "cerebral/tags";
 import ansi_up from "ansi_up";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import "!style-loader!css-loader!sass-loader!./ansitheme.scss";
+import "./theme.css";
 import "./styles.css";
 
 // look at https://github.com/getsentry/freight/blob/master/static/components/TaskDetails.jsx
