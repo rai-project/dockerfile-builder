@@ -11,19 +11,17 @@ export default connect(
   },
   function NavBar({ navbarClicked, currentPage }) {
     return (
-      <div className="App-menu">
-        <Container>
-          <Menu pointing secondary>
-            <Menu.Menu position="right">
-              <Menu.Item
-                name="about"
-                active={currentPage === "About"}
-                onClick={e => navbarClicked({ name: "About" })}
-              />
-            </Menu.Menu>
-          </Menu>
-        </Container>
-      </div>
+      <Container>
+        <Menu pointing inverted secondary>
+          <Menu.Menu position="right">
+            <Menu.Item
+              name="about"
+              active={currentPage === "About"}
+              onClick={e => navbarClicked({ name: "About" })}
+            />
+          </Menu.Menu>
+        </Menu>
+      </Container>
     );
   }
 );

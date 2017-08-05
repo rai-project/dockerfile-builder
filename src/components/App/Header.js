@@ -14,11 +14,13 @@ export default connect(
     return (
       <div className="App-header">
         <Container textAlign={"center"}>
-          <UIHeader size="large">
+          <UIHeader inverted size="large">
             {appName}
           </UIHeader>
           {showTagLine
-            ? <UIHeader size="small">Docker for Power</UIHeader>
+            ? <UIHeader inverted size="small">
+                Docker for Power
+              </UIHeader>
             : null}
         </Container>
       </div>

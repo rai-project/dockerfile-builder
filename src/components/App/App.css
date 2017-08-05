@@ -13,14 +13,12 @@
 }
 
 .App-menu {
-  color: white;
   font-size: 35px;
   border-radius: 0;
   padding-top: 10px;
 }
 
 .App-header {
-  color: white;
   font-size: 35px;
   border-radius: 0;
   padding-top: 10px;
@@ -42,8 +40,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  background: #1b1c1d;
+}
+
+.footer.segment {
+  padding: 5em 0em;
 }
 
 main {

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
-import { Sidebar, Container } from "semantic-ui-react";
+import { Sidebar, Container, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
 import Navbar from "./Navbar";
@@ -12,8 +12,6 @@ import { HomePage } from "../Pages";
 import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 
-import CodeMirror from "../CodeMirror";
-// import Monaco from "../Monaco";
 import Logo from "./Logo";
 import Terminal from "../Terminal";
 
@@ -23,7 +21,6 @@ const Body = styled.section`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin-top: 7em;
 `;
 
 export default connect(
@@ -58,24 +55,30 @@ export default connect(
             </title>
             <link rel="canonical" href={websiteUrl} />
           </Helmet>
-          <Sidebar.Pusher style={{ border: 0, borderRadius: 0 }}>
-            <Body>
-              {/* <Snackbar /> */}
-              <div className="App-content">
-                <Navbar />
-                <Header />
-                <Container
-                  className="App-body"
-                  style={{ borderRadius: 0, border: 0 }}
-                >
-                  <Page key={"page-" + currentPage} />
-                </Container>
-              </div>
-              <div className="App-footer">
-                <Footer />
-              </div>
-            </Body>
-          </Sidebar.Pusher>
+          <Sidebar.Pushable as={Segment}>
+            <Sidebar.Pusher style={{ border: 0, borderRadius: 0 }}>
+              <Body>
+                {/* <Snackbar /> */}
+                <div className="App-content">
+                  <Segment inverted vertical masthead center aligned>
+                    <Navbar />
+                    <Header />
+                  </Segment>
+                  <Container
+                    className="App-body"
+                    style={{ borderRadius: 0, border: 0 }}
+                  >
+                    <Page key={"page-" + currentPage} />
+                  </Container>
+                </div>
+                <div className="App-footer">
+                  <Segment inverted vertical masthead center aligned>
+                    <Footer />
+                  </Segment>
+                </div>
+              </Body>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
         </div>
       );
     }
