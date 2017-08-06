@@ -17,6 +17,8 @@ import Terminal from "../Terminal";
 
 import "./App.css";
 
+import "../../common/extract";
+
 const Body = styled.section`
   display: flex;
   flex-direction: column;
@@ -60,7 +62,7 @@ export default connect(
               <Body>
                 {/* <Snackbar /> */}
                 <div className="App-content">
-                  <Segment inverted vertical masthead center aligned>
+                  <Segment inverted vertical>
                     <Navbar />
                     <Header />
                   </Segment>
@@ -72,7 +74,7 @@ export default connect(
                   </Container>
                 </div>
                 <div className="App-footer">
-                  <Segment inverted vertical masthead center aligned>
+                  <Segment inverted vertical>
                     <Footer />
                   </Segment>
                 </div>

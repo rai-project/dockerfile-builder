@@ -17,6 +17,7 @@
     "classnames": "^2.2.5",
     "codemirror": "^5.28.0",
     "function-tree": "next",
+    "gitignore-parser": "^0.0.2",
     "google-protobuf": "^3.3.0",
     "grommet": "^1.6.0",
     "grommet-css": "^1.6.0",
