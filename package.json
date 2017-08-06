@@ -34,6 +34,7 @@
     "re-bulma": "^0.4.5",
     "react": "^15.6.1",
     "react-addons-create-fragment": "^15.6.0",
+    "react-addons-perf": "^15.4.2",
     "react-clipboard.js": "^1.1.2",
     "react-dnd": "^2.4.0",
     "react-dnd-html5-backend": "^2.4.1",
@@ -73,7 +74,8 @@
     "rimraf": "^2.6.1",
     "shelljs": "^0.7.8",
     "source-map-support": "^0.4.15",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "why-did-you-update": "^0.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

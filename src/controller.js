@@ -56,13 +56,7 @@ const controller = Controller({
       }
     })
   },
-  providers: [
-    // FirebaseProvider({
-    // 	config: config.firebaseConfig,
-    // }),
-    ContextProvider({ uuid }),
-    HttpProvider()
-  ]
+  providers: [ContextProvider({ uuid }), HttpProvider()]
 });
 
 export default controller;

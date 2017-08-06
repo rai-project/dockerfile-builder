@@ -6,7 +6,18 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import "semantic-ui-css/semantic.min.css";
 
+import "./assets/fonts/lato-regular-webfont.woff";
+import "./assets/fonts/lato-bold-webfont.woff";
+import "./assets/fonts/glyphicons-halflings-regular.woff";
+
 import App from "./components/App";
+
+if (process.env.NODE_ENV !== "production") {
+  const perf = async function() {
+    window.Perf = await import("react-addons-perf");
+  };
+  perf();
+}
 
 render(
   <Container controller={controller}>
@@ -15,4 +26,6 @@ render(
   document.querySelector("#root")
 );
 
-registerServiceWorker();
+if (process.env.NODE_ENV === "production") {
+  registerServiceWorker();
+}

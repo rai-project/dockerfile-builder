@@ -6,7 +6,6 @@ import { Container, Menu } from "semantic-ui-react";
 
 export default connect(
   {
-    currentPage: state`app.currentPage`,
     navbarClicked: signal`app.navbarClicked`
   },
   function NavBar({ navbarClicked, currentPage }) {

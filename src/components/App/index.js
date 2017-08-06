@@ -12,8 +12,7 @@ import { HomePage } from "../Pages";
 import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 
-import Logo from "./Logo";
-import Terminal from "../Terminal";
+// import Logo from "./Logo";
 
 import "./App.css";
 
@@ -28,18 +27,17 @@ const Body = styled.section`
 export default connect(
   {
     // eslint-disable-next-line
-    title: state`app.name`,
+    appName: state`app.name`,
     currentPage: state`app.currentPage`,
     appLoaded: signal`app.appLoaded`,
-    appName: state`app.name`,
-    websiteUrl: state`websiteUrl`
+    websiteUrl: state`app.websiteUrl`
   },
   class App extends React.Component {
     componentDidMount() {
-      // this.props.appLoaded();
+      this.props.appLoaded();
     }
     render() {
-      const { title, currentPage, websiteUrl } = this.props;
+      const { appName, currentPage, websiteUrl } = this.props;
 
       let Page = null;
       switch (currentPage) {
@@ -53,34 +51,30 @@ export default connect(
           <Helmet>
             <meta charSet="utf-8" />
             <title>
-              {title}
+              {appName}
             </title>
             <link rel="canonical" href={websiteUrl} />
           </Helmet>
-          <Sidebar.Pushable as={Segment}>
-            <Sidebar.Pusher style={{ border: 0, borderRadius: 0 }}>
-              <Body>
-                {/* <Snackbar /> */}
-                <div className="App-content">
-                  <Segment inverted vertical>
-                    <Navbar />
-                    <Header />
-                  </Segment>
-                  <Container
-                    className="App-body"
-                    style={{ borderRadius: 0, border: 0 }}
-                  >
-                    <Page key={"page-" + currentPage} />
-                  </Container>
-                </div>
-                <div className="App-footer">
-                  <Segment inverted vertical>
-                    <Footer />
-                  </Segment>
-                </div>
-              </Body>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
+          <Body>
+            <Snackbar />
+            <div className="App-content">
+              <Segment inverted vertical>
+                <Navbar currentPage={currentPage} />
+                <Header appName={appName} currentPage={currentPage} />
+              </Segment>
+              <Container
+                className="App-body"
+                style={{ borderRadius: 0, border: 0 }}
+              >
+                <Page key={"page-" + currentPage} />
+              </Container>
+            </div>
+            <div className="App-footer">
+              <Segment inverted vertical>
+                <Footer />
+              </Segment>
+            </div>
+          </Body>
         </div>
       );
     }
