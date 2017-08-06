@@ -1,14 +1,12 @@
+import { grpc } from "grpc-web-client";
+
 // Import code-generated data structures.
-import {
-  DockerService
-} from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
+import { DockerService } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
 import {
   DockerBuildRequest
   // DockerBuildResponse,
   // ErrorStatus
 } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
-
-import { grpc } from "grpc-web-client";
 
 function submitCode({ state, uuid, controller, props }) {
   const buildDockerRequest = new DockerBuildRequest();
