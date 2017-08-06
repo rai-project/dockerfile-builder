@@ -70,11 +70,8 @@ export default class Editor extends React.Component<Props, Props, void> {
         import("codemirror/mode/dockerfile/dockerfile");
         return "docker";
       default:
-        import("codemirror/mode/dockerfile/dockerfile");
-        return "docker";
+        return "jsx";
     }
-
-    return "jsx";
   };
   onChange = () => {
     console.log(arguments);

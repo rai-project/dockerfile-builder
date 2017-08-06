@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import { connect } from "cerebral/react";
 import { state, signal } from "cerebral/tags";
-import { Sidebar, Container, Segment } from "semantic-ui-react";
+import { Container, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
 import Navbar from "./Navbar";

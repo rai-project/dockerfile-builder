@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "cerebral/react";
-import { state, signal } from "cerebral/tags";
+import { signal } from "cerebral/tags";
 
 import { Container, Menu } from "semantic-ui-react";
 
