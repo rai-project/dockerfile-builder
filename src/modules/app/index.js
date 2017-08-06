@@ -29,7 +29,6 @@ export default {
   state: {
     name: "Dockerfile Builder for Power",
     isLoaded: false,
-    isLoading: true,
     isSaving: false,
     isBuilding: false,
     terminalOutput: [],
