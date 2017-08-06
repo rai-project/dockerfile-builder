@@ -1,14 +1,14 @@
 // @flow
 
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
-import { If, Then, Else } from "react-if";
+import { If, Then } from "react-if";
 
 import React from "react";
 import idx from "idx";
 import classNames from "classnames";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import CodeMirror from "codemirror";
-import { isUndefined, size, keys, head, mapKeys } from "lodash";
+import { isUndefined, size, keys, head } from "lodash";
 
 import "codemirror/addon/dialog/dialog";
 import "codemirror/addon/hint/show-hint";
@@ -56,9 +56,6 @@ export default class Editor extends React.Component<Props, Props, void> {
       case "cuda":
         import("./mode/cuda.js");
         return "text/x-cuda-src";
-      case "docker":
-        import("codemirror/mode/dockerfile/dockerfile");
-        return "docker";
       case "c":
       case "cpp":
         import("codemirror/mode/clike/clike");
@@ -69,6 +66,12 @@ export default class Editor extends React.Component<Props, Props, void> {
       case "html":
         import("codemirror/mode/htmlmixed/htmlmixed");
         return "htmlmixed";
+      case "docker":
+        import("codemirror/mode/dockerfile/dockerfile");
+        return "docker";
+      default:
+        import("codemirror/mode/dockerfile/dockerfile");
+        return "docker";
     }
 
     return "jsx";
@@ -121,7 +124,7 @@ export default class Editor extends React.Component<Props, Props, void> {
     }
   };
   render() {
-    const { fontSize } = this.props;
+    // const { fontSize } = this.props;
     const mainElement = (
       <div
         ref={ref => (this.codeElement = ref)}
