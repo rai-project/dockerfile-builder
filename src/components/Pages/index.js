@@ -33,3 +33,5 @@ const delayLoad = function(loader) {
 export const HomePage = delayLoad(() => import("./Home"));
 
 HomePage.preload();
+
+// export {default as HomePage} from "./Home"

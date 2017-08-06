@@ -13,7 +13,7 @@ import "./assets/fonts/glyphicons-halflings-regular.woff";
 import App from "./components/App";
 
 if (process.env.NODE_ENV !== "production") {
-  const perf = async function() {
+  const perf = async () => {
     window.Perf = await import("react-addons-perf");
   };
   perf();

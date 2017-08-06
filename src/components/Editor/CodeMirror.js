@@ -7,7 +7,7 @@ import React from "react";
 import idx from "idx";
 import classNames from "classnames";
 // import PropTypes from "prop-types";
-import CodeMirror from "codemirror";
+import ICodeMirror from "codemirror";
 import { isUndefined, size, keys, head } from "lodash";
 
 import "codemirror/addon/dialog/dialog";
@@ -36,9 +36,9 @@ type Props = {
   onSaveIconClick: ((Event, string | null | void) => void) | void
 };
 
-export default class Editor extends React.Component<Props, Props, void> {
+export default class CodeMirror extends React.Component<Props, Props, void> {
   codeElement: HTMLDivElement;
-  editor: CodeMirror.Editor;
+  editor: ICodeMirror.Editor;
   static defaultProps: Props = {
     mode: "cuda",
     currentFile: "",
@@ -49,30 +49,30 @@ export default class Editor extends React.Component<Props, Props, void> {
     onNewIconClick: undefined,
     onSaveIconClick: undefined
   };
-  getMode = async (mode: string) => {
+  async getMode(mode: string) {
     if (!mode) return "jsx";
 
     switch (mode) {
       case "cuda":
-        import("./mode/cuda.js");
+        await import("./mode/cuda.js");
         return "text/x-cuda-src";
       case "c":
       case "cpp":
-        import("codemirror/mode/clike/clike");
+        await import("codemirror/mode/clike/clike");
         return mode;
       case "css":
-        import("codemirror/mode/css/css");
+        await import("codemirror/mode/css/css");
         return "css";
       case "html":
-        import("codemirror/mode/htmlmixed/htmlmixed");
+        await import("codemirror/mode/htmlmixed/htmlmixed");
         return "htmlmixed";
       case "docker":
-        import("codemirror/mode/dockerfile/dockerfile");
+        await import("codemirror/mode/dockerfile/dockerfile");
         return "docker";
       default:
         return "jsx";
     }
-  };
+  }
   onChange = () => {
     console.log(arguments);
   };
@@ -84,7 +84,7 @@ export default class Editor extends React.Component<Props, Props, void> {
         : this.props.currentFile;
     const value = idx(this.props, _ => _.files[currentFile].content) || "";
     // eslint-disable-next-line new-cap
-    this.editor = CodeMirror(this.codeElement, {
+    this.editor = ICodeMirror(this.codeElement, {
       value,
       mode,
       autofocus: true,
