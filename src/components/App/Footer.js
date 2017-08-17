@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer>
       <Container>
-        <a href="https://github.com/rai-project/carml">
+        <a href="https://github.com/rai-project/dockerfile-builder">
           <Image src={c3srImage} size="small" floated="right" />
           <Image src={uiucImage} size="small" floated="right" />
           <Header inverted as="h3">
