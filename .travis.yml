@@ -49,8 +49,39 @@ install:
 - glide install --force
 - rm -fr vendor/github.com/Sirupsen
 - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
-- goreleaser --snapshot --skip-publish --skip-validate
-
+script:
+- cd ${TRAVIS_BUILD_DIR} && go generate
+- VERSION=$(cat ./VERSION)
+- echo "VERSION = ${VERSION}"
+- DIST=${TRAVIS_BUILD_DIR}/dist/dockerfile-builder/stable
+- >
+  CGO_ENABLED=0 gox
+  -verbose
+  -os="linux darwin"
+  -arch="amd64"
+  -osarch="linux/ppc64le"
+  -ldflags="$(govvv -flags)
+  -s -w -X main.AppSecret=${APP_SECRET}
+  -extldflags \"-static\""
+  -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
+  .
+before_deploy:
+- echo "go-selfupdate generating bindiffs"
+- mkdir -p ${DIST}/${VERSION}/binaries
+- mkdir -p ${DIST}/latest
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/darwin-amd64   ${DIST}/${VERSION}/darwin-amd64/dockerfile-builder      ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-amd64    ${DIST}/${VERSION}/linux-amd64/dockerfile-builder       ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-ppc64le  ${DIST}/${VERSION}/linux-ppc64le/dockerfile-builder     ${TRAVIS_BUILD_DIR}/LICENSE.TXT
+  ${TRAVIS_BUILD_DIR}/VERSION
+- go-selfupdate -o ${DIST}/updates ${DIST}/${VERSION}/binaries/ ${VERSION}
+- cp ${DIST}/${VERSION}/binaries/darwin-amd64  ${DIST}/latest/darwin-amd64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-amd64   ${DIST}/latest/linux-amd64.tar.gz
+- cp ${DIST}/${VERSION}/binaries/linux-ppc64le ${DIST}/latest/linux-ppc64le.tar.gz
+- rm -fr ${DIST}/${VERSION}/binaries
+- echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
+- cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
 after_deploy:
 - cf logs dockerfile-builder --recent
 - echo "releasing v${VERSION}..."
