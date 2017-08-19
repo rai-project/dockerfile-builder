@@ -22,11 +22,11 @@ projects:
       status: true
     run: true
   args:
-  - web -d -v
+  - serve -d -v
   watcher:
     preview: true
     paths:
-    - pkg
+    - server
     ignore_paths:
     - src
     - vendor
