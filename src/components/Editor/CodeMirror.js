@@ -43,7 +43,7 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     mode: "cuda",
     currentFile: "",
     withMenuBar: false,
-    files: {},
+    files: [],
     fontSize: 14,
     readOnly: false,
     onNewIconClick: undefined,
@@ -83,7 +83,6 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         ? head(keys(this.props.files))
         : this.props.currentFile;
     const value = idx(this.props, _ => _.files[currentFile].content) || "";
-    console.log(value);
     // eslint-disable-next-line new-cap
     this.editor = ICodeMirror(this.codeElement, {
       value,

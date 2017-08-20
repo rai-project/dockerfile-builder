@@ -1,17 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "cerebral/react";
+import { state } from "cerebral/tags";
+import { isNil, isEmpty } from "lodash";
 
 import CodeMirror from "./CodeMirror";
 
-export default class Editor extends React.Component {
-  static propTypes = {
-    files: PropTypes.object
-  };
-
-  static defaultProps = {
-    files: {}
-  };
-  render() {
-    return <CodeMirror {...this.props} />;
+export default connect(
+  {
+    files: state`app.zipFile.content`,
+    currentFile: state`app.zipFile.entry`
+  },
+  function Editor({ files, currentFile }) {
+    if (isNil(files) || isEmpty(files)) {
+      return <div />;
+    }
+    return <CodeMirror files={files} currentFile={currentFile} />;
   }
-}
+);

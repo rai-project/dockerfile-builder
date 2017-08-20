@@ -44,7 +44,11 @@ export default {
     isSaving: false,
     isBuilding: false,
     terminalOutput: [],
-    zipFile: blobToFile(base64ToBlob(zipFileContent), "upload.zip"),
+    zipFile: {
+      entry: "Dockerfile",
+      content: null,
+      data: blobToFile(base64ToBlob(zipFileContent), "upload.zip")
+    },
     editor: {
       currentFile: null,
       mode: "dockerfile",

@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import { connect } from "cerebral/react";
-import { state, signal } from "cerebral/tags";
+import { state } from "cerebral/tags";
 import { Container, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -29,13 +29,9 @@ export default connect(
     // eslint-disable-next-line
     appName: state`app.name`,
     currentPage: state`app.currentPage`,
-    appLoaded: signal`app.appLoaded`,
     websiteUrl: state`app.websiteUrl`
   },
   class App extends React.Component {
-    componentDidMount() {
-      this.props.appLoaded();
-    }
     render() {
       const { appName, currentPage, websiteUrl } = this.props;
 

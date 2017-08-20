@@ -14,6 +14,7 @@
     "cerebral": "beta",
     "classnames": "^2.2.5",
     "codemirror": "^5.28.0",
+    "common-prefix": "^1.1.0",
     "compressjs": "^1.0.3",
     "font-awesome": "^4.7.0",
     "function-tree": "next",
