@@ -2,7 +2,6 @@ import React from "react";
 import { render } from "react-dom";
 import controller from "./controller";
 import { Container } from "cerebral/react";
-import registerServiceWorker from "./registerServiceWorker";
 
 import "semantic-ui-css/semantic.min.css";
 
@@ -26,6 +25,7 @@ render(
   document.querySelector("#root")
 );
 
-if (process.env.NODE_ENV === "production") {
-  registerServiceWorker();
-}
+// import registerServiceWorker from "./registerServiceWorker";
+// if (process.env.NODE_ENV === "production") {
+//   registerServiceWorker();
+// }

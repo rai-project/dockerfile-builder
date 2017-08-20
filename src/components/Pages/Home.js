@@ -12,6 +12,7 @@ import zipFileContent from "!base64-loader!../../_fixtures/test1.zip";
 
 import Editor from "../Editor";
 import Terminal from "../Terminal";
+import UploadArea from "../UploadArea";
 
 const defaultGitIgnore = `
 .DS_Store
@@ -25,17 +26,42 @@ Thumbs.db
 __MACOSX
 `;
 
+function blobToFile(theBlob, fileName) {
+  //A Blob() is almost a File() - it's just missing the two properties below which we will add
+  theBlob.lastModifiedDate = new Date();
+  theBlob.name = fileName;
+  return theBlob;
+}
+
 async function getFiles(zipFileContent) {
-  const data = base64ToBlob(zipFileContent);
+  const data = blobToFile(base64ToBlob(zipFileContent), "upload.zip");
+  console.log(data);
   const zipFile = await JSZip.loadAsync(data);
 
   const ignorer = gitignorer.compile(defaultGitIgnore);
 
-  const files = zipFile.files;
+  let files = zipFile.files;
   const fileNames = keys(files).filter(ignorer.accepts);
-  const res = pick(files, fileNames);
+  files = pick(files, fileNames);
 
-  console.log(await zipFile.file("test_folder/file4.cu").async("string"));
+  console.log(files["test_folder/file4.cu"]._data);
+  // console.log(await zipFile.file("test_folder/file4.cu").async("string"));
+
+  let res = {};
+  for (const fileName in files) {
+    const file = files[fileName];
+    if (file.dir) {
+      res[fileName] = {
+        content: {},
+        ...file
+      };
+      continue;
+    }
+    res[fileName] = {
+      content: await zipFile.file(fileName).async("string"),
+      ...file
+    };
+  }
 
   console.log(res);
 
@@ -43,10 +69,13 @@ async function getFiles(zipFileContent) {
 }
 
 export default function Home() {
-  const files = getFiles(zipFileContent);
+  // const files = getFiles(zipFileContent);
   return (
     <div>
-      <Editor files={files} />
+      {/* <UploadArea />
+        <Editor files={files} withMenuBar={true} currentFile={"test_folder/Dockerfile"} />
+      */}
+      <Editor />
       <Terminal />
     </div>
   );

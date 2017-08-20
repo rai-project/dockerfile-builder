@@ -10,6 +10,8 @@ import uuid from "uuid";
 import app from "./modules/app";
 import shortcuts from "./modules/shortcuts";
 
+console.log(process.env.NODE_ENV);
+
 const controller = Controller({
   // You do not want to run the devtools in production as it
   // requires a bit of processing and memory to send data from

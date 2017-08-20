@@ -1,4 +1,14 @@
 import { set } from "cerebral/operators";
 import { state } from "cerebral/tags";
 
-export default [set(state`app.isLoaded`, true)];
+import loadZipfile from "../actions/loadZipFile";
+
+export default [
+  set(state`app.isLoading`, true),
+  loadZipfile,
+  {
+    success: [],
+    error: []
+  },
+  set(state`app.isLoaded`, true)
+];

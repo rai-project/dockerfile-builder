@@ -3,6 +3,18 @@ import navbarClicked from "./signals/navbarClicked";
 import codeEditorButtonClicked from "./signals/codeEditorButtonClicked";
 import terminalOutputAppended from "./signals/terminalOutputAppended";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import zipFileContent from "!base64-loader!../../_fixtures/test1.zip";
+
+import base64ToBlob from "../../common/base64ToBlob";
+
+function blobToFile(theBlob, fileName) {
+  //A Blob() is almost a File() - it's just missing the two properties below which we will add
+  theBlob.lastModifiedDate = new Date();
+  theBlob.name = fileName;
+  return theBlob;
+}
+
 const defaultEditorDirectory = {
   Dockerfile: {
     content: `FROM rai/nccl:8.0
@@ -32,6 +44,7 @@ export default {
     isSaving: false,
     isBuilding: false,
     terminalOutput: [],
+    zipFile: blobToFile(base64ToBlob(zipFileContent), "upload.zip"),
     editor: {
       currentFile: null,
       mode: "dockerfile",

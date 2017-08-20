@@ -6,7 +6,7 @@ import { state, signal } from "cerebral/tags";
 import { Container, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import Header from "./Header";
 import { HomePage } from "../Pages";
 import Footer from "./Footer";
@@ -59,7 +59,7 @@ export default connect(
             <Snackbar />
             <div className="App-content">
               <Segment inverted vertical>
-                <Navbar currentPage={currentPage} />
+                {/* <Navbar currentPage={currentPage} /> */}
                 <Header appName={appName} currentPage={currentPage} />
               </Segment>
               <Container

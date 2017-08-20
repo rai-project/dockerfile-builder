@@ -5,16 +5,18 @@ import (
 	"io"
 	"strings"
 
-	"github.com/sirupsen/logrus"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	glog "github.com/labstack/gommon/log"
+	"github.com/sirupsen/logrus"
 )
 
 func Start(addr string) {
 	e := echo.New()
+
+	e.HideBanner = true
 
 	e.Logger = &echoLogger{
 		Entry: log,
