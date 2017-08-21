@@ -32,6 +32,7 @@ type Props = {
   files: { [string]: File },
   fontSize: number,
   readOnly: boolean,
+  onFilesChanged: ({ [string]: File }) => void | void,
   onNewIconClick: (Event => void) | void,
   onSaveIconClick: ((Event, string | null | void) => void) | void,
   onFileSelectClick: (Object => void) | void,
@@ -49,12 +50,20 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     files: {},
     fontSize: 14,
     readOnly: false,
+    onFilesChanged: undefined,
     onNewIconClick: undefined,
     onSaveIconClick: undefined,
     onFileSelectClick: undefined,
     onPublishClick: undefined,
     onBuildClick: undefined
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      files: this.props.files,
+      currentFile: this.props.currentFile
+    };
+  }
   async getMode(mode: string) {
     if (!mode) return "jsx";
 
@@ -102,7 +111,21 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
   }
 
   onChange = () => {
-    // console.log(arguments);
+    let { files, currentFile } = this.state;
+    const value = this.editor.getValue();
+    let newFiles = {};
+    newFiles[currentFile] = {
+      ...files[currentFile],
+      updatedOn: new Date(),
+      content: value
+    };
+    const merged = { ...files, ...newFiles };
+    this.setState({
+      files: merged
+    });
+    if (this.props.onFilesChanged) {
+      this.props.onFilesChanged({ files: merged });
+    }
   };
   componentDidMount() {
     // eslint-disable-next-line new-cap
@@ -127,26 +150,25 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         }
       }
     });
-    this.editor.on("change", this.onChange);
     //   this.codemirror.on('change', this.onCodeChange)
     //   this.codemirror.on('cursorActivity', this.onCursorChange)
     this.update();
+    this.editor.on("change", this.onChange);
+  }
+  shouldComponentUpdate() {
+    return false;
   }
   async update() {
-    const currentFile =
-      size(this.props.files) === 1 && this.props.currentFile === ""
-        ? head(keys(this.props.files))
-        : this.props.currentFile;
-    const value = idx(this.props, _ => _.files[currentFile].content) || "";
+    let { files, currentFile } = this.state;
+    currentFile =
+      size(files) === 1 && currentFile === "" ? head(keys(files)) : currentFile;
+    const value = idx(this.state, _ => _.files[currentFile].content) || "";
     this.editor.setValue(value);
 
     const mode = await this.getDetectMode(currentFile);
     this.editor.setOption("mode", mode);
 
     this.editor.refresh();
-  }
-  componentDidUpdate() {
-    this.update();
   }
   handleSaveIconClick = (e: Event) => {
     const content = idx(this.editor, _ => _.value);
@@ -160,6 +182,10 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     }
   };
   handleFileSelectClick = (e: Event, data: Object) => {
+    this.setState({
+      currentFile: data.text
+    });
+    this.forceUpdate(this.update);
     if (this.props.onFileSelectClick) {
       this.props.onFileSelectClick({ file: data.text });
     }
@@ -188,7 +214,7 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     if (
       isUndefined(this.props.onNewIconClick) &&
       isUndefined(this.props.onSaveIconClick) &&
-      size(this.props.files) <= 1
+      size(this.state.files) <= 1
     ) {
       return mainElement;
     }
