@@ -1,5 +1,4 @@
 import appLoaded from "./signals/appLoaded";
-import navbarClicked from "./signals/navbarClicked";
 import buildButtonClicked from "./signals/buildButtonClicked";
 import terminalOutputAppended from "./signals/terminalOutputAppended";
 import codeEditorFileChanged from "./signals/codeEditorFileChanged";
@@ -20,9 +19,11 @@ function blobToFile(theBlob, fileName) {
 export default {
   state: {
     name: "Dockerfile Builder for Power",
-    isLoaded: false,
-    isSaving: false,
-    isBuilding: false,
+    state: {
+      loading: true,
+      saving: false,
+      building: false
+    },
     terminal: {
       visible: false,
       output: []
@@ -40,7 +41,6 @@ export default {
   },
   signals: {
     appLoaded,
-    navbarClicked,
     buildButtonClicked,
     terminalOutputAppended,
     codeEditorFileChanged,

@@ -13,7 +13,7 @@ export default connect(
   {
     zip: state`app.files.zip`,
     terminalVisible: state`app.terminal.visible`,
-    isBuilding: state`app.isBuilding`,
+    building: state`app.state.building`,
     appLoaded: signal`app.appLoaded`
   },
   class Home extends React.Component {

@@ -9,7 +9,7 @@ import resetError from "../../common/chains/resetError";
 
 export default [
   ...resetError,
-  set(state`app.isLoaded`, false),
+  set(state`app.state.loading`, true),
   fromZipFile,
   {
     success: [
@@ -19,5 +19,5 @@ export default [
     ],
     error: onError
   },
-  set(state`app.isLoaded`, true)
+  set(state`app.state.loading`, false)
 ];

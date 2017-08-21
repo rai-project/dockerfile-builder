@@ -9,7 +9,7 @@ import toZipFile from "../actions/toZipFile";
 
 export default [
   ...resetError,
-  set(state`app.isBuilding`, true),
+  set(state`app.state.building`, true),
   set(props`files`, state`app.files.content`),
   toZipFile,
   {
@@ -20,5 +20,5 @@ export default [
     ],
     error: onError
   },
-  set(state`app.isBuilding`, false)
+  set(state`app.state.building`, false)
 ];

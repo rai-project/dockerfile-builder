@@ -18,8 +18,10 @@ function buildImage({ state, uuid, controller, props }) {
     onMessage: message => {
       state.push("app.terminal.output", message.toObject());
     },
-    onEnd: (code, msg, trailers) => {
-      state.set("app.isBuilding", false);
+    onEnd: (code, message, trailers) => {
+      if (code !== 200) {
+        state.set("app.error", { code, message });
+      }
     }
   });
 }
