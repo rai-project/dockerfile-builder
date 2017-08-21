@@ -1,6 +1,7 @@
 import JSZip from "jszip";
 import gitignorer from "gitignore-parser";
 import { keys, zipWith, values, pick } from "lodash";
+import { dataURLToBlob, blobToBinaryString } from "blob-util";
 
 const defaultGitIgnore = `
 .DS_Store
@@ -16,10 +17,17 @@ __MACOSX
 
 const ignorer = gitignorer.compile(defaultGitIgnore);
 
-export default function fromZipFile({ uuid, path, props: { input } }) {
+export default function fromZipFile({ uuid, path, props: { file } }) {
   let fileNames = [];
   let files = [];
-  return JSZip.loadAsync(input)
+
+  console.log({ file });
+  return dataURLToBlob(file.url)
+    .then(blobToBinaryString)
+    .then(function(data) {
+      console.log({ data });
+      return JSZip.loadAsync(data, { createFolders: true, base64: false });
+    })
     .then(function(zip) {
       fileNames = keys(zip.files).filter(ignorer.accepts);
       fileNames = fileNames.filter(fileName => !zip.files[fileName].dir);

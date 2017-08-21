@@ -16,14 +16,14 @@ export default connect(
     terminalVisible: state`app.terminal.visible`,
     building: state`app.state.building`,
     appLoaded: signal`app.appLoaded`,
-    onFileUpload: signal`app.fileUploaded`
+    fileUploaded: signal`app.fileUploaded`
   },
   function Home({ uploadVisible, terminalVisible, fileUploaded }) {
     return (
       <div>
         <If condition={uploadVisible}>
           <Then>
-            <UploadArea onFileUpload={onFileUpload} />
+            <UploadArea onFileUpload={fileUploaded} />
           </Then>
           <Else>
             {() =>

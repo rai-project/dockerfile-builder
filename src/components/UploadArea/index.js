@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { map, isNil } from "lodash";
+import { isNil } from "lodash";
 import { Core, DragDrop, Dashboard } from "uppy";
+import { binaryStringToBlob, blobToDataURL } from "blob-util";
 
 import "uppy/dist/uppy.min.css";
 
@@ -25,8 +26,24 @@ export default class UploadArea extends Component {
       },
       onBeforeFileAdded: (currentFile, files) => {
         if (!isNil(onFileUpload)) {
-          console.log({ currentFile: currentFile.data });
-          onFileUpload({ files: [currentFile.data] });
+          const data = currentFile.data;
+          var reader = new FileReader();
+          reader.onloadend = () => {
+            binaryStringToBlob(reader.result, "application/zip")
+              .then(blobToDataURL)
+              .then(function(url) {
+                const file = {
+                  name: currentFile.name,
+                  source: currentFile.source,
+                  url: url
+                };
+                console.log({ url, file });
+                onFileUpload({
+                  file
+                });
+              });
+          };
+          reader.readAsDataURL(data);
         }
         return Promise.resolve();
       }
