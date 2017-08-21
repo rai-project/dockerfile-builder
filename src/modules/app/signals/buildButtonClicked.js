@@ -13,7 +13,11 @@ export default [
   set(props`files`, state`app.files.content`),
   toZipFile,
   {
-    success: [set(state`app.terminalOutput`, []), buildImage],
+    success: [
+      set(state`app.terminal.output`, []),
+      set(state`app.terminal.visible`, true),
+      buildImage
+    ],
     error: onError
   },
   set(state`app.isBuilding`, false)

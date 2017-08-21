@@ -7,21 +7,21 @@ import ansi_up from "ansi_up";
 import "./theme.css";
 import "./styles.css";
 
-// look at https://github.com/getsentry/freight/blob/master/static/components/TaskDetails.jsx
-
 export default connect(
-  { terminalOutput: state`app.terminalOutput` },
-  function Terminal({ terminalOutput }) {
-    if (terminalOutput.length === 0) {
+  { output: state`app.terminal.output` },
+  function Terminal({ output }) {
+    if (output.length === 0) {
       return null;
     }
-    const body = terminalOutput.map(elem => {
+
+    const body = output.map(({ id, content }) => {
+      const ansiup = new ansi_up();
       return (
         <div
           className="line"
-          key={elem.id}
+          key={id}
           dangerouslySetInnerHTML={{
-            __html: ansi_up.ansi_to_html(elem.content, { use_classes: true })
+            __html: ansiup.ansi_to_html(content, { use_classes: true })
           }}
         />
       );

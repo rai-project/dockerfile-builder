@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
@@ -29,6 +30,20 @@ func Start(addr string) {
 	}))
 	e.Use(middleware.Recover())
 	e.Pre(middleware.RemoveTrailingSlash())
+
+	e.GET("/request", func(c echo.Context) error {
+		req := c.Request()
+		format := `
+      <code>
+        Protocol: %s<br>
+        Host: %s<br>
+        Remote Address: %s<br>
+        Method: %s<br>
+        Path: %s<br>
+      </code>
+    `
+		return c.HTML(http.StatusOK, fmt.Sprintf(format, req.Proto, req.Host, req.RemoteAddr, req.Method, req.URL.Path))
+	})
 
 	assetsRoutes(e)
 	apiRoutes(e)

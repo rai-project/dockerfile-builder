@@ -12,6 +12,7 @@ import UploadArea from "../UploadArea";
 export default connect(
   {
     zip: state`app.files.zip`,
+    terminalVisible: state`app.terminal.visible`,
     isBuilding: state`app.isBuilding`,
     appLoaded: signal`app.appLoaded`
   },
@@ -20,11 +21,11 @@ export default connect(
       this.props.appLoaded({ input: this.props.zip });
     }
     render() {
-      const { isBuilding } = this.props;
+      const { terminalVisible } = this.props;
       return (
         <div>
           {/* <UploadArea />*/}
-          <If condition={!isBuilding}>
+          <If condition={!terminalVisible}>
             <Then>
               <Editor />
             </Then>

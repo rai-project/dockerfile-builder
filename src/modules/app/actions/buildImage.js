@@ -16,7 +16,7 @@ function buildImage({ state, uuid, controller, props }) {
     request: buildDockerRequest,
     host: "/api",
     onMessage: message => {
-      state.push("app.terminalOutput", message.toObject());
+      state.push("app.terminal.output", message.toObject());
     },
     onEnd: (code, msg, trailers) => {
       state.set("app.isBuilding", false);

@@ -23,7 +23,10 @@ export default {
     isLoaded: false,
     isSaving: false,
     isBuilding: false,
-    terminalOutput: [],
+    terminal: {
+      visible: false,
+      output: []
+    },
     files: {
       entry: "Dockerfile",
       content: null,

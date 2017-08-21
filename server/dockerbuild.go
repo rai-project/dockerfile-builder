@@ -2,6 +2,7 @@ package server
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -48,6 +49,27 @@ var (
 )
 
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
+
+	messages := make(chan string)
+
+	go func() {
+		for msg := range messages {
+
+			e := srv.Send(&pb.DockerBuildResponse{
+				Id:      uuid.NewV4(),
+				Content: msg,
+			})
+			if e != nil {
+				log.WithError(err).Error("Unable to write websocket message")
+			}
+
+		}
+	}()
+
+	for ii := 0; ii < 10; ii++ {
+		messages <- fmt.Sprintf("message %d", ii)
+	}
+
 	pp.Println("in build....")
 
 	return

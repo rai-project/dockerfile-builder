@@ -1,8 +1,9 @@
 .ansiterm {
   /*height: 60rem;*/
   box-sizing: border-box;
+  border-color: #5e5d5e;
   padding: 10px;
-  background-color: #3A3A3A;
+  background-color: #5e5d5e;
 }
 
 .line {
