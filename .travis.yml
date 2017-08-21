@@ -26,7 +26,7 @@ before_install:
 - rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/rai-project/dockerfile-builder/
 - export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/rai-project/dockerfile-builder
 - cd $HOME/gopath/src/github.com/rai-project/dockerfile-builder
-- bash install-protobuf.sh
+- bash scripts/install-protobuf.sh
 before_script:
 - ls -R $HOME/protobuf
 install:
