@@ -2,10 +2,24 @@ import React from "react";
 import { connect } from "cerebral/react";
 import { state } from "cerebral/tags";
 import ansi_up from "ansi_up";
+import styled from "styled-components";
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import "./styles.css";
-import "./afterglow-theme.css";
+import "./themes/afterglow-theme.css";
+
+const Line = styled.div`
+  font-family: Roboto, Consolas, "Lucida Console", Monaco, "Courier New",
+    Courier, monospace, serif;
+  font-size: 0.8em;
+  white-space: pre-wrap;
+  line-height: 20px;
+`;
+
+const Term = styled.div`
+  box-sizing: border-box;
+  border-color: #202020;
+  background-color: #202020;
+  padding: 10px;
+`;
 
 export default connect(
   { output: state`app.terminal.output` },
@@ -17,8 +31,7 @@ export default connect(
     const body = output.map(({ id, content }) => {
       const ansiup = new ansi_up();
       return (
-        <div
-          className="line"
+        <Line
           key={id}
           dangerouslySetInnerHTML={{
             __html: ansiup.ansi_to_html(content, { use_classes: true })
@@ -27,11 +40,11 @@ export default connect(
       );
     });
     return (
-      <div className="ansiterm">
+      <Term>
         <div className="afterglow-ansi-theme">
           {body}
         </div>
-      </div>
+      </Term>
     );
   }
 );
