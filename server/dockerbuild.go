@@ -1,7 +1,9 @@
 package server
 
 import (
+	"archive/zip"
 	"bytes"
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -54,7 +56,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 	go func() {
 		for msg := range messages {
-
 			e := srv.Send(&pb.DockerBuildResponse{
 				Id:      uuid.NewV4(),
 				Content: msg,
@@ -62,12 +63,37 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 			if e != nil {
 				log.WithError(err).Error("Unable to write websocket message")
 			}
-
 		}
 	}()
 
-	for ii := 0; ii < 10; ii++ {
-		messages <- fmt.Sprintf("message %d", ii)
+	defer func() {
+		if err != nil {
+			e := srv.Send(&pb.DockerBuildResponse{
+				Id: uuid.NewV4(),
+				Error: &pb.ErrorStatus{
+					Message: err.Error(),
+				}})
+			if e != nil {
+				log.WithError(err).Error("Unable to write websocket message")
+			}
+		}
+	}()
+
+	dec, err := base64.StdEncoding.DecodeString(req.Content)
+	if err != nil {
+		return
+	}
+
+	zipReader, err := zip.NewReader(bytes.NewReader(dec), int64(len(dec)))
+	if err != nil {
+		return
+	}
+
+	for _, f := range zipReader.File {
+		if f.FileInfo().IsDir() {
+			continue
+		}
+		messages <- fmt.Sprintf("zip file %s:\n", f.Name)
 	}
 
 	pp.Println("in build....")
