@@ -1,0 +1,36 @@
+FROM golang:stretch
+MAINTAINER Abdul Dakkak <dakkak@illinois.edu>
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VCS_URL
+ARG VERSION
+ARG ARCH
+ARG FRAMEWORK_VERSION
+LABEL com.rai-project.dockerfile-builder.build-date=$BUILD_DATE \
+      com.rai-project.dockerfile-builder.name="dockerfile-builder website" \
+      com.rai-project.dockerfile-builder.description="" \
+      com.rai-project.dockerfile-builder.url="https://www.rai-project.com/" \
+      com.rai-project.dockerfile-builder.vcs-ref=$VCS_REF \
+      com.rai-project.dockerfile-builder.vcs-url=$VCS_URL \
+      com.rai-project.dockerfile-builder.vendor="Dockerfile Builder" \
+      com.rai-project.dockerfile-builder.arch=$ARCH \
+      com.rai-project.dockerfile-builder.version=$VERSION \
+      com.rai-project.dockerfile-builder.framework_version=$FRAMEWORK_VERSION \
+      com.rai-project.dockerfile-builder.schema-version="1.0"
+
+
+# Install Glide
+RUN go get github.com/Masterminds/glide
+
+# Install server
+WORKDIR $GOPATH/src/github.com/rai-project/dockerfile-builder
+RUN git clone --depth=1 --branch=master https://github.com/rai-project/dockerfile-builder.git . && \
+    glide install && \
+    go install && \
+    rm -fr vendor
+
+ENV PORT 80
+ENTRYPOINT ["dockerfile-builder", "serve", "--debug", "--verbose"]
+EXPOSE 80
