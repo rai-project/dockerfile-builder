@@ -7,7 +7,7 @@ import fileUploaded from "./signals/fileUploaded";
 
 export default {
   state: {
-    name: "app.Name", //"Dockerfile Builder for Power",
+    name: process.env.APP_NAME || "Docker for Power",
     state: {
       loading: true,
       saving: false,
