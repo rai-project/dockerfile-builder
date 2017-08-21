@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Icon, Image } from "semantic-ui-react";
+import { Header, Icon, Image } from "semantic-ui-react";
 
 import c3srImage from "../../assets/images/C3SR_color.jpg";
 import uiucImage from "../../assets/images/uiuc_logo_small.png";
