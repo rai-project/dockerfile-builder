@@ -1,19 +1,30 @@
 import React from "react";
 import { connect } from "cerebral/react";
-import { state } from "cerebral/tags";
+import { state, signal } from "cerebral/tags";
 import { isNil, isEmpty } from "lodash";
 
 import CodeMirror from "./CodeMirror";
 
 export default connect(
   {
-    files: state`app.zipFile.content`,
-    currentFile: state`app.zipFile.entry`
+    files: state`app.files.content`,
+    entry: state`app.files.entry`,
+    model: state`app.editor.mode`,
+    currentFile: state`app.editor.currentFile`,
+    codeEditorFileChanged: signal`app.codeEditorFileChanged`
   },
-  function Editor({ files, currentFile }) {
+  function Editor({ files, entry, mode, currentFile, codeEditorFileChanged }) {
     if (isNil(files) || isEmpty(files)) {
       return <div />;
     }
-    return <CodeMirror files={files} currentFile={currentFile} />;
+    return (
+      <CodeMirror
+        mode={mode}
+        files={files}
+        currentFile={currentFile || entry}
+        withMenuBar={true}
+        onFileSelectClick={codeEditorFileChanged}
+      />
+    );
   }
 );

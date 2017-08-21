@@ -11,6 +11,7 @@ export default function removeZipRoot({ props: { content } }) {
   const newNames = map(names, n => trimStart(n, prefix));
 
   return {
-    content: zipObject(newNames, values(content))
+    content: zipObject(newNames, values(content)),
+    prefix: prefix
   };
 }

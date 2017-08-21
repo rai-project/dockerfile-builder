@@ -33,21 +33,27 @@ type Props = {
   fontSize: number,
   readOnly: boolean,
   onNewIconClick: (Event => void) | void,
-  onSaveIconClick: ((Event, string | null | void) => void) | void
+  onSaveIconClick: ((Event, string | null | void) => void) | void,
+  onFileSelectClick: (Object => void) | void,
+  onPublishClick: (Object => void) | void,
+  onBuildClick: (Object => void) | void
 };
 
 export default class CodeMirror extends React.Component<Props, Props, void> {
   codeElement: HTMLDivElement;
   editor: ICodeMirror.Editor;
   static defaultProps: Props = {
-    mode: "cuda",
+    mode: "docker",
     currentFile: "",
     withMenuBar: false,
-    files: [],
+    files: {},
     fontSize: 14,
     readOnly: false,
     onNewIconClick: undefined,
-    onSaveIconClick: undefined
+    onSaveIconClick: undefined,
+    onFileSelectClick: undefined,
+    onPublishClick: undefined,
+    onBuildClick: undefined
   };
   async getMode(mode: string) {
     if (!mode) return "jsx";
@@ -67,26 +73,21 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         await import("codemirror/mode/htmlmixed/htmlmixed");
         return "htmlmixed";
       case "docker":
+      case "dockerfile":
         await import("codemirror/mode/dockerfile/dockerfile");
-        return "docker";
+        return "dockerfile";
       default:
         return "jsx";
     }
   }
   onChange = () => {
-    console.log(arguments);
+    // console.log(arguments);
   };
-  async componentDidMount() {
-    const mode = await this.getMode(this.props.mode);
-    const currentFile =
-      size(this.props.files) === 1 && this.props.currentFile === ""
-        ? head(keys(this.props.files))
-        : this.props.currentFile;
-    const value = idx(this.props, _ => _.files[currentFile].content) || "";
+  componentDidMount() {
     // eslint-disable-next-line new-cap
     this.editor = ICodeMirror(this.codeElement, {
-      value,
-      mode,
+      value: "",
+      mode: "",
       autofocus: true,
       theme: "rai",
       matchTags: {
@@ -108,6 +109,23 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     this.editor.on("change", this.onChange);
     //   this.codemirror.on('change', this.onCodeChange)
     //   this.codemirror.on('cursorActivity', this.onCursorChange)
+    this.update();
+  }
+  async update() {
+    const currentFile =
+      size(this.props.files) === 1 && this.props.currentFile === ""
+        ? head(keys(this.props.files))
+        : this.props.currentFile;
+    const value = idx(this.props, _ => _.files[currentFile].content) || "";
+    this.editor.setValue(value);
+
+    const mode = await this.getMode(this.props.mode);
+    this.editor.setOption("mode", mode);
+
+    this.editor.refresh();
+  }
+  componentDidUpdate() {
+    this.update();
   }
   handleSaveIconClick = (e: Event) => {
     const content = idx(this.editor, _ => _.value);
@@ -118,6 +136,21 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
   handleNewIconClick = (e: Event) => {
     if (this.props.onNewIconClick) {
       this.props.onNewIconClick(e);
+    }
+  };
+  handleFileSelectClick = (e: Event, data: Object) => {
+    if (this.props.onFileSelectClick) {
+      this.props.onFileSelectClick({ file: data.text });
+    }
+  };
+  handleBuildIconClick = (e: Event, data: Object) => {
+    if (this.props.onBuildClick) {
+      this.props.onBuildClick({ data });
+    }
+  };
+  handlePublishIconClick = (e: Event, data: Object) => {
+    if (this.props.onPublishClick) {
+      this.props.onPublishClick({ data });
     }
   };
   render() {
@@ -158,14 +191,16 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
           </If>
           <If condition={size(this.props.files) > 1}>
             <Then>
-              <Menu.Menu position="right">
+              <Menu.Menu position="left">
                 <Dropdown item simple text="Files">
                   <Dropdown.Menu>
                     {keys(this.props.files).map((name: string) => {
                       return (
                         <Dropdown.Item
                           text={name}
+                          icon="file text outline"
                           key={this.props.files[name].uuid}
+                          onClick={this.handleFileSelectClick}
                         />
                       );
                     })}
@@ -174,6 +209,14 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
               </Menu.Menu>
             </Then>
           </If>
+          <Menu.Menu position="right">
+            <Menu.Item name="build" onClick={this.handleBuildIconClick}>
+              <Icon name="setting" />
+            </Menu.Item>
+            <Menu.Item name="publish" onClick={this.handlePublishIconClick}>
+              <Icon name="cloud upload" />
+            </Menu.Item>
+          </Menu.Menu>
         </Menu>
 
         <Segment attached="bottom" style={{ paddingTop: 0 }}>

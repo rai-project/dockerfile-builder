@@ -12,7 +12,11 @@ export default [
   set(state`app.isLoaded`, false),
   loadZipfile,
   {
-    success: [removeZipRoot, set(state`app.zipFile.content`, props`content`)],
+    success: [
+      removeZipRoot,
+      set(state`app.files.content`, props`content`),
+      set(state`app.files.prefix`, props`prefix`)
+    ],
     error: onError
   },
   set(state`app.isLoaded`, true)

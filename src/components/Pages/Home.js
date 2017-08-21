@@ -9,12 +9,12 @@ import UploadArea from "../UploadArea";
 
 export default connect(
   {
-    zipFile: state`app.zipFile.data`,
+    zip: state`app.files.zip`,
     appLoaded: signal`app.appLoaded`
   },
   class Home extends React.Component {
     componentDidMount() {
-      this.props.appLoaded({ input: this.props.zipFile });
+      this.props.appLoaded({ input: this.props.zip });
     }
     render() {
       return (
