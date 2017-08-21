@@ -1,6 +1,6 @@
 import appLoaded from "./signals/appLoaded";
 import navbarClicked from "./signals/navbarClicked";
-import codeEditorButtonClicked from "./signals/codeEditorButtonClicked";
+import buildButtonClicked from "./signals/buildButtonClicked";
 import terminalOutputAppended from "./signals/terminalOutputAppended";
 import codeEditorFileChanged from "./signals/codeEditorFileChanged";
 import codeEditorFilesChanged from "./signals/codeEditorFilesChanged";
@@ -38,7 +38,7 @@ export default {
   signals: {
     appLoaded,
     navbarClicked,
-    codeEditorButtonClicked,
+    buildButtonClicked,
     terminalOutputAppended,
     codeEditorFileChanged,
     codeEditorFilesChanged

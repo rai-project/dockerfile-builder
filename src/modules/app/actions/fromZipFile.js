@@ -16,7 +16,7 @@ __MACOSX
 
 const ignorer = gitignorer.compile(defaultGitIgnore);
 
-export default function loadZipFile({ uuid, path, props: { input } }) {
+export default function fromZipFile({ uuid, path, props: { input } }) {
   let fileNames = [];
   let files = [];
   return JSZip.loadAsync(input)

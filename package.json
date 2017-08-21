@@ -90,10 +90,12 @@
   },
   "verbose": true,
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
-  "proxy": "http://localhost:8088"
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8088",
+      "ws": true
+    }
+  }
 }

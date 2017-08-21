@@ -8,10 +8,10 @@ import {
   // ErrorStatus
 } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
 
-function submitCode({ state, uuid, controller, props }) {
+function buildImage({ state, uuid, controller, props }) {
   const buildDockerRequest = new DockerBuildRequest();
   buildDockerRequest.setId(uuid.v4());
-  buildDockerRequest.setContent(props.codeEditorValue);
+  buildDockerRequest.setContent(props.zip);
   grpc.invoke(DockerService.Build, {
     request: buildDockerRequest,
     host: "/api",
@@ -24,4 +24,4 @@ function submitCode({ state, uuid, controller, props }) {
   });
 }
 
-export default submitCode;
+export default buildImage;
