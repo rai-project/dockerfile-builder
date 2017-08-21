@@ -1,10 +1,13 @@
 package server
 
 import (
+	"archive/tar"
 	"archive/zip"
 	"bytes"
+	"compress/gzip"
 	"encoding/base64"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -90,11 +93,50 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		return
 	}
 
-	for _, f := range zipReader.File {
-		if f.FileInfo().IsDir() {
+	tarBuffer := new(bytes.Buffer)
+	tarWriter := tar.NewWriter(tarBuffer)
+
+	for _, file := range zipReader.File {
+		if file.FileInfo().IsDir() {
 			continue
 		}
-		messages <- fmt.Sprintf("zip file %s:\n", f.Name)
+		rc, e := file.Open()
+		if e != nil {
+			err = e
+			return
+		}
+		buf := new(bytes.Buffer)
+		written, e := io.Copy(buf, rc)
+		if e != nil {
+			err = e
+			return
+		}
+		rc.Close()
+		hdr := &tar.Header{
+			Name: file.Name,
+			Mode: 0600,
+			Size: written,
+		}
+		if err = tarWriter.WriteHeader(hdr); err != nil {
+			return
+		}
+		if _, err = tarWriter.Write(buf.Bytes()); err != nil {
+			return
+		}
+		messages <- fmt.Sprintf("zip file %s:\n", file.Name)
+	}
+	if err = tarWriter.Close(); err != nil {
+		return
+	}
+
+	gzipBuffer := new(bytes.Buffer)
+	gzipWriter := gzip.NewWriter(gzipBuffer)
+	_, err = gzipWriter.Write(tarBuffer.Bytes())
+	if err != nil {
+		return
+	}
+	if err = gzipWriter.Close(); err != nil {
+		return
 	}
 
 	pp.Println("in build....")
