@@ -4,8 +4,8 @@ import { state } from "cerebral/tags";
 import ansi_up from "ansi_up";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import "./theme.css";
 import "./styles.css";
+import "./afterglow-theme.css";
 
 export default connect(
   { output: state`app.terminal.output` },
@@ -28,7 +28,7 @@ export default connect(
     });
     return (
       <div className="ansiterm">
-        <div className="tomorrow-night-eighties-ansi-theme">
+        <div className="afterglow-ansi-theme">
           {body}
         </div>
       </div>
