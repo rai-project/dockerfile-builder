@@ -68,6 +68,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 	defer func() {
 		if err != nil {
+			log.WithError(err).Error("Got error when handling Build request")
 			e := srv.Send(&pb.DockerBuildResponse{
 				Id: uuid.NewV4(),
 				Error: &pb.ErrorStatus{

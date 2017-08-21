@@ -37,7 +37,6 @@ export default class UploadArea extends Component {
                   source: currentFile.source,
                   url: url
                 };
-                console.log({ url, file });
                 onFileUpload({
                   file
                 });

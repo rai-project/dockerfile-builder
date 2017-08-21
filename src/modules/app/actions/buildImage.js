@@ -19,7 +19,7 @@ function buildImage({ state, uuid, controller, props }) {
       state.push("app.terminal.output", message.toObject());
     },
     onEnd: (code, message, trailers) => {
-      if (code !== 200) {
+      if (code && code !== 200) {
         state.set("app.error", { code, message });
       }
     }

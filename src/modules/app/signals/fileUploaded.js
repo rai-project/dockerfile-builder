@@ -15,6 +15,7 @@ export default [
   fromZipFile,
   {
     success: [
+      set(state`app.upload.files`, props`content`),
       removeZipRoot,
       set(state`app.files.content`, props`content`),
       set(state`app.files.prefix`, props`prefix`)

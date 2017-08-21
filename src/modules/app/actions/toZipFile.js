@@ -9,16 +9,22 @@ export default function toZipFile({ path, props: { files } }) {
       date: file.updatedOn
     });
   }
-
   return zip
     .generateAsync({
       type: "base64",
-      compression: "DEFLATE",
       platform: "UNIX",
+      compression: "DEFLATE",
       compressionOptions: {
         level: 9
       }
     })
     .then(base64 => path.success({ zip: base64 }))
-    .catch(path.error);
+    .catch(error =>
+      path.error({
+        error: {
+          message: error.message,
+          stack: error.stack
+        }
+      })
+    );
 }

@@ -17,7 +17,6 @@ class ErrorTemplate extends React.Component {
   }
   render() {
     const { error } = this.props.customFields;
-    console.log(error);
     let code = idx(error, _ => _.body.code);
     let message = idx(error, _ => _.body.message);
     let stack = idx(error, _ => _.body.stack);

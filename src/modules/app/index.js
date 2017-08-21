@@ -25,8 +25,7 @@ export default {
     files: {
       entry: "Dockerfile",
       content: null,
-      prefix: "",
-      zip: null
+      prefix: ""
     },
     editor: {
       currentFile: null,
