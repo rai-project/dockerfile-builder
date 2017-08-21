@@ -25,25 +25,24 @@ export default class UploadArea extends Component {
         allowedFileTypes: ["application/zip"]
       },
       onBeforeFileAdded: (currentFile, files) => {
-        if (!isNil(onFileUpload)) {
-          const data = currentFile.data;
-          var reader = new FileReader();
-          reader.onloadend = () => {
-            binaryStringToBlob(reader.result, "application/zip")
-              .then(blobToDataURL)
-              .then(function(url) {
-                const file = {
+        if (isNil(onFileUpload)) {
+          return Promise.resolve();
+        }
+        const data = currentFile.data;
+        var reader = new FileReader();
+        reader.onloadend = () =>
+          binaryStringToBlob(reader.result, "application/zip")
+            .then(blobToDataURL)
+            .then(url =>
+              onFileUpload({
+                file: {
                   name: currentFile.name,
                   source: currentFile.source,
                   url: url
-                };
-                onFileUpload({
-                  file
-                });
-              });
-          };
-          reader.readAsDataURL(data);
-        }
+                }
+              })
+            );
+        reader.readAsDataURL(data);
         return Promise.resolve();
       }
     });
