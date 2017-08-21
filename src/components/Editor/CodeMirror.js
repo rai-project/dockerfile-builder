@@ -36,8 +36,8 @@ type Props = {
   onNewIconClick: (Event => void) | void,
   onSaveIconClick: ((Event, string | null | void) => void) | void,
   onFileSelectClick: (Object => void) | void,
-  onPublishClick: (Object => void) | void,
-  onBuildClick: (Object => void) | void
+  onPublishClick: (() => void) | void,
+  onBuildClick: (() => void) | void
 };
 
 export default class CodeMirror extends React.Component<Props, Props, void> {
@@ -192,12 +192,12 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
   };
   handleBuildIconClick = (e: Event, data: Object) => {
     if (this.props.onBuildClick) {
-      this.props.onBuildClick({ data });
+      this.props.onBuildClick();
     }
   };
   handlePublishIconClick = (e: Event, data: Object) => {
     if (this.props.onPublishClick) {
-      this.props.onPublishClick({ data });
+      this.props.onPublishClick();
     }
   };
   render() {
