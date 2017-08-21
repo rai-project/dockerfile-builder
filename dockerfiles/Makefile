@@ -1,5 +1,5 @@
 
-default: docker_build_cpu
+default: docker_build
 
 # Build Docker image
 build: docker_build output
@@ -59,32 +59,19 @@ BUILD_ARGS = --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 						 --build-arg VERSION=$(CODE_VERSION) \
 		         --build-arg VCS_URL=`git config --get remote.origin.url` \
 		         --build-arg VCS_REF=$(GIT_COMMIT) \
-		         --build-arg ARCH=$(ARCH) \
-						 --build-arg FRAMEWORK_VERSION="1.0"
+		         --build-arg ARCH=$(ARCH)
 
-docker_build_gpu: # Build GPU Docker image
+docker_build:  # Build Docker image
 	@docker build $(BUILD_ARGS) \
-		-f Dockerfile.$(ARCH)_gpu \
-		-t $(DOCKER_IMAGE):$(ARCH)-gpu-$(DOCKER_TAG) .
-docker_build_cpu:  # Build CPU Docker image
-	@docker build $(BUILD_ARGS) \
-		-f Dockerfile.$(ARCH)_cpu \
-		-t "$(DOCKER_IMAGE):$(ARCH)-cpu-$(DOCKER_TAG)" .
-
-docker_build: docker_build_cpu docker_build_gpu
+		-f Dockerfile.$(ARCH) \
+		-t "$(DOCKER_IMAGE):$(ARCH)-$(DOCKER_TAG)" .
 
 
-docker_push_cpu: # Tag image as latest and Push to DockerHub
-	docker tag $(DOCKER_IMAGE):$(ARCH)-cpu-$(DOCKER_TAG) $(DOCKER_IMAGE):$(ARCH)-cpu-latest
-	docker push $(DOCKER_IMAGE):$(ARCH)-cpu-$(DOCKER_TAG)
-	docker push $(DOCKER_IMAGE):$(ARCH)-cpu-latest
+docker_push: # Tag image as latest and Push to DockerHub
+	docker tag $(DOCKER_IMAGE):$(ARCH)-$(DOCKER_TAG) $(DOCKER_IMAGE):$(ARCH)-latest
+	docker push $(DOCKER_IMAGE):$(ARCH)-$(DOCKER_TAG)
+	docker push $(DOCKER_IMAGE):$(ARCH)-latest
 
-docker_push_gpu: # Tag image as latest and Push to DockerHub
-	docker tag $(DOCKER_IMAGE):$(ARCH)-gpu-$(DOCKER_TAG) $(DOCKER_IMAGE):$(ARCH)-gpu-latest
-	docker push $(DOCKER_IMAGE):$(ARCH)-gpu-$(DOCKER_TAG)
-	docker push $(DOCKER_IMAGE):$(ARCH)-gpu-latest
-
-docker_push: docker_push_cpu docker_push_gpu
 
 output:
 	@echo Docker Image: $(DOCKER_IMAGE):$(DOCKER_TAG)

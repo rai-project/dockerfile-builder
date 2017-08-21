@@ -7,7 +7,6 @@ ARG VCS_REF
 ARG VCS_URL
 ARG VERSION
 ARG ARCH
-ARG FRAMEWORK_VERSION
 LABEL com.rai-project.dockerfile-builder.build-date=$BUILD_DATE \
       com.rai-project.dockerfile-builder.name="dockerfile-builder website" \
       com.rai-project.dockerfile-builder.description="" \
@@ -17,7 +16,6 @@ LABEL com.rai-project.dockerfile-builder.build-date=$BUILD_DATE \
       com.rai-project.dockerfile-builder.vendor="Dockerfile Builder" \
       com.rai-project.dockerfile-builder.arch=$ARCH \
       com.rai-project.dockerfile-builder.version=$VERSION \
-      com.rai-project.dockerfile-builder.framework_version=$FRAMEWORK_VERSION \
       com.rai-project.dockerfile-builder.schema-version="1.0"
 
 
