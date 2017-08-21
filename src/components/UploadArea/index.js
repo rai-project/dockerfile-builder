@@ -29,8 +29,7 @@ export default class UploadArea extends Component {
         if (isNil(onFileUpload)) {
           return Promise.resolve();
         }
-        const data = currentFile.data;
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onloadend = () =>
           binaryStringToBlob(reader.result, "application/zip")
             .then(blobToDataURL)
@@ -43,7 +42,7 @@ export default class UploadArea extends Component {
                 }
               })
             );
-        reader.readAsDataURL(data);
+        reader.readAsDataURL(currentFile.data);
         return Promise.resolve();
       }
     });
@@ -59,7 +58,7 @@ export default class UploadArea extends Component {
         locale: {
           strings: {
             dropPasteImport: "Drop docker build zip file here, paste, or",
-            dropPaste: "Drop docker build zip file here, paste or"
+            dropPaste: "Drop docker build zip file here, paste, or"
           }
         }
       })

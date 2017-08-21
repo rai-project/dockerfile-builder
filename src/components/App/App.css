@@ -22,7 +22,6 @@
   font-size: 35px;
   border-radius: 0;
   padding-top: 10px;
-  padding-bottom: 1em;
 }
 
 .App-body {
@@ -31,20 +30,13 @@
   padding: 2em;
 }
 
-.App-upload {
-  font-size: large;
-  padding: 20px;
-}
-
 .App-footer {
   right: 0;
   bottom: 0;
   left: 0;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
   background: #1b1c1d;
-}
-
-.footer.segment {
-  padding: 5em 0em;
 }
 
 main {

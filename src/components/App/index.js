@@ -54,8 +54,7 @@ export default connect(
           <Body>
             <Snackbar />
             <div className="App-content">
-              <Segment inverted vertical>
-                {/* <Navbar currentPage={currentPage} /> */}
+              <Segment inverted vertical attached="top">
                 <Header appName={appName} currentPage={currentPage} />
               </Segment>
               <Container
@@ -66,7 +65,12 @@ export default connect(
               </Container>
             </div>
             <div className="App-footer">
-              <Segment inverted vertical>
+              <Segment
+                inverted
+                vertical
+                attached="bottom"
+                style={{ borderRadius: 0, border: 0 }}
+              >
                 <Footer />
               </Segment>
             </div>
