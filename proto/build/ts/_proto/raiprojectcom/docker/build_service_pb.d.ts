@@ -4,12 +4,48 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 
+export class PushOptions extends jspb.Message {
+  getUserName(): string;
+  setUserName(value: string): void;
+
+  getPassword(): string;
+  setPassword(value: string): void;
+
+  getImageName(): string;
+  setImageName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PushOptions.AsObject;
+  static toObject(includeInstance: boolean, msg: PushOptions): PushOptions.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PushOptions, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PushOptions;
+  static deserializeBinaryFromReader(message: PushOptions, reader: jspb.BinaryReader): PushOptions;
+}
+
+export namespace PushOptions {
+  export type AsObject = {
+    userName: string,
+    password: string,
+    imageName: string,
+  }
+}
+
 export class DockerBuildRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getImageName(): string;
+  setImageName(value: string): void;
+
   getContent(): string;
   setContent(value: string): void;
+
+  hasPush(): boolean;
+  clearPush(): void;
+  getPush(): PushOptions | undefined;
+  setPush(value?: PushOptions): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DockerBuildRequest.AsObject;
@@ -24,7 +60,9 @@ export class DockerBuildRequest extends jspb.Message {
 export namespace DockerBuildRequest {
   export type AsObject = {
     id: string,
+    imageName: string,
     content: string,
+    push?: PushOptions.AsObject,
   }
 }
 
@@ -65,7 +103,7 @@ export class ErrorStatus extends jspb.Message {
   clearDetailsList(): void;
   getDetailsList(): Array<google_protobuf_any_pb.Any>;
   setDetailsList(value: Array<google_protobuf_any_pb.Any>): void;
-  addDetails(value?: google_protobuf_any_pb.Any, index?: number): void;
+  addDetails(value?: google_protobuf_any_pb.Any, index?: number): google_protobuf_any_pb.Any;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ErrorStatus.AsObject;

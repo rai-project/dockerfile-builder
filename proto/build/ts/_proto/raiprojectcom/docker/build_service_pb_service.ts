@@ -8,11 +8,11 @@ export class DockerService {
 }
 export namespace DockerService {
   export class Build {
-    static methodName = "Build";
-    static service = DockerService;
-    static requestStream = false;
-    static responseStream = true;
-    static requestType = raiprojectcom_docker_build_service_pb.DockerBuildRequest;
-    static responseType = raiprojectcom_docker_build_service_pb.DockerBuildResponse;
+    static readonly methodName = "Build";
+    static readonly service = DockerService;
+    static readonly requestStream = false;
+    static readonly responseStream = true;
+    static readonly requestType = raiprojectcom_docker_build_service_pb.DockerBuildRequest;
+    static readonly responseType = raiprojectcom_docker_build_service_pb.DockerBuildResponse;
   }
 }

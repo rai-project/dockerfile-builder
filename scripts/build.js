@@ -79,30 +79,6 @@ async.waterfall(
       fs.appendFileSync(assetsFileName, 'var UIVersion = "' + version + '"');
       fs.appendFileSync(assetsFileName, "\n");
       var contents = fs.readFileSync(assetsFileName, "utf8");
-      // if (isProduction) {
-      // 	contents = contents
-      // 		.replace(/_productionIndexHtml/g, '_productionIndexHTML')
-      // 		.replace(/productionIndexHtmlBytes/g, 'productionIndexHTMLBytes')
-      // 		.replace(/productionIndexHtml/g, 'productionIndexHTML')
-      // 		.replace(/_productionIndex_bundleJs/g, '_productionIndexBundleJs')
-      // 		.replace(/productionIndex_bundleJsBytes/g, 'productionIndexBundleJsBytes')
-      // 		.replace(/productionIndex_bundleJs/g, 'productionIndexBundleJs')
-      // 		.replace(/_productionJqueryUiMinJs/g, '_productionJqueryUIMinJs')
-      // 		.replace(/productionJqueryUiMinJsBytes/g, 'productionJqueryUIMinJsBytes')
-      // 		.replace(/productionJqueryUiMinJs/g, 'productionJqueryUIMinJs');
-      // } else {
-      // 	contents = contents
-      // 		.readFileSync(assetsFileName, 'utf8')
-      // 		.replace(/_assetsIndexHtml/g, '_assetsIndexHTML')
-      // 		.replace(/assetsIndexHtmlBytes/g, 'assetsIndexHTMLBytes')
-      // 		.replace(/assetsIndexHtml/g, 'assetsIndexHTML')
-      // 		.replace(/_assetsIndex_bundleJs/g, '_assetsIndexBundleJs')
-      // 		.replace(/assetsIndex_bundleJsBytes/g, 'assetsIndexBundleJsBytes')
-      // 		.replace(/assetsIndex_bundleJs/g, 'assetsIndexBundleJs')
-      // 		.replace(/_assetsJqueryUiMinJs/g, '_assetsJqueryUIMinJs')
-      // 		.replace(/assetsJqueryUiMinJsBytes/g, 'assetsJqueryUIMinJsBytes')
-      // 		.replace(/assetsJqueryUiMinJs/g, 'assetsJqueryUIMinJs');
-      // }
       contents = contents.replace(/UI_VERSION/g, version);
       contents = contents.replace(/main_bundle.js/g, "main_bundle.js");
 

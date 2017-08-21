@@ -84,8 +84,8 @@
     "flow status": "flow status",
     "flow coverage": "flow coverage",
     "precommit": "lint-staged",
-    "bundle": "node build.js",
-    "build:proto": "./protogen.sh",
+    "bundle": "node scripts/build.js",
+    "build:proto": "./scripts/protogen.sh",
     "deploy": "yarn run build && surge -p build -d dockerfile-builder.surge.sh"
   },
   "verbose": true,
