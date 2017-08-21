@@ -1,6 +1,6 @@
 // @flow
 
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, Segment, Popup } from "semantic-ui-react";
 import { If, Then } from "react-if";
 
 import React from "react";
@@ -8,7 +8,7 @@ import idx from "idx";
 import classNames from "classnames";
 // import PropTypes from "prop-types";
 import ICodeMirror from "codemirror";
-import { isUndefined, size, keys, head } from "lodash";
+import { endsWith, isUndefined, size, keys, head } from "lodash";
 
 import "codemirror/addon/dialog/dialog";
 import "codemirror/addon/hint/show-hint";
@@ -80,6 +80,27 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         return "jsx";
     }
   }
+
+  async getDetectMode(fileName: string) {
+    if (fileName === "Dockerfile") {
+      return this.getMode("dockerfile");
+    }
+    if (endsWith(fileName, ".cu") || endsWith(fileName, ".cuh")) {
+      return this.getMode("cuda");
+    }
+    if (
+      endsWith(fileName, ".c") ||
+      endsWith(fileName, ".h") ||
+      endsWith(fileName, ".cpp") ||
+      endsWith(fileName, ".cxx") ||
+      endsWith(fileName, ".cc") ||
+      endsWith(fileName, ".hpp") ||
+      endsWith(fileName, ".hxx")
+    ) {
+      return this.getMode("cpp");
+    }
+  }
+
   onChange = () => {
     // console.log(arguments);
   };
@@ -119,7 +140,7 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     const value = idx(this.props, _ => _.files[currentFile].content) || "";
     this.editor.setValue(value);
 
-    const mode = await this.getMode(this.props.mode);
+    const mode = await this.getDetectMode(currentFile);
     this.editor.setOption("mode", mode);
 
     this.editor.refresh();
@@ -211,10 +232,13 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
           </If>
           <Menu.Menu position="right">
             <Menu.Item name="build" onClick={this.handleBuildIconClick}>
-              <Icon name="setting" />
+              <Popup trigger={<Icon name="setting" />} content="Build image" />
             </Menu.Item>
             <Menu.Item name="publish" onClick={this.handlePublishIconClick}>
-              <Icon name="cloud upload" />
+              <Popup
+                trigger={<Icon name="cloud upload" />}
+                content="Publish image to DockerHub"
+              />
             </Menu.Item>
           </Menu.Menu>
         </Menu>

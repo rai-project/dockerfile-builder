@@ -20,6 +20,7 @@ export default connect(
     return (
       <CodeMirror
         mode={mode}
+        readOnly={true}
         files={files}
         currentFile={currentFile || entry}
         withMenuBar={true}
