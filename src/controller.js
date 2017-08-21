@@ -8,7 +8,6 @@ import HttpProvider from "@cerebral/http";
 import uuid from "uuid";
 
 import app from "./modules/app";
-import shortcuts from "./modules/shortcuts";
 
 const controller = Controller({
   // You do not want to run the devtools in production as it
@@ -44,10 +43,6 @@ const controller = Controller({
         }),
   modules: {
     app,
-    shortcuts: shortcuts({
-      "cmd+s": "app.saveClicked",
-      "ctrl+s": "app.saveClicked"
-    }),
     useragent: UseragentModule({
       media: {
         unsupported: "(max-width: 550px)",

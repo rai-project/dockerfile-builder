@@ -3,6 +3,7 @@ import buildButtonClicked from "./signals/buildButtonClicked";
 import terminalOutputAppended from "./signals/terminalOutputAppended";
 import codeEditorFileChanged from "./signals/codeEditorFileChanged";
 import codeEditorFilesChanged from "./signals/codeEditorFilesChanged";
+import fileUploaded from "./signals/fileUploaded";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import zipFileContent from "!base64-loader!../../_fixtures/test1.zip";
@@ -18,11 +19,15 @@ function blobToFile(theBlob, fileName) {
 
 export default {
   state: {
-    name: "Dockerfile Builder for Power",
+    name: "app.Name", //"Dockerfile Builder for Power",
     state: {
       loading: true,
       saving: false,
       building: false
+    },
+    upload: {
+      visible: true,
+      files: []
     },
     terminal: {
       visible: false,
@@ -41,6 +46,7 @@ export default {
   },
   signals: {
     appLoaded,
+    fileUploaded,
     buildButtonClicked,
     terminalOutputAppended,
     codeEditorFileChanged,

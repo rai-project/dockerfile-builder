@@ -12,29 +12,32 @@ import UploadArea from "../UploadArea";
 export default connect(
   {
     zip: state`app.files.zip`,
+    uploadVisible: state`app.upload.visible`,
     terminalVisible: state`app.terminal.visible`,
     building: state`app.state.building`,
-    appLoaded: signal`app.appLoaded`
+    appLoaded: signal`app.appLoaded`,
+    onFileUpload: signal`app.fileUploaded`
   },
-  class Home extends React.Component {
-    componentDidMount() {
-      this.props.appLoaded({ input: this.props.zip });
-    }
-    render() {
-      const { terminalVisible } = this.props;
-      return (
-        <div>
-          {/* <UploadArea />*/}
-          <If condition={!terminalVisible}>
-            <Then>
-              <Editor />
-            </Then>
-            <Else>
-              <Terminal />
-            </Else>
-          </If>
-        </div>
-      );
-    }
+  function Home({ uploadVisible, terminalVisible, fileUploaded }) {
+    return (
+      <div>
+        <If condition={uploadVisible}>
+          <Then>
+            <UploadArea onFileUpload={onFileUpload} />
+          </Then>
+          <Else>
+            {() =>
+              <If condition={!terminalVisible}>
+                <Then>
+                  <Editor />
+                </Then>
+                <Else>
+                  {() => <Terminal />}
+                </Else>
+              </If>}
+          </Else>
+        </If>
+      </div>
+    );
   }
 );

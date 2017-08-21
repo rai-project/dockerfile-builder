@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Core, DragDrop, Tus10, Dashboard } from "uppy";
+import { map, isNil } from "lodash";
+import { Core, DragDrop, Dashboard } from "uppy";
 
 import "uppy/dist/uppy.min.css";
 
@@ -11,14 +12,23 @@ export default class UploadArea extends Component {
     console.log("onSuccess not registered");
   }
   componentDidMount() {
+    const { onFileUpload } = this.props;
+
     this.uppy = new Core({
-      debug: true,
+      debug: false,
       autoProceed: false,
       restrictions: {
         maxFileSize: 600000,
         maxNumberOfFiles: 5,
         minNumberOfFiles: 1,
         allowedFileTypes: ["application/zip"]
+      },
+      onBeforeFileAdded: (currentFile, files) => {
+        if (!isNil(onFileUpload)) {
+          console.log({ currentFile: currentFile.data });
+          onFileUpload({ files: [currentFile.data] });
+        }
+        return Promise.resolve();
       }
     });
     this.uppy
@@ -27,20 +37,11 @@ export default class UploadArea extends Component {
         target: this.uppyElement,
         replaceTargetContent: true,
         maxHeight: 300,
-        inline: true
-      })
-      .use(Tus10, {
-        endpoint: "/api/upload/",
-        resume: true
+        inline: true,
+        hideUploadButton: true,
+        showProgressDetails: false
       })
       .run();
-
-    const onUploadSuccess = this.props.onUploadSuccess || this.onUploadSuccess;
-    this.uppy.on("core:success", fileList => {
-      console.log(this.uppy.state);
-      onUploadSuccess(this.uppy.state.files);
-      console.log({ fileList });
-    });
   }
 
   render() {
