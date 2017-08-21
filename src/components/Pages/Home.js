@@ -23,9 +23,7 @@ export default connect(
       const { isBuilding } = this.props;
       return (
         <div>
-          {/* <UploadArea />
-        <Editor files={files} withMenuBar={true} currentFile={"test_folder/Dockerfile"} />
-      */}
+          {/* <UploadArea />*/}
           <If condition={!isBuilding}>
             <Then>
               <Editor />

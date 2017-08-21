@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
@@ -25,9 +26,10 @@ func apiRoutes(e *echo.Echo) {
 	grpclog.SetLogger(log.WithField("subpkg", "grpclog"))
 
 	wrappedGrpc := grpcweb.WrapServer(grpcServer)
+	pp.Println(grpcweb.ListGRPCResources(grpcServer))
 
 	api.GET("/version", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, config.App.Version)
 	})
-	api.POST("/*", echo.WrapHandler(http.StripPrefix("/api", wrappedGrpc)))
+	api.Any("/*", echo.WrapHandler(http.StripPrefix("/api", wrappedGrpc)))
 }

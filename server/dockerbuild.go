@@ -14,6 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
 	"github.com/gorilla/websocket"
+	"github.com/k0kubun/pp"
 
 	"github.com/pkg/errors"
 
@@ -47,6 +48,12 @@ var (
 )
 
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
+	pp.Println("in build....")
+
+	return
+}
+
+func (service *dockerbuildService) Build0(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
 
 	messages := make(chan string)
 	id := uuid.NewV4()
