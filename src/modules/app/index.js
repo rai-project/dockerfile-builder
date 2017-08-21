@@ -4,6 +4,7 @@ import terminalOutputAppended from "./signals/terminalOutputAppended";
 import codeEditorFileChanged from "./signals/codeEditorFileChanged";
 import codeEditorFilesChanged from "./signals/codeEditorFilesChanged";
 import fileUploaded from "./signals/fileUploaded";
+import terminalClosed from "./signals/terminalClosed";
 
 export default {
   state: {
@@ -38,6 +39,7 @@ export default {
     buildButtonClicked,
     terminalOutputAppended,
     codeEditorFileChanged,
-    codeEditorFilesChanged
+    codeEditorFilesChanged,
+    terminalClosed
   }
 };

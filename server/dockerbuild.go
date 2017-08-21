@@ -1,13 +1,8 @@
 package server
 
 import (
-	"archive/tar"
-	"archive/zip"
 	"bytes"
-	"compress/gzip"
 	"encoding/base64"
-	"fmt"
-	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -83,63 +78,68 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		}
 	}()
 
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Submitting your docker build")
+
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Processing submitted files")
+
 	dec, err := base64.StdEncoding.DecodeString(req.Content)
 	if err != nil {
 		return
 	}
 
-	zipReader, err := zip.NewReader(bytes.NewReader(dec), int64(len(dec)))
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Examining submitted files")
+
+	gzipBytes, err := zipBytesToTarBz2(dec)
 	if err != nil {
 		return
 	}
 
-	tarBuffer := new(bytes.Buffer)
-	tarWriter := tar.NewWriter(tarBuffer)
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Creating docker build session")
 
-	for _, file := range zipReader.File {
-		if file.FileInfo().IsDir() {
-			continue
-		}
-		rc, e := file.Open()
-		if e != nil {
-			err = e
-			return
-		}
-		buf := new(bytes.Buffer)
-		written, e := io.Copy(buf, rc)
-		if e != nil {
-			err = e
-			return
-		}
-		rc.Close()
-		hdr := &tar.Header{
-			Name: file.Name,
-			Mode: 0600,
-			Size: written,
-		}
-		if err = tarWriter.WriteHeader(hdr); err != nil {
-			return
-		}
-		if _, err = tarWriter.Write(buf.Bytes()); err != nil {
-			return
-		}
-		messages <- fmt.Sprintf("zip file %s:\n", file.Name)
-	}
-	if err = tarWriter.Close(); err != nil {
-		return
-	}
+	id := uuid.NewV4()
 
-	gzipBuffer := new(bytes.Buffer)
-	gzipWriter := gzip.NewWriter(gzipBuffer)
-	_, err = gzipWriter.Write(tarBuffer.Bytes())
+	// Create an AWS session
+	session, err := aws.NewSession(
+		aws.Region(aws.AWSRegionUSEast1),
+		aws.AccessKey(aws.Config.AccessKey),
+		aws.SecretKey(aws.Config.SecretKey),
+		aws.Sts(id),
+	)
 	if err != nil {
 		return
 	}
-	if err = gzipWriter.Close(); err != nil {
+
+	st, err := s3.New(
+		s3.Session(session),
+		store.Bucket(Config.UploadBucketName),
+	)
+	if err != nil {
 		return
 	}
 
-	pp.Println("in build....")
+	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploading docker build session")
+
+	uploadKey := Config.UploadDestinationDirectory + "/" + id + ".tar.gz"
+
+	uploadKey, err = st.UploadFrom(
+		bytes.NewReader(gzipBytes),
+		uploadKey,
+		s3.Lifetime(time.Hour),
+		s3.Metadata(map[string]interface{}{
+			"id":         req.Id,
+			"type":       "dockerfile-builder",
+			"created_at": time.Now(),
+		}),
+		s3.ContentType("application/x-gzip"),
+		store.UploadProgressOutput(nil),
+	)
+	if err != nil {
+		return
+	}
+
+	_ = uploadKey
+
+	pp.Println("in build.... ", uploadKey)
 
 	return
 }

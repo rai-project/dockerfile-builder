@@ -6,7 +6,6 @@ import { If, Then, Else } from "react-if";
 
 import Editor from "../Editor";
 import Terminal from "../Terminal";
-// eslint-disable-next-line
 import UploadArea from "../UploadArea";
 
 export default connect(

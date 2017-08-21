@@ -2,9 +2,13 @@ package cmd
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
+	"strings"
 
+	"github.com/Unknwon/com"
 	"github.com/fatih/color"
+	homedir "github.com/mitchellh/go-homedir"
 	"github.com/rai-project/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -66,6 +70,13 @@ func initConfig() {
 		config.AppName("dockerfile-builder"),
 		config.ColorMode(true),
 		config.ConfigString(_escFSMustString(false, "/.dockerfile_builder_config.yml")),
+	}
+	if appSecret == "" {
+		if secretFile, err := homedir.Expand("~/.rai_secret"); err == nil && com.IsFile(secretFile) {
+			if bts, err := ioutil.ReadFile(secretFile); err == nil {
+				appSecret = strings.TrimSpace(string(bts))
+			}
+		}
 	}
 	if appSecret != "" {
 		opts = append(opts, config.AppSecret(appSecret))

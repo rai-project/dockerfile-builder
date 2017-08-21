@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { isNil } from "lodash";
+import { Container } from "semantic-ui-react";
 import { Core, DragDrop, Dashboard } from "uppy";
 import { binaryStringToBlob, blobToDataURL } from "blob-util";
 
@@ -54,20 +55,26 @@ export default class UploadArea extends Component {
         maxHeight: 300,
         inline: true,
         hideUploadButton: true,
-        showProgressDetails: false
+        showProgressDetails: false,
+        locale: {
+          strings: {
+            dropPasteImport: "Drop docker build zip file here, paste, or",
+            dropPaste: "Drop docker build zip file here, paste or"
+          }
+        }
       })
       .run();
   }
 
   render() {
     return (
-      <div style={{ color: "black", minWidth: 0 }}>
+      <Container text textAlign="center">
         <div
           ref={node => {
             this.uppyElement = node;
           }}
         />
-      </div>
+      </Container>
     );
   }
 }

@@ -15,6 +15,7 @@ Thumbs.db
 __MACOSX
 `;
 
+const BLOB_PREFIX = "data:application/zip;base64,";
 const ignorer = gitignorer.compile(defaultGitIgnore);
 
 export default function fromZipFile({ uuid, path, props: { file } }) {
@@ -24,7 +25,7 @@ export default function fromZipFile({ uuid, path, props: { file } }) {
   return dataURLToBlob(file.url)
     .then(blobToBinaryString)
     .then(buf =>
-      JSZip.loadAsync(trimStart(buf, "data:application/zip;base64,"), {
+      JSZip.loadAsync(trimStart(buf, BLOB_PREFIX), {
         createFolders: true,
         base64: true
       })
