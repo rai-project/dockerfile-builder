@@ -8,7 +8,16 @@ import idx from "idx";
 import classNames from "classnames";
 // import PropTypes from "prop-types";
 import ICodeMirror from "codemirror";
-import { endsWith, isUndefined, size, keys, head } from "lodash";
+import {
+  endsWith,
+  isUndefined,
+  size,
+  keys,
+  head,
+  isNil,
+  toLower
+} from "lodash";
+import FileType from "../../thirdparty/filetype";
 
 import "codemirror/addon/dialog/dialog";
 import "codemirror/addon/hint/show-hint";
@@ -67,31 +76,68 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
   async getMode(mode: string) {
     if (!mode) return "jsx";
 
+    mode = toLower(mode);
     switch (mode) {
+      case "js":
+      case "jsx":
+      case "javascript":
+      case "json":
+        await import("codemirror/mode/javascript/javascript");
+        return "text/javascript";
       case "cuda":
         await import("./mode/cuda.js");
         return "text/x-cuda-src";
+      case "go":
+        await import("codemirror/mode/go/go");
+        return "text/x-go";
       case "c":
       case "cpp":
         await import("codemirror/mode/clike/clike");
-        return mode;
+        return "text/x-c++src";
+      case "python":
+        await import("codemirror/mode/python/python");
+        return "text/x-python";
       case "css":
         await import("codemirror/mode/css/css");
-        return "css";
+        return "text/css";
       case "html":
         await import("codemirror/mode/htmlmixed/htmlmixed");
-        return "htmlmixed";
+        return "text/html";
       case "docker":
       case "dockerfile":
         await import("codemirror/mode/dockerfile/dockerfile");
-        return "dockerfile";
+        return "text/x-dockerfile";
+      case "cmake":
+      case "cmakefile":
+      case "make":
+      case "makefile":
+        await import("codemirror/mode/cmake/cmake");
+        return "text/x-cmake";
+      case "math":
+      case "mathematica":
+        await import("codemirror/mode/mathematica/mathematica");
+        return "text/x-mathematica";
+      case "markdown":
+      case "md":
+        await import("codemirror/mode/markdown/markdown");
+        return "text/x-markdown";
+      case "yaml":
+      case "yml":
+        await import("codemirror/mode/yaml/yaml");
+        return "text/x-yaml";
+      case "shell":
+      case "base":
+      case "zsh":
+        await import("codemirror/mode/shell/shell");
+        return "text/x-sh";
       default:
         return "jsx";
     }
   }
 
   async getDetectMode(fileName: string) {
-    if (fileName === "Dockerfile") {
+    fileName = toLower(fileName);
+    if (fileName === "dockerfile") {
       return this.getMode("dockerfile");
     }
     if (endsWith(fileName, ".cu") || endsWith(fileName, ".cuh")) {
@@ -108,23 +154,55 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     ) {
       return this.getMode("cpp");
     }
+    if (endsWith(fileName, ".py")) {
+      return this.getMode("python");
+    }
+    if (endsWith(fileName, ".sh")) {
+      return this.getMode("shell");
+    }
+    if (endsWith(fileName, ".js") || endsWith(fileName, ".jsx")) {
+      return this.getMode("javascript");
+    }
+    if (endsWith(fileName, ".yml") || endsWith(fileName, ".yaml")) {
+      return this.getMode("yaml");
+    }
+    if (endsWith(fileName, ".m") || endsWith(fileName, ".wl")) {
+      return this.getMode("mathematica");
+    }
+    if (fileName === "cmakefile.txt") {
+      return this.getMode("cmake");
+    }
+    if (fileName === "makefile") {
+      return this.getMode("make");
+    }
+    if (endsWith(fileName, ".html")) {
+      return this.getMode("html");
+    }
+    if (endsWith(fileName, ".css")) {
+      return this.getMode("css");
+    }
+    if (endsWith(fileName, ".go")) {
+      return this.getMode("go");
+    }
+    if (endsWith(fileName, ".md")) {
+      return this.getMode("md");
+    }
   }
 
   onChange = () => {
     let { files, currentFile } = this.state;
     const value = this.editor.getValue();
-    let newFiles = {};
-    newFiles[currentFile] = {
-      ...files[currentFile],
-      updatedOn: new Date(),
-      content: value
+    files = {
+      ...files,
+      [currentFile]: {
+        ...files[currentFile],
+        updatedOn: new Date(),
+        content: value
+      }
     };
-    const merged = { ...files, ...newFiles };
-    this.setState({
-      files: merged
-    });
+    this.setState({ files });
     if (this.props.onFilesChanged) {
-      this.props.onFilesChanged({ files: merged });
+      this.props.onFilesChanged({ files });
     }
   };
   componentDidMount() {
@@ -242,8 +320,12 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
                 <Dropdown item simple text="Files">
                   <Dropdown.Menu>
                     {keys(this.props.files).map((name: string) => {
+                      const disabled = !isNil(
+                        FileType(this.props.files[name].content)
+                      );
                       return (
                         <Dropdown.Item
+                          disabled={disabled}
                           text={name}
                           icon="file text outline"
                           key={this.props.files[name].uuid}
