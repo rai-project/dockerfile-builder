@@ -1,4 +1,4 @@
-import { isNil, has } from "lodash";
+import { has } from "lodash";
 
 export default function checkForDockerfile({ path, props: { content } }) {
   if (has(content, "Dockerfile")) {

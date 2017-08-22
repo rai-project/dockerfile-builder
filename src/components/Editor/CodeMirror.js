@@ -21,6 +21,13 @@ import FileType from "../../thirdparty/filetype";
 
 import "codemirror/addon/dialog/dialog";
 import "codemirror/addon/hint/show-hint";
+import "codemirror/addon/hint/anyword-hint";
+import "codemirror/addon/fold/foldgutter";
+import "codemirror/addon/comment/comment";
+import "codemirror/addon/edit/matchtags";
+import "codemirror/addon/edit/closebrackets";
+import "codemirror/addon/edit/matchbrackets";
+import "codemirror/addon/search/search";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import "codemirror/lib/codemirror.css";
@@ -82,6 +89,7 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
       case "jsx":
       case "javascript":
       case "json":
+        await import("codemirror/addon/hint/javascript-hint");
         await import("codemirror/mode/javascript/javascript");
         return "text/javascript";
       case "cuda":
@@ -98,9 +106,12 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         await import("codemirror/mode/python/python");
         return "text/x-python";
       case "css":
+        await import("codemirror/addon/hint/css-hint");
         await import("codemirror/mode/css/css");
         return "text/css";
       case "html":
+        await import("codemirror/addon/hint/xml-hint");
+        await import("codemirror/addon/hint/html-hint");
         await import("codemirror/mode/htmlmixed/htmlmixed");
         return "text/html";
       case "docker":
@@ -319,20 +330,17 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
               <Menu.Menu position="left">
                 <Dropdown item simple text="Files">
                   <Dropdown.Menu>
-                    {keys(this.props.files).map((name: string) => {
-                      const disabled = !isNil(
-                        FileType(this.props.files[name].content)
-                      );
-                      return (
-                        <Dropdown.Item
-                          disabled={disabled}
-                          text={name}
-                          icon="file text outline"
-                          key={this.props.files[name].uuid}
-                          onClick={this.handleFileSelectClick}
-                        />
-                      );
-                    })}
+                    {keys(this.props.files).map((name: string) =>
+                      <Dropdown.Item
+                        disabled={
+                          !isNil(FileType(this.props.files[name].content))
+                        }
+                        text={name}
+                        icon="file text outline"
+                        key={this.props.files[name].uuid}
+                        onClick={this.handleFileSelectClick}
+                      />
+                    )}
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu.Menu>
@@ -343,10 +351,9 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
               <Popup trigger={<Icon name="setting" />} content="Build image" />
             </Menu.Item>
             <Menu.Item name="publish" onClick={this.handlePublishIconClick}>
-              <Popup
-                trigger={<Icon name="cloud upload" />}
-                content="Publish image to DockerHub"
-              />
+              <Popup trigger={<Icon name="cloud upload" />}>
+                <Popup.Content>Publish image to DockerHub</Popup.Content>
+              </Popup>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
