@@ -67,6 +67,7 @@
     "flow-remove-types": "^1.2.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.3",
+    "npm-run-all": "^4.0.2",
     "offline-plugin": "^4.8.3",
     "prettier": "^1.5.3",
     "raw-loader": "^0.5.1",
@@ -80,6 +81,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "bundle": "npm-run-all clean:build build build:assets",
+    "build:assets": "node scripts/build_go_assets.js",
+    "build:proto": "./scripts/protogen.sh",
+    "clean:build": "rimraf build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow start": "flow start",
@@ -87,16 +92,12 @@
     "flow status": "flow status",
     "flow coverage": "flow coverage",
     "precommit": "lint-staged",
-    "bundle": "node scripts/build.js",
-    "build:proto": "./scripts/protogen.sh",
     "deploy": "yarn run build && surge -p build -d dockerfile-builder.surge.sh"
   },
   "verbose": true,
+  "homepage": "https://dockerfile-builder.mybluemix.net/",
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "proxy": {
     "/api": {

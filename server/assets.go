@@ -8,6 +8,7 @@ import (
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 type assetsManifestTy struct {
@@ -57,13 +58,36 @@ func assetsRoutes(e *echo.Echo) {
 		}
 		return c.Blob(http.StatusOK, "image/x-icon", ico)
 	}
+	uiversion := func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]string{
+			"release_tag": UIReleaseTag,
+			"build_type":  UIBuildType,
+			"commit_id":   UICommitID,
+			"version":     UIVersion,
+		})
+	}
+	assetManifest := func(c echo.Context) error {
+		js, err := buildAssetManifestJsonBytes()
+		if err != nil {
+			return err
+		}
+		return c.Blob(http.StatusOK, "application/javascript", js)
+	}
 
-	e.GET("/", index)
-	e.GET("/index.html", index)
-	e.GET("/favicon.ico", favicon)
-	e.GET("/service-worker.js", serviceWorker)
-	e.GET("/vendor/*", echo.WrapHandler(http.FileServer(getAssetFS())))
-	e.GET("/static/*", echo.WrapHandler(http.FileServer(getAssetFS())))
+	assetGroup := e.Group("",
+		middleware.GzipWithConfig(middleware.GzipConfig{
+			Level: 5,
+		}),
+	)
+	assetGroup.GET("/", index)
+	assetGroup.GET("/index.html", index)
+	assetGroup.GET("/favicon.ico", favicon)
+	assetGroup.HEAD("/favicon.ico", favicon)
+	assetGroup.GET("/uiversion", uiversion)
+	assetGroup.GET("/service-worker.js", serviceWorker)
+	assetGroup.GET("/asset-manifest.json", assetManifest)
+	assetGroup.GET("/vendor/*", echo.WrapHandler(http.FileServer(getAssetFS())))
+	assetGroup.GET("/static/*", echo.WrapHandler(http.FileServer(getAssetFS())))
 
 }
 

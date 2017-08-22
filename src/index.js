@@ -25,7 +25,10 @@ render(
   document.querySelector("#root")
 );
 
-// import registerServiceWorker from "./registerServiceWorker";
-// if (process.env.NODE_ENV === "production") {
-//   registerServiceWorker();
-// }
+if (process.env.NODE_ENV === "production") {
+  const sw = async () => {
+    const registerServiceWorker = await import("./registerServiceWorker");
+    registerServiceWorker();
+  };
+  sw();
+}

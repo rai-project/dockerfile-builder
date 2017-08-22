@@ -33,13 +33,6 @@ if (process.env.IO_UI_BUILD) buildType = process.env.IO_UI_BUILD;
 async.waterfall(
   [
     function(cb) {
-      rimraf.sync(assetsFileName);
-      rimraf.sync("build");
-      var cmd = "yarn build";
-      console.log("Running", cmd);
-      exec(cmd, cb);
-    },
-    function(stdout, stderr, cb) {
       var cmd = 'git log --format="%H" -n1';
       console.log("Running", cmd);
       exec(cmd, cb);
@@ -50,7 +43,7 @@ async.waterfall(
       if (commitId.length !== 40)
         throw new Error("commitId invalid : " + commitId);
       var cmd =
-        "go-bindata-assetfs -pkg server -nocompress=false -o " +
+        'go-bindata-assetfs -pkg server -nomemcopy -ignore="^.*\\.go|\\.DS_Store" -o ' +
         assetsFileName +
         " build/...";
       console.log(cmd);
