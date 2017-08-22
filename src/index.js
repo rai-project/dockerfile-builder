@@ -9,6 +9,8 @@ import "./assets/fonts/lato-regular-webfont.woff";
 import "./assets/fonts/lato-bold-webfont.woff";
 import "./assets/fonts/glyphicons-halflings-regular.woff";
 
+import registerServiceWorker from "./registerServiceWorker";
+
 import App from "./components/App";
 
 if (process.env.NODE_ENV !== "production") {
@@ -26,9 +28,5 @@ render(
 );
 
 if (process.env.NODE_ENV === "production") {
-  const sw = async () => {
-    const registerServiceWorker = await import("./registerServiceWorker");
-    registerServiceWorker();
-  };
-  sw();
+  registerServiceWorker();
 }
