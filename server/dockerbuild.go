@@ -4,12 +4,10 @@ import (
 	"bytes"
 	"encoding/base64"
 	"strings"
-	"text/template"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
-	"github.com/gorilla/websocket"
 	"github.com/k0kubun/pp"
 
 	"github.com/pkg/errors"
@@ -32,11 +30,6 @@ type dockerbuildService struct {
 }
 
 var (
-	raiBuildTemplate *template.Template
-	upgrader         = websocket.Upgrader{
-		ReadBufferSize:  1024,
-		WriteBufferSize: 1024,
-	}
 	colored = color.New(color.FgWhite, color.BgBlack)
 )
 
