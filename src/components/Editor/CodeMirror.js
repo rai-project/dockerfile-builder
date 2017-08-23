@@ -348,7 +348,7 @@ export default class CodeMirror extends React.Component<Props, State> {
     if (
       isNil(onNewIconClick) &&
       isNil(onSaveIconClick) &&
-      size(this.state.files) == 0
+      size(this.state.files) === 0
     ) {
       return mainElement;
     }
