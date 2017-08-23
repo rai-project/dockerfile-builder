@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"io"
+	"strings"
 )
 
 func zipBytesToTarBz2(dec []byte) ([]byte, error) {
@@ -19,27 +20,41 @@ func zipBytesToTarBz2(dec []byte) ([]byte, error) {
 	tarWriter := tar.NewWriter(tarBuffer)
 
 	for _, file := range zipReader.File {
-		if file.FileInfo().IsDir() {
+		fi := file.FileInfo()
+		fileName := file.Name
+
+		link := ""
+
+		hdr, err := tar.FileInfoHeader(fi, link)
+		if err != nil {
 			continue
 		}
+
+		if fi.IsDir() && !strings.HasSuffix(fileName, "/") {
+			fileName = fileName + "/"
+
+		}
+
+		if err := tarWriter.WriteHeader(hdr); err != nil {
+			return nil, err
+		}
+
+		if hdr.Typeflag != tar.TypeReg {
+			continue
+		}
+
 		rc, err := file.Open()
 		if err != nil {
 			return nil, err
 		}
+
 		buf := new(bytes.Buffer)
-		written, err := io.Copy(buf, rc)
-		if err != nil {
+		if _, err := io.Copy(buf, rc); err != nil {
+			rc.Close()
 			return nil, err
 		}
 		rc.Close()
-		hdr := &tar.Header{
-			Name: file.Name,
-			Mode: 0600,
-			Size: written,
-		}
-		if err := tarWriter.WriteHeader(hdr); err != nil {
-			return nil, err
-		}
+
 		if _, err := tarWriter.Write(buf.Bytes()); err != nil {
 			return nil, err
 		}

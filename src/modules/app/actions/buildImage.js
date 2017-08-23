@@ -9,14 +9,16 @@ import {
 } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
 
 function buildImage({ state, uuid, controller, props }) {
-  let { zip, imageName, pushOptions } = props;
+  let { zip, imageName, pushOptions = {} } = props;
+  imageName =
+    imageName || pushOptions.imageName || "dockerbuilder/" + uuid.v4();
   const buildDockerRequest = new DockerBuildRequest();
   buildDockerRequest.setId(uuid.v4());
-  buildDockerRequest.setImageName(imageName || "dockerbuilder/" + uuid.v4());
+  buildDockerRequest.setImageName(imageName);
   buildDockerRequest.setContent(zip);
   if (!isNil(pushOptions)) {
     const opts = new PushOptions();
-    opts.setImageName(pushOptions.imageName || "");
+    opts.setImageName(imageName);
     opts.setUsername(pushOptions.username || "");
     opts.setPassword(pushOptions.password || "");
     buildDockerRequest.setPushOptions(opts);

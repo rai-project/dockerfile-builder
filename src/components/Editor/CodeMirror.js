@@ -61,15 +61,15 @@ type Props = {
   onNewIconClick: (Event => void) | void,
   onSaveIconClick: ((Event, string | null | void) => void) | void,
   onFileSelectClick: (Object => void) | void,
-  onPublishClick: (() => void) | void,
+  onPushClick: (() => void) | void,
   onBuildClick: (() => void) | void
 };
 
 type State = {
   files: { [string]: File },
   currentFile: string,
-  publishModalOpen: boolean,
-  publishOptions: {
+  pushModalOpen: boolean,
+  pushOptions: {
     username: string,
     password: string,
     imageName: string
@@ -90,7 +90,7 @@ export default class CodeMirror extends React.Component<Props, State> {
     onNewIconClick: undefined,
     onSaveIconClick: undefined,
     onFileSelectClick: undefined,
-    onPublishClick: undefined,
+    onPushClick: undefined,
     onBuildClick: undefined
   };
   constructor(props) {
@@ -98,8 +98,8 @@ export default class CodeMirror extends React.Component<Props, State> {
     this.state = {
       files: this.props.files,
       currentFile: this.props.currentFile,
-      publishModalOpen: false,
-      publishOptions: {
+      pushModalOpen: false,
+      pushOptions: {
         username: "",
         password: "",
         imageName: ""
@@ -308,33 +308,33 @@ export default class CodeMirror extends React.Component<Props, State> {
       this.props.onBuildClick();
     }
   };
-  handlePublishIconClick = (e: Event, data: Object) => {
+  handlePushIconClick = (e: Event, data: Object) => {
     this.setState({
-      publishModalOpen: true
+      pushModalOpen: true
     });
   };
-  handlePublishModalClose = () => {
+  handlePushModalClose = () => {
     this.setState({
-      publishModalOpen: false
+      pushModalOpen: false
     });
   };
-  handlePublishClick = (e: Event, data: Object) => {
-    this.handlePublishModalClose();
-    if (this.props.onPublishClick) {
-      this.props.onPublishClick({ publishOptions: this.state.publishOptions });
+  handlePushClick = (e: Event, data: Object) => {
+    this.handlePushModalClose();
+    if (this.props.onPushClick) {
+      this.props.onPushClick({ pushOptions: this.state.pushOptions });
     }
   };
-  handlePublishFormChange = (e: Event, { name, value }) => {
+  handlePushFormChange = (e: Event, { name, value }) => {
     this.setState({
-      publishOptions: {
-        ...this.state.publishOptions,
+      pushOptions: {
+        ...this.state.pushOptions,
         [name]: value
       }
     });
   };
   render() {
     const { files, onNewIconClick, withMenuBar, onSaveIconClick } = this.props;
-    const { publishModalOpen } = this.state;
+    const { pushModalOpen } = this.state;
 
     const mainElement = (
       <div
@@ -393,9 +393,9 @@ export default class CodeMirror extends React.Component<Props, State> {
             <Menu.Item name="build" onClick={this.handleBuildIconClick}>
               <Popup trigger={<Icon name="setting" />} content="Build image" />
             </Menu.Item>
-            <Menu.Item name="publish" onClick={this.handlePublishIconClick}>
+            <Menu.Item name="push" onClick={this.handlePushIconClick}>
               <Popup trigger={<Icon name="cloud upload" />}>
-                <Popup.Content>Publish image to DockerHub</Popup.Content>
+                <Popup.Content>Push image to DockerHub</Popup.Content>
               </Popup>
             </Menu.Item>
           </Menu.Menu>
@@ -405,9 +405,9 @@ export default class CodeMirror extends React.Component<Props, State> {
           {mainElement}
         </Segment>
         <Modal
-          open={publishModalOpen}
+          open={pushModalOpen}
           dimmer="blurring"
-          onClose={this.handlePublishModalClose}
+          onClose={this.handlePushModalClose}
         >
           <Modal.Header>Push Docker Image Configuration</Modal.Header>
           <Modal.Content>
@@ -417,36 +417,36 @@ export default class CodeMirror extends React.Component<Props, State> {
                   label="Image Name"
                   placeholder="c3sr/image:latest"
                   name="imageName"
-                  onChange={this.handlePublishFormChange}
+                  onChange={this.handlePushFormChange}
                 />
                 <Form.Group widths="equal">
                   <Form.Input
                     label="Dockerhub Username"
                     placeholder="Dockerhub Username"
                     name="username"
-                    onChange={this.handlePublishFormChange}
+                    onChange={this.handlePushFormChange}
                   />
                   <Form.Input
                     type="password"
                     label="Dockerhub Password"
                     placeholder="Dockerhub Password"
                     name="password"
-                    onChange={this.handlePublishFormChange}
+                    onChange={this.handlePushFormChange}
                   />
                 </Form.Group>
               </Form>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color="red" onClick={this.handlePublishModalClose}>
+            <Button color="red" onClick={this.handlePushModalClose}>
               Cancel
             </Button>
             <Button
               positive
               icon="checkmark"
               labelPosition="right"
-              content="Publish"
-              onClick={this.handlePublishClick}
+              content="Push"
+              onClick={this.handlePushClick}
             />
           </Modal.Actions>
         </Modal>

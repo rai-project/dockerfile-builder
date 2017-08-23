@@ -37,7 +37,7 @@ export default {
     appLoaded,
     fileUploaded,
     buildButtonClicked,
-    publishButtonClicked: buildButtonClicked,
+    pushButtonClicked: buildButtonClicked,
     terminalOutputAppended,
     codeEditorFileChanged,
     codeEditorFilesChanged,
