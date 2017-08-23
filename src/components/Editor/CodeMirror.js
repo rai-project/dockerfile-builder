@@ -348,7 +348,7 @@ export default class CodeMirror extends React.Component<Props, State> {
     if (
       isNil(onNewIconClick) &&
       isNil(onSaveIconClick) &&
-      size(this.state.files) <= 1
+      size(this.state.files) == 0
     ) {
       return mainElement;
     }
@@ -370,7 +370,7 @@ export default class CodeMirror extends React.Component<Props, State> {
               </Menu.Item>
             </Then>
           </If>
-          <If condition={size(files) > 1}>
+          <If condition={size(files) > 0}>
             <Then>
               <Menu.Menu position="left">
                 <Dropdown item simple text="Files">

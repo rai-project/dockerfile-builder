@@ -1,4 +1,5 @@
 import { dataURLToBlob } from "blob-util";
+import { trimStart } from "lodash";
 
 function blobToText(blob) {
   return new Promise(function(resolve, reject) {
@@ -12,16 +13,19 @@ function blobToText(blob) {
   });
 }
 
+const BLOB_PREFIX = "data:text/plain;base64,";
+
 export default function fromTextFile({ uuid, path, props: { file } }) {
   return dataURLToBlob(file.url)
     .then(blobToText)
-    .then(function(content) {
+    .then(function(buf) {
+      const content = trimStart(buf, BLOB_PREFIX);
       return path.success({
         content: {
           Dockerfile: {
             uuid: uuid(),
-            content: content,
-            createdOn: file.date,
+            content: atob(content),
+            createdOn: new Date(),
             updatedOn: new Date()
           }
         }

@@ -21,17 +21,19 @@ export default class UploadArea extends Component {
       autoProceed: false,
       restrictions: {
         maxFileSize: 600000,
-        maxNumberOfFiles: 5,
+        maxNumberOfFiles: 1,
         minNumberOfFiles: 1,
-        allowedFileTypes: ["application/zip"]
+        allowedFileTypes: ["Dockerfile", "application/zip", "text/*"]
       },
       onBeforeFileAdded: (currentFile, files) => {
         if (isNil(onFileUpload)) {
           return Promise.resolve();
         }
+        const type =
+          currentFile.name === "Dockerfile" ? "text/plain" : "application/zip";
         let reader = new FileReader();
         reader.onloadend = () =>
-          binaryStringToBlob(reader.result, "application/zip")
+          binaryStringToBlob(reader.result, type)
             .then(blobToDataURL)
             .then(url =>
               onFileUpload({
@@ -57,8 +59,8 @@ export default class UploadArea extends Component {
         showProgressDetails: false,
         locale: {
           strings: {
-            dropPasteImport: "Drop docker build zip file here, paste, or",
-            dropPaste: "Drop docker build zip file here, paste, or"
+            dropPasteImport: "Drop Dockerfile or zip file here, paste, or",
+            dropPaste: "Drop Dockerfile or zip file here, paste, or"
           }
         }
       })
