@@ -12,6 +12,7 @@ export default connect(
     model: state`app.editor.mode`,
     currentFile: state`app.editor.currentFile`,
     buildButtonClicked: signal`app.buildButtonClicked`,
+    publishButtonClicked: signal`app.publishButtonClicked`,
     codeEditorFileChanged: signal`app.codeEditorFileChanged`,
     codeEditorFilesChanged: signal`app.codeEditorFilesChanged`
   },
@@ -21,6 +22,7 @@ export default connect(
     mode,
     currentFile,
     buildButtonClicked,
+    publishButtonClicked,
     codeEditorFileChanged,
     codeEditorFilesChanged
   }) {
@@ -34,6 +36,7 @@ export default connect(
         currentFile={currentFile || entry}
         withMenuBar={true}
         onBuildClick={buildButtonClicked}
+        onPublishClick={publishButtonClicked}
         onFileSelectClick={codeEditorFileChanged}
         onFilesChanged={codeEditorFilesChanged}
       />

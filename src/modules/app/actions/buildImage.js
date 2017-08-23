@@ -1,17 +1,26 @@
 import { grpc } from "grpc-web-client";
+import { isNil } from "lodash";
 
 // Import code-generated data structures.
 import { DockerService } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb_service";
 import {
-  DockerBuildRequest
-  // DockerBuildResponse,
-  // ErrorStatus
+  DockerBuildRequest,
+  PushOptions
 } from "../../../proto/build/ts/_proto/raiprojectcom/docker/build_service_pb";
 
 function buildImage({ state, uuid, controller, props }) {
+  let { zip, imageName, pushOptions } = props;
   const buildDockerRequest = new DockerBuildRequest();
   buildDockerRequest.setId(uuid.v4());
-  buildDockerRequest.setContent(props.zip);
+  buildDockerRequest.setImageName(imageName || "dockerbuilder/" + uuid.v4());
+  buildDockerRequest.setContent(zip);
+  if (!isNil(pushOptions)) {
+    const opts = new PushOptions();
+    opts.setImageName(pushOptions.imageName || "");
+    opts.setUsername(pushOptions.username || "");
+    opts.setPassword(pushOptions.password || "");
+    buildDockerRequest.setPushOptions(opts);
+  }
   grpc.invoke(DockerService.Build, {
     request: buildDockerRequest,
     host: "/api",

@@ -76,7 +76,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   ) {
     var f,
       obj = {
-        userName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+        username: jspb.Message.getFieldWithDefault(msg, 1, ""),
         password: jspb.Message.getFieldWithDefault(msg, 2, ""),
         imageName: jspb.Message.getFieldWithDefault(msg, 3, "")
       };
@@ -121,7 +121,7 @@ proto.raiprojectcom.docker.PushOptions.deserializeBinaryFromReader = function(
     switch (field) {
       case 1:
         var value /** @type {string} */ = reader.readString();
-        msg.setUserName(value);
+        msg.setUsername(value);
         break;
       case 2:
         var value /** @type {string} */ = reader.readString();
@@ -160,7 +160,7 @@ proto.raiprojectcom.docker.PushOptions.serializeBinaryToWriter = function(
   writer
 ) {
   var f = undefined;
-  f = message.getUserName();
+  f = message.getUsername();
   if (f.length > 0) {
     writer.writeString(1, f);
   }
@@ -175,15 +175,15 @@ proto.raiprojectcom.docker.PushOptions.serializeBinaryToWriter = function(
 };
 
 /**
- * optional string user_name = 1;
+ * optional string username = 1;
  * @return {string}
  */
-proto.raiprojectcom.docker.PushOptions.prototype.getUserName = function() {
+proto.raiprojectcom.docker.PushOptions.prototype.getUsername = function() {
   return /** @type {string} */ jspb.Message.getFieldWithDefault(this, 1, "");
 };
 
 /** @param {string} value */
-proto.raiprojectcom.docker.PushOptions.prototype.setUserName = function(value) {
+proto.raiprojectcom.docker.PushOptions.prototype.setUsername = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -271,8 +271,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         id: jspb.Message.getFieldWithDefault(msg, 1, ""),
         imageName: jspb.Message.getFieldWithDefault(msg, 2, ""),
         content: jspb.Message.getFieldWithDefault(msg, 3, ""),
-        push:
-          (f = msg.getPush()) &&
+        pushOptions:
+          (f = msg.getPushOptions()) &&
           proto.raiprojectcom.docker.PushOptions.toObject(includeInstance, f)
       };
 
@@ -334,7 +334,7 @@ proto.raiprojectcom.docker.DockerBuildRequest.deserializeBinaryFromReader = func
           value,
           proto.raiprojectcom.docker.PushOptions.deserializeBinaryFromReader
         );
-        msg.setPush(value);
+        msg.setPushOptions(value);
         break;
       default:
         reader.skipField();
@@ -380,7 +380,7 @@ proto.raiprojectcom.docker.DockerBuildRequest.serializeBinaryToWriter = function
   if (f.length > 0) {
     writer.writeString(3, f);
   }
-  f = message.getPush();
+  f = message.getPushOptions();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -436,10 +436,10 @@ proto.raiprojectcom.docker.DockerBuildRequest.prototype.setContent = function(
 };
 
 /**
- * optional PushOptions push = 4;
+ * optional PushOptions push_options = 4;
  * @return {?proto.raiprojectcom.docker.PushOptions}
  */
-proto.raiprojectcom.docker.DockerBuildRequest.prototype.getPush = function() {
+proto.raiprojectcom.docker.DockerBuildRequest.prototype.getPushOptions = function() {
   return /** @type{?proto.raiprojectcom.docker.PushOptions} */ jspb.Message.getWrapperField(
     this,
     proto.raiprojectcom.docker.PushOptions,
@@ -448,21 +448,21 @@ proto.raiprojectcom.docker.DockerBuildRequest.prototype.getPush = function() {
 };
 
 /** @param {?proto.raiprojectcom.docker.PushOptions|undefined} value */
-proto.raiprojectcom.docker.DockerBuildRequest.prototype.setPush = function(
+proto.raiprojectcom.docker.DockerBuildRequest.prototype.setPushOptions = function(
   value
 ) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
-proto.raiprojectcom.docker.DockerBuildRequest.prototype.clearPush = function() {
-  this.setPush(undefined);
+proto.raiprojectcom.docker.DockerBuildRequest.prototype.clearPushOptions = function() {
+  this.setPushOptions(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.raiprojectcom.docker.DockerBuildRequest.prototype.hasPush = function() {
+proto.raiprojectcom.docker.DockerBuildRequest.prototype.hasPushOptions = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 

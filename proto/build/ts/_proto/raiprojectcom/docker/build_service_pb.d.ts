@@ -5,8 +5,8 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 
 export class PushOptions extends jspb.Message {
-  getUserName(): string;
-  setUserName(value: string): void;
+  getUsername(): string;
+  setUsername(value: string): void;
 
   getPassword(): string;
   setPassword(value: string): void;
@@ -26,7 +26,7 @@ export class PushOptions extends jspb.Message {
 
 export namespace PushOptions {
   export type AsObject = {
-    userName: string,
+    username: string,
     password: string,
     imageName: string,
   }
@@ -42,10 +42,10 @@ export class DockerBuildRequest extends jspb.Message {
   getContent(): string;
   setContent(value: string): void;
 
-  hasPush(): boolean;
-  clearPush(): void;
-  getPush(): PushOptions | undefined;
-  setPush(value?: PushOptions): void;
+  hasPushOptions(): boolean;
+  clearPushOptions(): void;
+  getPushOptions(): PushOptions | undefined;
+  setPushOptions(value?: PushOptions): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DockerBuildRequest.AsObject;
@@ -62,7 +62,7 @@ export namespace DockerBuildRequest {
     id: string,
     imageName: string,
     content: string,
-    push?: PushOptions.AsObject,
+    pushOptions?: PushOptions.AsObject,
   }
 }
 

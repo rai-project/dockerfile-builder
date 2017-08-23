@@ -1,6 +1,15 @@
 // @flow
 
-import { Dropdown, Icon, Menu, Segment, Popup } from "semantic-ui-react";
+import {
+  Dropdown,
+  Icon,
+  Menu,
+  Segment,
+  Popup,
+  Modal,
+  Button,
+  Form
+} from "semantic-ui-react";
 import { If, Then } from "react-if";
 
 import React from "react";
@@ -56,7 +65,18 @@ type Props = {
   onBuildClick: (() => void) | void
 };
 
-export default class CodeMirror extends React.Component<Props, Props, void> {
+type State = {
+  files: { [string]: File },
+  currentFile: string,
+  publishModalOpen: boolean,
+  publishOptions: {
+    username: string,
+    password: string,
+    imageName: string
+  }
+};
+
+export default class CodeMirror extends React.Component<Props, State> {
   codeElement: HTMLDivElement;
   editor: ICodeMirror.Editor;
   static defaultProps: Props = {
@@ -77,7 +97,13 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     super(props);
     this.state = {
       files: this.props.files,
-      currentFile: this.props.currentFile
+      currentFile: this.props.currentFile,
+      publishModalOpen: false,
+      publishOptions: {
+        username: "",
+        password: "",
+        imageName: ""
+      }
     };
   }
   async getMode(mode: string) {
@@ -244,9 +270,7 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     this.update();
     this.editor.on("change", this.onChange);
   }
-  shouldComponentUpdate() {
-    return false;
-  }
+
   async update() {
     let { files, currentFile } = this.state;
     currentFile =
@@ -285,24 +309,45 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     }
   };
   handlePublishIconClick = (e: Event, data: Object) => {
+    this.setState({
+      publishModalOpen: true
+    });
+  };
+  handlePublishModalClose = () => {
+    this.setState({
+      publishModalOpen: false
+    });
+  };
+  handlePublishClick = (e: Event, data: Object) => {
+    this.handlePublishModalClose();
     if (this.props.onPublishClick) {
-      this.props.onPublishClick();
+      this.props.onPublishClick({ publishOptions: this.state.publishOptions });
     }
   };
+  handlePublishFormChange = (e: Event, { name, value }) => {
+    this.setState({
+      publishOptions: {
+        ...this.state.publishOptions,
+        [name]: value
+      }
+    });
+  };
   render() {
-    // const { fontSize } = this.props;
+    const { files, onNewIconClick, withMenuBar, onSaveIconClick } = this.props;
+    const { publishModalOpen } = this.state;
+
     const mainElement = (
       <div
         ref={ref => (this.codeElement = ref)}
         className={classNames("editor")}
       />
     );
-    if (this.props.withMenuBar === false) {
+    if (withMenuBar === false) {
       return mainElement;
     }
     if (
-      isUndefined(this.props.onNewIconClick) &&
-      isUndefined(this.props.onSaveIconClick) &&
+      isNil(onNewIconClick) &&
+      isNil(onSaveIconClick) &&
       size(this.state.files) <= 1
     ) {
       return mainElement;
@@ -311,33 +356,31 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
     return (
       <div>
         <Menu attached="top" icon={true}>
-          <If condition={!isUndefined(this.props.onNewIconClick)}>
+          <If condition={!isUndefined(onNewIconClick)}>
             <Then>
               <Menu.Item name="new" onClick={this.handleNewIconClick}>
                 <Icon name="file text outline" />
               </Menu.Item>
             </Then>
           </If>
-          <If condition={!isUndefined(this.props.onSaveIconClick)}>
+          <If condition={!isNil(onSaveIconClick)}>
             <Then>
               <Menu.Item name="save" onClick={this.handleSaveIconClick}>
                 <Icon name="save" />
               </Menu.Item>
             </Then>
           </If>
-          <If condition={size(this.props.files) > 1}>
+          <If condition={size(files) > 1}>
             <Then>
               <Menu.Menu position="left">
                 <Dropdown item simple text="Files">
                   <Dropdown.Menu>
-                    {keys(this.props.files).map((name: string) =>
+                    {keys(files).map((name: string) =>
                       <Dropdown.Item
-                        disabled={
-                          !isNil(FileType(this.props.files[name].content))
-                        }
+                        disabled={!isNil(FileType(files[name].content))}
                         text={name}
                         icon="file text outline"
-                        key={this.props.files[name].uuid}
+                        key={files[name].uuid}
                         onClick={this.handleFileSelectClick}
                       />
                     )}
@@ -361,6 +404,52 @@ export default class CodeMirror extends React.Component<Props, Props, void> {
         <Segment attached="bottom" style={{ paddingTop: 0 }}>
           {mainElement}
         </Segment>
+        <Modal
+          open={publishModalOpen}
+          dimmer="blurring"
+          onClose={this.handlePublishModalClose}
+        >
+          <Modal.Header>Push Docker Image Configuration</Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              <Form>
+                <Form.Input
+                  label="Image Name"
+                  placeholder="c3sr/image:latest"
+                  name="imageName"
+                  onChange={this.handlePublishFormChange}
+                />
+                <Form.Group widths="equal">
+                  <Form.Input
+                    label="Dockerhub Username"
+                    placeholder="Dockerhub Username"
+                    name="username"
+                    onChange={this.handlePublishFormChange}
+                  />
+                  <Form.Input
+                    type="password"
+                    label="Dockerhub Password"
+                    placeholder="Dockerhub Password"
+                    name="password"
+                    onChange={this.handlePublishFormChange}
+                  />
+                </Form.Group>
+              </Form>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="red" onClick={this.handlePublishModalClose}>
+              Cancel
+            </Button>
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Publish"
+              onClick={this.handlePublishClick}
+            />
+          </Modal.Actions>
+        </Modal>
       </div>
     );
   }

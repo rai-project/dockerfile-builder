@@ -5,7 +5,7 @@ import "google/protobuf/any.proto";
 package raiprojectcom.docker;
 
 message PushOptions {
-  string user_name = 1;
+  string username = 1;
   string password = 2;
   string image_name = 3;
 }
@@ -14,7 +14,7 @@ message DockerBuildRequest {
   string id = 1;
   string image_name = 2;
   string content = 3;
-  PushOptions push = 4;
+  PushOptions push_options = 4;
 }
 
 message DockerBuildResponse {
