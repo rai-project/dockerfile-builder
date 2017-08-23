@@ -1,8 +1,8 @@
 import { set } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 
-import onError from "../../common/chains/onError";
-import resetError from "../../common/chains/resetError";
+import onError from "../chains/onError";
+import resetError from "../chains/resetError";
 
 import buildImage from "../actions/buildImage";
 import toZipFile from "../actions/toZipFile";

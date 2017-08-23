@@ -16,8 +16,6 @@ import Snackbar from "./Snackbar";
 
 import "./App.css";
 
-import "../../common/extract";
-
 const Body = styled.section`
   display: flex;
   flex-direction: column;
