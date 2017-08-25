@@ -31,6 +31,8 @@ const delayLoad = function(loader) {
 };
 
 export const HomePage = delayLoad(() => import("./Home"));
+export const About = delayLoad(() => import("./About"));
+export const Images = delayLoad(() => import("./Images"));
 
 HomePage.preload();
 
