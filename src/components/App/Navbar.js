@@ -14,6 +14,11 @@ export default connect(
         <Menu pointing inverted secondary>
           <Menu.Menu position="right">
             <Menu.Item
+              name="images"
+              active={currentPage === "Images"}
+              onClick={e => navbarClicked({ name: "Images" })}
+            />
+            <Menu.Item
               name="about"
               active={currentPage === "About"}
               onClick={e => navbarClicked({ name: "About" })}
