@@ -43,6 +43,7 @@ install:
 - go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 - go get -u google.golang.org/grpc
 - go get github.com/goreleaser/goreleaser
+- go get golang.org/x/crypto/acme/autocert
 - yarn install
 - yarn build
 - yarn bundle
