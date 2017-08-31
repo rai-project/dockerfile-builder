@@ -61,7 +61,7 @@
     "babel-preset-flow": "^6.23.0",
     "base64-loader": "^1.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
-    "css-loader": "^0.28.5",
+    "css-loader": "^0.28.7",
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0",
     "flow-bin": "^0.53.1",

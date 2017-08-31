@@ -1,52 +1,58 @@
 package: github.com/rai-project/dockerfile-builder
 import:
-- package: github.com/GeertJohan/go-sourcepath
-- package: github.com/sirupsen/logrus
+- package: github.com/Unknwon/com
   version: ^1.0.0
 - package: github.com/aws/aws-sdk-go
-  version: ~1.10.20
+  version: ^1.10.35
   subpackages:
   - aws/session
 - package: github.com/davecgh/go-spew
-  version: ~1.1.0
-  subpackages:
-  - spew
-- package: github.com/docker/docker
   version: master
   subpackages:
-  - builder/dockerfile/parser
+  - spew
 - package: github.com/elazarl/go-bindata-assetfs
 - package: github.com/fatih/color
   version: master
-- package: github.com/gorilla/websocket
-  version: ~1.1.0
 - package: github.com/improbable-eng/grpc-web
   subpackages:
   - go/grpcweb
 - package: github.com/k0kubun/pp
   version: ~2.3.0
 - package: github.com/labstack/echo
-  version: ~3.2.1
+  version: ~3.2.3
   subpackages:
   - middleware
 - package: github.com/labstack/gommon
-  version: ~0.2.1
+  version: ~0.2.2
   subpackages:
   - log
+- package: github.com/mitchellh/go-homedir
 - package: github.com/pkg/errors
   version: ~0.8.0
-- package: github.com/rai-project/archive
 - package: github.com/rai-project/aws
+- package: github.com/rai-project/broker
+  subpackages:
+  - sqs
 - package: github.com/rai-project/config
 - package: github.com/rai-project/logger
+- package: github.com/rai-project/model
+- package: github.com/rai-project/pubsub
+  subpackages:
+  - redis
+- package: github.com/rai-project/serializer
+  subpackages:
+  - json
 - package: github.com/rai-project/store
   subpackages:
   - s3
 - package: github.com/rai-project/uuid
 - package: github.com/rai-project/vipertags
+- package: github.com/sirupsen/logrus
+  version: ^1.0.0
 - package: github.com/spf13/cobra
 - package: github.com/spf13/viper
+  version: ^1.0.0
 - package: google.golang.org/grpc
-  version: ~1.3.0
+  version: ~1.6.0
   subpackages:
   - grpclog
