@@ -1,11 +1,11 @@
 applications:
-- path: dist/dockerfile-builder/stable
-  memory: 128M
+- path: .
+  memory: 512M
   instances: 1
   name: dockerfile-builder
   host: dockerfile-builder
   disk_quota: 1024M
-  command: ./dockerfile-builder serve
+  command: dockerfile-builder serve
   buildpack: https://github.com/cloudfoundry/binary-buildpack.git
   env:
     GOPACKAGENAME: dockerfile-builder
