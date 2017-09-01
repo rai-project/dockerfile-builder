@@ -29,7 +29,6 @@ before_install:
 - bash scripts/install-protobuf.sh
 before_script:
 - ls -R $HOME/protobuf
-- ln -s ${TRAVIS_BUILD_DIR} ${GOPATH}/src/rai-project/dockerfile-builder
 install:
 - npm install -g yarn
 - gem install fpm
