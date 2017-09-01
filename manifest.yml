@@ -1,5 +1,5 @@
 applications:
-- path: .
+- path: dockerfile-builder
   memory: 128M
   instances: 1
   name: dockerfile-builder
