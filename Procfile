@@ -1,1 +1,0 @@
-web: ./dockerfile-builder serve
