@@ -45,9 +45,9 @@ install:
 - go get -u google.golang.org/grpc
 - go get github.com/goreleaser/goreleaser
 - go get golang.org/x/crypto/acme/autocert
-# - yarn install
-# - yarn build
-# - yarn bundle
+- yarn install
+- yarn build
+- yarn bundle
 - glide install --force
 - rm -fr vendor/github.com/Sirupsen
 - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
