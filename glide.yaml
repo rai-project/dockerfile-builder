@@ -19,7 +19,7 @@ import:
 - package: github.com/k0kubun/pp
   version: ~2.3.0
 - package: github.com/labstack/echo
-  version: ~3.2.3
+  version: ^3.2.3
   subpackages:
   - middleware
 - package: github.com/labstack/gommon
@@ -56,3 +56,6 @@ import:
   version: ~1.6.0
   subpackages:
   - grpclog
+- package: golang.org/x/crypto
+  subpackages:
+  - acme/autocert
