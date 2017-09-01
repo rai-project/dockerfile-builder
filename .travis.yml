@@ -22,13 +22,14 @@ before_install:
 - go env
 - export GOPATH=$HOME/gopath
 - export PATH=$HOME/gopath/bin:$PATH
-- mkdir -p $HOME/gopath/src/github.com/rai-project/dockerfile-builder
-- rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/rai-project/dockerfile-builder/
-- export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/rai-project/dockerfile-builder
-- cd $HOME/gopath/src/github.com/rai-project/dockerfile-builder
+- mkdir -p ${GOPATH}/src/github.com/rai-project/dockerfile-builder
+- rsync -az ${TRAVIS_BUILD_DIR}/ ${GOPATH}/src/github.com/rai-project/dockerfile-builder/
+- export TRAVIS_BUILD_DIR=${GOPATH}/src/github.com/rai-project/dockerfile-builder
+- cd ${GOPATH}/src/github.com/rai-project/dockerfile-builder
 - bash scripts/install-protobuf.sh
 before_script:
 - ls -R $HOME/protobuf
+- ln -s ${TRAVIS_BUILD_DIR} ${GOPATH}/src/rai-project/dockerfile-builder
 install:
 - npm install -g yarn
 - gem install fpm
@@ -84,12 +85,13 @@ before_deploy:
 - echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
 - cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
 - rm -fr ${TRAVIS_BUILD_DIR}/glide.yaml ${TRAVIS_BUILD_DIR}/glide.lock
+- cd ${TRAVIS_BUILD_DIR}
+- cp ${DIST}/${VERSION}/linux-amd64/dockerfile-builder .
 after_deploy:
 - cf logs dockerfile-builder --recent
 - echo "releasing v${VERSION}..."
 - ghr -t "$GITHUB_TOKEN" -u rai-project -r dockerfile-builder --replace "v${VERSION}"
   "${DIST}/latest"
-- cd ${TRAVIS_BUILD_DIR}
 deploy:
 - provider: bluemixcloudfoundry
   edge: true
