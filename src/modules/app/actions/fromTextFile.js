@@ -13,13 +13,15 @@ function blobToText(blob) {
   });
 }
 
-const BLOB_PREFIX = "data:text/plain;base64,";
+const BLOB_PREFIX1 = "data:text/plain;base64,";
+const BLOB_PREFIX2 = "data:application/octet-stream;base64,";
 
 export default function fromTextFile({ uuid, path, props: { file } }) {
   return dataURLToBlob(file.url)
     .then(blobToText)
     .then(function(buf) {
-      const content = trimStart(buf, BLOB_PREFIX);
+      const content = trimStart(trimStart(buf, BLOB_PREFIX1), BLOB_PREFIX2);
+      // console.log({ content: content });
       return path.success({
         content: {
           Dockerfile: {

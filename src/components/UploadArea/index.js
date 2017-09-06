@@ -59,8 +59,8 @@ export default class UploadArea extends Component {
         showProgressDetails: false,
         locale: {
           strings: {
-            dropPasteImport: "Drop Dockerfile or zip file here, paste, or",
-            dropPaste: "Drop Dockerfile or zip file here, paste, or"
+            dropPasteImport: "Drop Dockerfile or zip file here, or",
+            dropPaste: "Drop Dockerfile or zip file here, or"
           }
         }
       })
