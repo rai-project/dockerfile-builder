@@ -26,6 +26,7 @@ RUN go get github.com/Masterminds/glide
 WORKDIR $GOPATH/src/github.com/rai-project/dockerfile-builder
 RUN git clone --depth=1 --branch=master https://github.com/rai-project/dockerfile-builder.git . && \
     glide install && \
+    go get golang.org/x/crypto/acme/autocert && \
     go install && \
     rm -fr vendor
 
