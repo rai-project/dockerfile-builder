@@ -1,4 +1,4 @@
-import { trimStart, map, zipObject, keys, values, head } from "lodash";
+import { trimStart, map, zipObject, keys, values, head, initial, join } from "lodash";
 import common from "common-prefix";
 
 function basename(path) {
@@ -11,10 +11,11 @@ export default function removeZipRoot({ props: { content } }) {
     return;
   }
   if (names.length === 1) {
+    const name = head(names);
     const fileName = basename(head(names));
     return {
       content: zipObject([fileName], values(content)),
-      prefix: "todo/add/me"
+      prefix:  join(initial(path.split("/")), "/"),
     };
   }
 
