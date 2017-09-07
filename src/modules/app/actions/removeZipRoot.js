@@ -12,10 +12,10 @@ export default function removeZipRoot({ props: { content } }) {
   }
   if (names.length === 1) {
     const name = head(names);
-    const fileName = basename(head(names));
+    const fileName = basename(name);
     return {
       content: zipObject([fileName], values(content)),
-      prefix:  join(initial(path.split("/")), "/"),
+      prefix:  join(initial(name.split("/")), "/"),
     };
   }
 
