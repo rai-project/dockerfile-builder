@@ -1,15 +1,16 @@
 import React from "react";
+import { head, split } from "lodash";
 import { Table, Icon } from "semantic-ui-react";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 
 export default function Images() {
-  console.log(imagesJSON);
+  const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
   const rows = imagesJSON.map(({ id, name, dockerfile, published }) => {
     return (
       <Table.Row key={id}>
         <Table.Cell singleLine textAlign="left">
-          {name}
+          <a href={urlOf(name)}>{name}</a>
         </Table.Cell>
         <Table.Cell textAlign="center">
           <a href={dockerfile}>
