@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import Navbar from "./Navbar";
 import Header from "./Header";
-import { HomePage } from "../Pages";
+import { HomePage, AboutPage, ImagesPage } from "../Pages";
 import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 
@@ -33,8 +33,17 @@ export default connect(
     render() {
       const { appName, currentPage, websiteUrl } = this.props;
 
-      let Page = null;
+      let Page;
       switch (currentPage) {
+        case "Home":
+          Page = HomePage;
+          break;
+        case "About":
+          Page = AboutPage;
+          break;
+        case "Images":
+          Page = ImagesPage;
+          break;
         default:
           Page = HomePage;
           break;
@@ -44,9 +53,7 @@ export default connect(
         <div className="App">
           <Helmet>
             <meta charSet="utf-8" />
-            <title>
-              {appName}
-            </title>
+            <title>{appName}</title>
             <link rel="canonical" href={websiteUrl} />
           </Helmet>
           <Body>
