@@ -5,6 +5,7 @@ import codeEditorFileChanged from "./signals/codeEditorFileChanged";
 import codeEditorFilesChanged from "./signals/codeEditorFilesChanged";
 import fileUploaded from "./signals/fileUploaded";
 import terminalClosed from "./signals/terminalClosed";
+import navbarClicked from "./signals/navbarClicked";
 
 export default {
   state: {
@@ -41,6 +42,7 @@ export default {
     terminalOutputAppended,
     codeEditorFileChanged,
     codeEditorFilesChanged,
-    terminalClosed
+    terminalClosed,
+    navbarClicked
   }
 };
