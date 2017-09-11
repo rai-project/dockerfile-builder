@@ -1,10 +1,9 @@
 import React from "react";
-import { connect } from "cerebral/react";
 import { Table, Icon } from "semantic-ui-react";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 
-export default connect({}, function Images({}) {
+export default function Images() {
   console.log(imagesJSON);
   const rows = imagesJSON.map(({ id, name, dockerfile, published }) => {
     return (
@@ -35,4 +34,4 @@ export default connect({}, function Images({}) {
       <Table.Body>{rows}</Table.Body>
     </Table>
   );
-});
+}

@@ -1,6 +1,5 @@
 import React from "react";
-import { connect } from "cerebral/react";
 
-export default connect({}, function About({}) {
+export default function About() {
   return <div />;
-});
+}
