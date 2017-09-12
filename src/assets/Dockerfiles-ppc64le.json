@@ -1126,5 +1126,5 @@
           "name": "c3sr/metrics-core:latest",
           "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/metrics-core",
           "published": true
-     },
+     }
 ]
