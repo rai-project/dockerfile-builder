@@ -1,8 +1,8 @@
 [
      {
           "id": "1",
-          "name": "c3sr/bonita:7.4.2",
-          "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/bonita",
+          "name": "c3sr/bonita.ppc64le:7.4.2",
+          "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/bonita.ppc64le",
           "published": true
      },
      {
