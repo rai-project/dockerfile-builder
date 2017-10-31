@@ -44,5 +44,5 @@ export default function About() {
       return hljs.highlight(language, code).value;
     }
   });
-  return <div> {compile(section, null, {}).tree}</div>;
+  return <div> {compile(description, null, {}).tree}</div>;
 }
