@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@cerebral/angularjs@^1.0.0", "@cerebral/angularjs@^1.0.0-1504962856824":
+"@cerebral/angularjs@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@cerebral/angularjs/-/angularjs-1.0.0.tgz#af7e99ef63a9a84b6083322c31cf672f2f280b55"
   dependencies:
@@ -18,19 +18,19 @@
   dependencies:
     function-tree "^1.0.1-1504117174977"
 
-"@cerebral/inferno@^1.0.0", "@cerebral/inferno@^1.0.0-1504962856824":
+"@cerebral/inferno@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@cerebral/inferno/-/inferno-1.0.0.tgz#d3d291c8eaf0fb99caed956e224ed03aeedad494"
   dependencies:
     cerebral "^2.2.0"
 
-"@cerebral/preact@^1.0.0", "@cerebral/preact@^1.0.0-1504962856824":
+"@cerebral/preact@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@cerebral/preact/-/preact-1.0.0.tgz#d643964ec9fc6c0255a3d22a18c48a08254148d7"
   dependencies:
     cerebral "^2.2.0"
 
-"@cerebral/react@^1.0.0", "@cerebral/react@^1.0.0-1504962856824":
+"@cerebral/react@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@cerebral/react/-/react-1.0.0.tgz#b7b09aacbb23355583e13ad5603ecdee604c53e5"
   dependencies:
@@ -57,7 +57,7 @@
     raf "^3.3.0"
     ua-parser-js "^0.7.10"
 
-"@cerebral/vue@^1.0.0", "@cerebral/vue@^1.0.0-1504962856824":
+"@cerebral/vue@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@cerebral/vue/-/vue-1.0.0.tgz#0ef38b95b10db98b67d71b3e54871f3f500ed66b"
   dependencies:
@@ -1496,18 +1496,6 @@ cerebral@^2.2.0:
     "@cerebral/vue" "^1.0.0"
     eventemitter3 "^2.0.2"
     function-tree "^1.0.2"
-
-cerebral@next:
-  version "2.2.0-1504962856824"
-  resolved "https://registry.yarnpkg.com/cerebral/-/cerebral-2.2.0-1504962856824.tgz#5688d713678eff0f154c30ec4744ea851ee8c5fa"
-  dependencies:
-    "@cerebral/angularjs" "^1.0.0-1504962856824"
-    "@cerebral/inferno" "^1.0.0-1504962856824"
-    "@cerebral/preact" "^1.0.0-1504962856824"
-    "@cerebral/react" "^1.0.0-1504962856824"
-    "@cerebral/vue" "^1.0.0-1504962856824"
-    eventemitter3 "^2.0.2"
-    function-tree "^1.0.2-1504962856825"
 
 chalk@1.1.3, chalk@1.x, chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
@@ -3218,7 +3206,7 @@ function-bind@^1.0.2, function-bind@^1.1.1, function-bind@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-function-tree@^1.0.1-1504117174977, function-tree@^1.0.2, function-tree@^1.0.2-1504962856825:
+function-tree@^1.0.1-1504117174977, function-tree@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/function-tree/-/function-tree-1.0.2.tgz#0f6b8b5df90f209ef8c6f3eb2847eab0ecce7b77"
   dependencies:
@@ -3515,6 +3503,10 @@ hedron@^0.7.1:
   dependencies:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
+
+highlight.js@^9.12.0:
+  version "9.12.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
