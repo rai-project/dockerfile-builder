@@ -1,4 +1,5 @@
 import React, { createElement } from "react";
+import { isNil } from "lodash";
 import hljs from "highlight.js/lib/highlight";
 import hljsJavascript from "highlight.js/lib/languages/javascript";
 import hljsYaml from "highlight.js/lib/languages/yaml";
@@ -56,6 +57,27 @@ const compile = marksy({
   components: {}
 });
 
-export default function Markdown({ data }) {
-  return <div>{compile(data, null, {}).tree}</div>;
+export default class Markdown extends React.Component {
+  state = { urlData: null };
+
+  componentDidMount() {
+    const { url } = this.props;
+    if (isNil(url)) {
+      return;
+    }
+    fetch(url)
+      .then(res => res.text())
+      .then(urlData => this.setState({ urlData }));
+  }
+  render() {
+    let { data } = this.props;
+    if (!isNil(this.state.urlData)) {
+      data = this.state.urlData;
+    }
+    if (!isNil(data)) {
+      return <div>{compile(data, null, {}).tree}</div>;
+    }
+
+    return <div>loading...</div>;
+  }
 }
