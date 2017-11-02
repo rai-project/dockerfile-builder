@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
 	"github.com/k0kubun/pp"
-	"gopkg.in/mgo.v2/bson"
 
 	"github.com/pkg/errors"
 
@@ -160,7 +159,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 	jobRequest := model.JobRequest{
 		Base: model.Base{
-			ID:        bson.NewObjectId(),
+			ID:        uuid.NewV4(),
 			CreatedAt: time.Now(),
 		},
 		UploadKey:          uploadKey,
@@ -173,6 +172,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	}
 
 	brkr, err := sqs.New(
+		sqs.QueueName(Config.BrokerQueueName),
 		broker.Serializer(serializer),
 		sqs.Session(session),
 	)

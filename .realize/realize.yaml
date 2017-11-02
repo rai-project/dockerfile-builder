@@ -1,38 +1,20 @@
 settings:
-  resources:
-    outputs: outputs.log
-    logs: logs.log
-    errors: errors.log
-  server:
-    status: true
-    open: false
-    host: localhost
-    port: 5001
-projects:
+  legacy:
+    force: false
+    interval: 100ms
+server:
+  status: false
+  open: false
+  host: localhost
+  port: 5001
+schema:
 - name: dockerfile-builder
   path: .
-  commands:
-    vet: false
-    fmt: false
-    test: false
-    generate: true
-    bin:
-      status: true
-    build:
-      status: true
-    run: true
-  args:
-  - serve -d -v
+  commands: {}
   watcher:
-    preview: true
     paths:
-    - server
-    ignore_paths:
-    - src
+    - /
+    extensions:
+    - go
+    ignored_paths:
     - vendor
-    exts:
-    - .go
-  streams:
-    file_out: true
-    file_log: true
-    file_err: true
