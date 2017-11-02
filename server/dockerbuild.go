@@ -217,6 +217,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
 	formatPrint := func(resp model.JobResponse) {
+		pp.Println(resp)
 		body := strings.TrimSpace(string(resp.Body))
 		if body == "" {
 			return
