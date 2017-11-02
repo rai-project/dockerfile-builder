@@ -1,4 +1,4 @@
-# DD4P [![Build Status](https://travis-ci.org/rai-project/dockerfile-builder.svg?branch=master)](https://travis-ci.org/rai-project/dockerfile-builder)
+# D4P [![Build Status](https://travis-ci.org/rai-project/dockerfile-builder.svg?branch=master)](https://travis-ci.org/rai-project/dockerfile-builder)
 
 ## Motivation
 
