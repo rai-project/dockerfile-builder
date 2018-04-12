@@ -70,16 +70,11 @@ before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - mkdir -p ${DIST}/${VERSION}/binaries
 - mkdir -p ${DIST}/latest
-- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/darwin-amd64   ${DIST}/${VERSION}/darwin-amd64/dockerfile-builder  #   ${TRAVIS_BUILD_DIR}/LICENSE.TXT
-  ${TRAVIS_BUILD_DIR}/VERSION
-- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-amd64    ${DIST}/${VERSION}/linux-amd64/dockerfile-builder   #    ${TRAVIS_BUILD_DIR}/LICENSE.TXT
-  ${TRAVIS_BUILD_DIR}/VERSION
-#- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-ppc64le  ${DIST}/${VERSION}/linux-ppc64le/dockerfile-builder #    ${TRAVIS_BUILD_DIR}/LICENSE.TXT
-  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/darwin-amd64   ${DIST}/${VERSION}/darwin-amd64/dockerfile-builder    ${TRAVIS_BUILD_DIR}/LICENSE.TXT  ${TRAVIS_BUILD_DIR}/VERSION
+- tar --transform 's/.*\///g' -czvf ${DIST}/${VERSION}/binaries/linux-amd64    ${DIST}/${VERSION}/linux-amd64/dockerfile-builder     ${TRAVIS_BUILD_DIR}/LICENSE.TXT  ${TRAVIS_BUILD_DIR}/VERSION
 - go-selfupdate -o ${DIST}/updates ${DIST}/${VERSION}/binaries/ ${VERSION}
 - cp ${DIST}/${VERSION}/binaries/darwin-amd64  ${DIST}/latest/darwin-amd64.tar.gz
 - cp ${DIST}/${VERSION}/binaries/linux-amd64   ${DIST}/latest/linux-amd64.tar.gz
-#- cp ${DIST}/${VERSION}/binaries/linux-ppc64le ${DIST}/latest/linux-ppc64le.tar.gz
 - rm -fr ${DIST}/${VERSION}/binaries
 - echo "Copying latest directory to ${DIST}/${TRAVIS_COMMIT}"
 - cp -r ${DIST}/latest ${DIST}/${TRAVIS_COMMIT}
