@@ -1,5 +1,6 @@
 package: github.com/rai-project/dockerfile-builder
 import:
+- package: golang.org/x/sys/unix
 - package: github.com/Unknwon/com
   version: ^1.0.0
 - package: github.com/aws/aws-sdk-go
