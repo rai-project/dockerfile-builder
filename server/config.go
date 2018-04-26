@@ -2,7 +2,6 @@ package server
 
 import (
   
-	"runtime"
 	"github.com/k0kubun/pp"
 	"github.com/rai-project/config"
 	"github.com/rai-project/vipertags"
