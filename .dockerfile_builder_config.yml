@@ -21,6 +21,7 @@ client:
   upload_bucket: files.rai-project.com
   bucket: userdata
   build_file: rai_build
+  job_queue_name: rai_ppc64le_test
 pubsub:
   endpoints:
     - pubsub.rai-project.com:6379
