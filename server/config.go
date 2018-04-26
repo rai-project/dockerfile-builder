@@ -12,8 +12,7 @@ type dockerbuilderConfig struct {
 	BrokerQueueName            string        `json:"broker_queue_name" config:"dockerbuilder.broker_queue_name" default:"rai_ppc64le"`
 	UploadBucketName           string        `json:"upload_bucket" config:"dockerbuilder.upload_bucket" default:"files.rai-project.com"`
 	UploadDestinationDirectory string        `json:"upload_destination_directory" config:"dockerbuilder.upload_destination_directory" default:"userdata"`
-  ClientJobQueueName               string        `json:"job_queue_name" config:"client.job_queue_name"`
-	done                       chan struct{} `json:"-" config:"-"`
+  done                       chan struct{} `json:"-" config:"-"`
 }
 
 var (
@@ -33,9 +32,6 @@ func (a *dockerbuilderConfig) SetDefaults() {
 func (a *dockerbuilderConfig) Read() {
 	defer close(a.done)
 	vipertags.Fill(a)
-	if a.ClientJobQueueName == "" || a.ClientJobQueueName == "default" {
-		a.ClientJobQueueName = config.App.Name + "_" + runtime.GOARCH
-	}
 }
 
 func (c dockerbuilderConfig) Wait() {
