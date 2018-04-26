@@ -175,7 +175,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		sqs.QueueName(Config.BrokerQueueName),
 		broker.Serializer(serializer),
 		sqs.Session(session),
-		sqs.QueueName(Config.ClientJobQueueName),
 	)
 	if err != nil {
 		return err
