@@ -134,7 +134,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 			Password: pushOpts.GetPassword(),
 		},
 	}
-	pp.Println(pushParams)
 	buildSpec := model.BuildSpecification{
 		RAI: model.RAIBuildSpecification{
 			Version:        "2.0",
