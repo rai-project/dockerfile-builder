@@ -15,6 +15,7 @@ import (
 	"github.com/rai-project/aws"
 	"github.com/rai-project/broker"
 	"github.com/rai-project/broker/sqs"
+	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 	"github.com/rai-project/model"
 	"github.com/rai-project/pubsub"
@@ -161,6 +162,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 			ID:        uuid.NewV4(),
 			CreatedAt: time.Now(),
 		},
+		ClientVersion:      config.App.Version,
 		UploadKey:          uploadKey,
 		BuildSpecification: buildSpec,
 	}
@@ -203,7 +205,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	}
 	defer redisConn.Close()
 
-	subscribeChannel := Config.BrokerQueueName + "/log-" + id
+	subscribeChannel := raiAppName + "/log-" + id
 	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
 	if err != nil {
 		return errors.Wrap(err, "cannot create redis subscriber")

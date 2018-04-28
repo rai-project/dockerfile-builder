@@ -17,6 +17,7 @@ var (
 	Config = &dockerbuilderConfig{
 		done: make(chan struct{}),
 	}
+	raiAppName = "rai"
 )
 
 func (dockerbuilderConfig) ConfigName() string {
