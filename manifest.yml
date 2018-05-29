@@ -3,7 +3,8 @@ applications:
   memory: 512M
   instances: 1
   name: dockerfile-builder
-  host: dockerfile-builder
+  routes:
+  - route: dockerfile-builder
   disk_quota: 1024M
   command: ./dockerfile-builder serve
   buildpack: https://github.com/cloudfoundry/binary-buildpack.git
