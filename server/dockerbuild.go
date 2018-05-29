@@ -121,7 +121,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 
 	dec, err := base64.StdEncoding.DecodeString(req.Content)
 	if err != nil {
-		return
+		dec = []byte(req.Content)
 	}
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Examining submitted files")
