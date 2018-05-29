@@ -15,9 +15,10 @@ import (
 )
 
 var (
-	isDebug   bool
-	isVerbose bool
-	appSecret string
+	isDebug      bool
+	isVerbose    bool
+	appSecret    string
+	jobQueueName string
 )
 
 // RootCmd represents the base command when called without any subcommands
@@ -50,6 +51,7 @@ func init() {
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
 	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret.")
+	RootCmd.PersistentFlags().StringVarP(&jobQueueName, "queue", "q", "", "Name of the job queue. Infers queue from build file by default.")
 
 	// mark secret flag hidden
 	RootCmd.PersistentFlags().MarkHidden("secret")
@@ -61,6 +63,7 @@ func init() {
 	viper.BindPFlag("app.secret", RootCmd.PersistentFlags().Lookup("secret"))
 	viper.BindPFlag("app.debug", RootCmd.PersistentFlags().Lookup("debug"))
 	viper.BindPFlag("app.verbose", RootCmd.PersistentFlags().Lookup("verbose"))
+	viper.BindPFlag("dockerbuilder.broker_queue_name", RootCmd.PersistentFlags().Lookup("queue"))
 }
 
 // initConfig reads in config file and ENV variables if set.

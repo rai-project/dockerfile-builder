@@ -3,13 +3,13 @@ package server
 import (
 	"bytes"
 	"encoding/base64"
+	"fmt"
 	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
 	"github.com/k0kubun/pp"
-
 	"github.com/pkg/errors"
 
 	"github.com/rai-project/aws"
@@ -34,9 +34,38 @@ var (
 	colored = color.New(color.FgWhite, color.BgBlack)
 )
 
-func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
-
+func BuildCmd(imageName, content string) (err error) {
 	messages := make(chan string)
+
+	go func() {
+		for msg := range messages {
+			fmt.Println(msg)
+		}
+	}()
+
+	defer func() {
+		if err != nil {
+			log.WithError(err).Error("Got error when handling Build request")
+		}
+	}()
+
+	req := &pb.DockerBuildRequest{
+		Id:        uuid.NewV4(),
+		ImageName: imageName,
+		Content:   content,
+	}
+
+	err = build(req, messages)
+
+	return err
+
+}
+
+func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
+	messages := make(chan string)
+	if req.Id == "" {
+		req.Id = uuid.NewV4()
+	}
 
 	go func() {
 		for msg := range messages {
@@ -64,6 +93,28 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		}
 	}()
 
+	err = build(req, messages)
+
+	redisConn, err := redis.New()
+	if err != nil {
+		return errors.Wrap(err, "cannot create a redis connection")
+	}
+	defer redisConn.Close()
+
+	subscribeChannel := raiAppName + "/log-" + req.Id
+	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
+	if err != nil {
+		return errors.Wrap(err, "cannot create redis subscriber")
+	}
+
+	resultHandler(messages, subscriber.Start())
+
+	return err
+}
+
+func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
+	id := req.Id
+
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Submitting your docker build")
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Processing submitted files")
@@ -81,8 +132,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	}
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Creating docker build session")
-
-	id := uuid.NewV4()
 
 	// Create an AWS session
 	session, err := aws.NewSession(
@@ -128,7 +177,10 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		pushOpts = &pb.PushOptions{}
 	}
 	pushParams := &model.Push{
-		Push:      pushOpts.GetImageName() != "" && pushOpts.GetUsername() != "" && pushOpts.GetPassword() != "",
+		Push: pushOpts != nil &&
+			pushOpts.GetImageName() != "" &&
+			pushOpts.GetUsername() != "" &&
+			pushOpts.GetPassword() != "",
 		ImageName: pushOpts.GetImageName(),
 		Credentials: model.Credentials{
 			Username: pushOpts.GetUsername(),
@@ -198,20 +250,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 	}
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build request")
-
-	redisConn, err := redis.New()
-	if err != nil {
-		return errors.Wrap(err, "cannot create a redis connection")
-	}
-	defer redisConn.Close()
-
-	subscribeChannel := raiAppName + "/log-" + id
-	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
-	if err != nil {
-		return errors.Wrap(err, "cannot create redis subscriber")
-	}
-
-	resultHandler(messages, subscriber.Start())
 
 	return
 }
