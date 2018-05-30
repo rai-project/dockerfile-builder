@@ -22,7 +22,7 @@ client:
   bucket: userdata
   build_file: rai_build
 dockerbuilder:
-  broker_queue_name: rai_ppc64le_test
+  broker_queue_name: rai_ppc64le_d4p
 pubsub:
   endpoints:
     - pubsub.rai-project.com:6379
