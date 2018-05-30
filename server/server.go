@@ -54,12 +54,8 @@ func Start(addr string) {
 // Used for pretty printing addresses.
 func pprintAddr(addr string) string {
 	parts := strings.Split(addr, ":")
-	if len(parts) == 1 {
-		if strings.HasPrefix(addr, ":") {
-			parts = append([]string{"localhost"}, parts[0])
-		} else {
-			parts = append(parts, "80")
-		}
+	if len(parts) == 2 && parts[0] == "" {
+		parts = append([]string{"localhost"}, parts[1])
 	}
 	return strings.Join(parts, ":")
 }
