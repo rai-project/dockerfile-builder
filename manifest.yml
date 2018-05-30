@@ -4,7 +4,7 @@ applications:
   instances: 1
   name: dockerfile-builder
   routes:
-  - route: dockerfile-builder
+  - route: dockerfile-builder.mybluemix.net
   disk_quota: 1024M
   command: ./dockerfile-builder serve
   buildpack: https://github.com/cloudfoundry/binary-buildpack.git
