@@ -9,7 +9,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
-	"github.com/k0kubun/pp"
 	"github.com/pkg/errors"
 
 	"github.com/rai-project/aws"
@@ -95,20 +94,6 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 
 	err = build(req, messages)
 
-	redisConn, err := redis.New()
-	if err != nil {
-		return errors.Wrap(err, "cannot create a redis connection")
-	}
-	defer redisConn.Close()
-
-	subscribeChannel := raiAppName + "/log-" + req.Id
-	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
-	if err != nil {
-		return errors.Wrap(err, "cannot create redis subscriber")
-	}
-
-	resultHandler(messages, subscriber.Start())
-
 	return err
 }
 
@@ -189,7 +174,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 	}
 	buildSpec := model.BuildSpecification{
 		RAI: model.RAIBuildSpecification{
-			Version:        "2.0",
+			Version:        "0.2",
 			ContainerImage: "",
 		},
 		Resources: model.Resources{
@@ -211,7 +196,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 
 	jobRequest := model.JobRequest{
 		Base: model.Base{
-			ID:        uuid.NewV4(),
+			ID:        req.Id,
 			CreatedAt: time.Now(),
 		},
 		ClientVersion:      config.App.Version,
@@ -251,18 +236,31 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Uploaded your docker build request")
 
+	redisConn, err := redis.New()
+	if err != nil {
+		return errors.Wrap(err, "cannot create a redis connection")
+	}
+	defer redisConn.Close()
+
+	subscribeChannel := raiAppName + "/log-" + req.Id
+	subscriber, err := redis.NewSubscriber(redisConn, subscribeChannel)
+	if err != nil {
+		return errors.Wrap(err, "cannot create redis subscriber")
+	}
+
+	err = resultHandler(messages, subscriber.Start())
 	return
 }
 
 func resultHandler(target chan string, msgs <-chan pubsub.Message) error {
 	formatPrint := func(resp model.JobResponse) {
-		pp.Println(resp)
 		body := strings.TrimSpace(string(resp.Body))
 		if body == "" {
 			return
 		}
 		target <- colored.Sprintf(body)
 	}
+
 	for msg := range msgs {
 		var data model.JobResponse
 
