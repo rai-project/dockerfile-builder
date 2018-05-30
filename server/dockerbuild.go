@@ -34,6 +34,8 @@ var (
 )
 
 func BuildCmd(imageName, content string) (err error) {
+	colored = color.New()
+
 	messages := make(chan string)
 
 	go func() {
