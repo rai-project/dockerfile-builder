@@ -88,6 +88,7 @@
   name = "github.com/rai-project/serializer"
 
 [[constraint]]
+  revision = "1314573cc30c44cfbb3c93085824b96e9ddb2bf8"
   name = "github.com/rai-project/store"
 
 [[constraint]]
@@ -114,3 +115,7 @@
 [[constraint]]
   name = "google.golang.org/grpc"
   version = "~1.6.0"
+
+[[override]]
+  branch = "master"
+  name = "gopkg.in/mattn/go-isatty.v0"
