@@ -30,14 +30,15 @@
   version = "1.10.35"
 
 [[constraint]]
-  branch = "master"
+  version = "~1.1.0"
   name = "github.com/davecgh/go-spew"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/elazarl/go-bindata-assetfs"
 
 [[constraint]]
-  branch = "master"
+  version = "~1.7.0"
   name = "github.com/fatih/color"
 
 [[constraint]]
@@ -45,6 +46,7 @@
   name = "github.com/golang/protobuf"
 
 [[constraint]]
+  version = "~0.6.3"
   name = "github.com/improbable-eng/grpc-web"
 
 [[constraint]]
@@ -60,6 +62,7 @@
   version = "0.2.2"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/mitchellh/go-homedir"
 
 [[constraint]]
@@ -67,24 +70,31 @@
   version = "0.8.0"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/aws"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/broker"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/config"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/logger"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/model"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/pubsub"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/serializer"
 
 [[constraint]]
@@ -92,9 +102,11 @@
   name = "github.com/rai-project/store"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/uuid"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/rai-project/vipertags"
 
 [[constraint]]
@@ -102,11 +114,12 @@
   version = "1.0.0"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/spf13/cobra"
 
 [[constraint]]
   name = "github.com/spf13/viper"
-  version = "1.0.0"
+  branch = "master"
 
 [[constraint]]
   branch = "master"
@@ -114,7 +127,7 @@
 
 [[constraint]]
   name = "google.golang.org/grpc"
-  version = "~1.6.0"
+  version = "~1.16.0"
 
 [[override]]
   branch = "master"

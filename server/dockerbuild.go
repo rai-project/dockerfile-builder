@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/fatih/color"
 	"github.com/pkg/errors"
+	"gopkg.in/mgo.v2/bson"
 
 	"github.com/rai-project/aws"
 	"github.com/rai-project/broker"
@@ -51,7 +52,7 @@ func BuildCmd(imageName, content string) (err error) {
 	}()
 
 	req := &pb.DockerBuildRequest{
-		Id:        uuid.NewV4(),
+		Id:        bson.NewObjectId().Hex(),
 		ImageName: imageName,
 		Content:   content,
 	}
@@ -169,7 +170,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 			pushOpts.GetUsername() != "" &&
 			pushOpts.GetPassword() != "",
 		ImageName: pushOpts.GetImageName(),
-		Credentials: model.Credentials{
+		Credentials: model.DockerHubCredentials{
 			Username: pushOpts.GetUsername(),
 			Password: pushOpts.GetPassword(),
 		},
@@ -198,7 +199,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 
 	jobRequest := model.JobRequest{
 		Base: model.Base{
-			ID:        req.Id,
+			ID:        bson.ObjectIdHex(req.Id),
 			CreatedAt: time.Now(),
 		},
 		ClientVersion:      config.App.Version,
