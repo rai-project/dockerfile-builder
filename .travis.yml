@@ -27,9 +27,6 @@ before_install:
 - export TRAVIS_BUILD_DIR=${GOPATH}/src/github.com/rai-project/dockerfile-builder
 - cd ${GOPATH}/src/github.com/rai-project/dockerfile-builder
 - bash scripts/install-protobuf.sh
-before_script:
-- ls -R $HOME/protobuf
-- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 install:
 - npm install -g yarn
 - gem install fpm
@@ -45,6 +42,8 @@ install:
 - go get -u google.golang.org/grpc
 - go get golang.org/x/crypto/acme/autocert
 - go get golang.org/x/sys/unix
+- ls -R $HOME/protobuf
+- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 - yarn install
 - yarn build
 - yarn bundle

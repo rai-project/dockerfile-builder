@@ -101,9 +101,6 @@
   revision = "1314573cc30c44cfbb3c93085824b96e9ddb2bf8"
   name = "github.com/rai-project/store"
 
-[[constraint]]
-  branch = "master"
-  name = "github.com/rai-project/uuid"
 
 [[constraint]]
   branch = "master"

@@ -67,8 +67,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "c446a547f59665b7ce54ac57bd8f8b04e5179563"
-  version = "v1.15.62"
+  revision = "f76d9803fd695eebf74cb23c460287fa496efc21"
+  version = "v1.15.63"
 
 [[projects]]
   digest = "0:"
@@ -187,7 +187,7 @@
     "ptypes/timestamp",
   ]
   pruneopts = ""
-  revision = "5e0eda4b6dc0f7e3c4ed8b94d87f7f7186b20c9c"
+  revision = "d3de96c4c28ef8af3aa1a892fc481e0f103c01ff"
 
 [[projects]]
   digest = "0:"
@@ -536,8 +536,8 @@
   name = "github.com/spf13/cast"
   packages = ["."]
   pruneopts = ""
-  revision = "8965335b8c7107321228e3e3702cab9832751bac"
-  version = "v1.2.0"
+  revision = "8c9545af88b134710ab1cd196795e7f2388358d7"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "master"
@@ -629,7 +629,7 @@
     "ssh/terminal",
   ]
   pruneopts = ""
-  revision = "85e1b3f9139abd58575d728a509643924e3b2ebf"
+  revision = "e84da0312774c21d64ee2317962ef669b27ffb41"
 
 [[projects]]
   branch = "master"
@@ -664,7 +664,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "d989b31c87461dc8ab2f1cac6792814e27fadea9"
+  revision = "2772b66316d2c587efeb188dcd5ebc6987656e84"
 
 [[projects]]
   digest = "0:"
@@ -811,7 +811,6 @@
     "github.com/rai-project/serializer/json",
     "github.com/rai-project/store",
     "github.com/rai-project/store/s3",
-    "github.com/rai-project/uuid",
     "github.com/rai-project/vipertags",
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",

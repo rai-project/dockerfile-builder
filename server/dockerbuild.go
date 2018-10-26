@@ -23,7 +23,6 @@ import (
 	"github.com/rai-project/serializer/json"
 	"github.com/rai-project/store"
 	"github.com/rai-project/store/s3"
-	"github.com/rai-project/uuid"
 )
 
 type dockerbuildService struct {
@@ -66,13 +65,13 @@ func BuildCmd(imageName, content string) (err error) {
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
 	messages := make(chan string)
 	if req.Id == "" {
-		req.Id = uuid.NewV4()
+		req.Id = bson.NewObjectId().Hex()
 	}
 
 	go func() {
 		for msg := range messages {
 			e := srv.Send(&pb.DockerBuildResponse{
-				Id:      uuid.NewV4(),
+				Id:      bson.NewObjectId().Hex(),
 				Content: msg,
 			})
 			if e != nil {
@@ -85,7 +84,7 @@ func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.Dock
 		if err != nil {
 			log.WithError(err).Error("Got error when handling Build request")
 			e := srv.Send(&pb.DockerBuildResponse{
-				Id: uuid.NewV4(),
+				Id: bson.NewObjectId().Hex(),
 				Error: &pb.ErrorStatus{
 					Message: err.Error(),
 				}})
