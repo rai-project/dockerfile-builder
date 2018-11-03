@@ -64,7 +64,7 @@ func BuildCmd(imageName, content string) (err error) {
 
 func (service *dockerbuildService) Build(req *pb.DockerBuildRequest, srv pb.DockerService_BuildServer) (err error) {
 	messages := make(chan string)
-	if req.Id == "" {
+	if req.Id == "" || !bson.IsObjectIdHex(req.Id) {
 		req.Id = bson.NewObjectId().Hex()
 	}
 
