@@ -67,8 +67,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "f76d9803fd695eebf74cb23c460287fa496efc21"
-  version = "v1.15.63"
+  revision = "fa9217848bf00ff03c3c097e9c109cbe833ea130"
+  version = "v1.15.69"
 
 [[projects]]
   digest = "0:"
@@ -176,6 +176,19 @@
   version = "v0.16.0"
 
 [[projects]]
+  digest = "0:"
+  name = "github.com/gogo/protobuf"
+  packages = [
+    "jsonpb",
+    "proto",
+    "sortkeys",
+    "types",
+  ]
+  pruneopts = ""
+  revision = "636bf0302bc95575d69441b25a2603156ffdddf1"
+  version = "v1.1.1"
+
+[[projects]]
   branch = "master"
   digest = "0:"
   name = "github.com/golang/protobuf"
@@ -187,7 +200,7 @@
     "ptypes/timestamp",
   ]
   pruneopts = ""
-  revision = "d3de96c4c28ef8af3aa1a892fc481e0f103c01ff"
+  revision = "75dceb112b174be156fa9952e66d3e99945572b4"
 
 [[projects]]
   digest = "0:"
@@ -221,8 +234,8 @@
   name = "github.com/improbable-eng/grpc-web"
   packages = ["go/grpcweb"]
   pruneopts = ""
-  revision = "8bc2a4d43363d03ea6cfbd3db96e4a5458bfbfc7"
-  version = "0.6.3"
+  revision = "f683dbb3b587cfcc858dcbc2fce782c610fc4979"
+  version = "0.6.4"
 
 [[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
@@ -394,7 +407,7 @@
   name = "github.com/rai-project/aws"
   packages = ["."]
   pruneopts = ""
-  revision = "648d87fdbecb675bbf68c01b794861c987f6f847"
+  revision = "c2385f07f2959d2dce9c4ccfa3e087664387ab51"
 
 [[projects]]
   branch = "master"
@@ -402,10 +415,11 @@
   name = "github.com/rai-project/broker"
   packages = [
     ".",
+    "rabbitmq",
     "sqs",
   ]
   pruneopts = ""
-  revision = "260e32c658d2d46fad9c23d14b09eb28b6128aea"
+  revision = "90fad1be6fa1aadd47fa845763c6201b078ec6c5"
 
 [[projects]]
   branch = "master"
@@ -445,7 +459,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = ""
-  revision = "21eb33068eebfa9cb3dc6dc35ce1efb1363e9978"
+  revision = "ac2d1d1ff12d765797a4157f59c57c9c91a36ed0"
 
 [[projects]]
   branch = "master"
@@ -466,6 +480,7 @@
     ".",
     "bson",
     "json",
+    "jsonpb",
   ]
   pruneopts = ""
   revision = "17f0f01644c8653b8e61bc83cd33706c6dbe3dc9"
@@ -517,8 +532,8 @@
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   pruneopts = ""
-  revision = "ad15b42461921f1fb3529b058c6786c6a45d5162"
-  version = "v1.1.1"
+  revision = "bcd833dfe83d3cebad139e4a29ed79cb2318bf95"
+  version = "v1.2.0"
 
 [[projects]]
   digest = "0:"
@@ -575,6 +590,14 @@
   revision = "62edee319679b6ceaec16de03b966102d2dea709"
 
 [[projects]]
+  branch = "master"
+  digest = "0:"
+  name = "github.com/streadway/amqp"
+  packages = ["."]
+  pruneopts = ""
+  revision = "70e15c650864f4fc47f5d3c82ea117285480895d"
+
+[[projects]]
   digest = "0:"
   name = "github.com/ugorji/go"
   packages = ["codec"]
@@ -629,7 +652,7 @@
     "ssh/terminal",
   ]
   pruneopts = ""
-  revision = "e84da0312774c21d64ee2317962ef669b27ffb41"
+  revision = "e4dc69e5b2fd71dcaf8bd5d054eb936deb78d1fa"
 
 [[projects]]
   branch = "master"
@@ -645,7 +668,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "9b4f9f5ad5197c79fd623a3638e70d8b26cef344"
+  revision = "10aee181995363b41f712a55844a0dd52ea04646"
 
 [[projects]]
   branch = "master"
@@ -664,7 +687,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "2772b66316d2c587efeb188dcd5ebc6987656e84"
+  revision = "3a76605856fddce5718553cbb8bd50ca492a7274"
 
 [[projects]]
   digest = "0:"
@@ -695,7 +718,7 @@
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "94acd270e44e65579b9ee3cdab25034d33fed608"
+  revision = "c830210a61dfaa790e1920f8d0470fc27bc2efbe"
 
 [[projects]]
   digest = "0:"
@@ -745,8 +768,8 @@
   name = "gopkg.in/go-playground/validator.v9"
   packages = ["."]
   pruneopts = ""
-  revision = "f8af4b15dbe132b53d3a53e7c3724271040e82e7"
-  version = "v9.21.1"
+  revision = "1fa3c8d6336562f0a3f95c73593ee2b57ff4da11"
+  version = "v9.23.0"
 
 [[projects]]
   branch = "v2"
@@ -802,6 +825,7 @@
     "github.com/pkg/errors",
     "github.com/rai-project/aws",
     "github.com/rai-project/broker",
+    "github.com/rai-project/broker/rabbitmq",
     "github.com/rai-project/broker/sqs",
     "github.com/rai-project/config",
     "github.com/rai-project/logger",
