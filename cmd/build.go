@@ -15,6 +15,7 @@ import (
 
 var (
 	imageName string
+	archName string
 )
 
 func toZip(dec []byte) ([]byte, error) {
@@ -41,8 +42,8 @@ func toZip(dec []byte) ([]byte, error) {
 
 // serveCmd represents the serve command
 var buildCmd = &cobra.Command{
-	Use:   "build",
-	Short: "Builds the docker image",
+	Use:   "build <path to Dockerfile>",
+	Short: "Build the docker image",
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		dockerFilePath := args[0]
@@ -62,14 +63,14 @@ var buildCmd = &cobra.Command{
 			return errors.Wrapf(err, "unable to zip %v", dockerFilePath)
 		}
 		dockerFile := base64.StdEncoding.EncodeToString(zippedDockerFileBts)
-
+		server.SetServerArch(archName)
 		return server.BuildCmd(imageName, dockerFile)
 	},
 }
 
 func init() {
 
-	RootCmd.PersistentFlags().StringVarP(&imageName, "name", "n", getRandomName(10), "Toggle debug mode.")
-
+	buildCmd.PersistentFlags().StringVarP(&imageName, "name", "n", getRandomName(10), "Name of the Docker image.")
+	buildCmd.PersistentFlags().StringVarP(&archName, "arch", "", "ppc64le", "Architecture to create Docker image on.")
 	RootCmd.AddCommand(buildCmd)
 }

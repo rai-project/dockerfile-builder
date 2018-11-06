@@ -15,6 +15,7 @@ import (
 	"github.com/rai-project/aws"
 	"github.com/rai-project/broker"
 	"github.com/rai-project/broker/sqs"
+	"github.com/rai-project/broker/rabbitmq"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 	"github.com/rai-project/model"
@@ -31,7 +32,12 @@ type dockerbuildService struct {
 
 var (
 	colored = color.New(color.FgWhite, color.BgBlack)
+	serverArch string
 )
+
+func SetServerArch(arch string) {
+	serverArch = arch
+}
 
 func BuildCmd(imageName, content string) (err error) {
 	colored = color.New()
@@ -54,6 +60,40 @@ func BuildCmd(imageName, content string) (err error) {
 		Id:        bson.NewObjectId().Hex(),
 		ImageName: imageName,
 		Content:   content,
+	}
+
+	err = build(req, messages)
+
+	return err
+
+}
+
+func UploadCmd(imageName, content string, userName string, password string) (err error) {
+	colored = color.New()
+
+	messages := make(chan string)
+
+	go func() {
+		for msg := range messages {
+			fmt.Println(msg)
+		}
+	}()
+
+	defer func() {
+		if err != nil {
+			log.WithError(err).Error("Got error when handling Build request")
+		}
+	}()
+
+	req := &pb.DockerBuildRequest{
+		Id:        bson.NewObjectId().Hex(),
+		ImageName: imageName,
+		Content:   content,
+		PushOptions: &pb.PushOptions{
+			Username: userName,
+			Password: password,
+			ImageName: imageName,
+		},
 	}
 
 	err = build(req, messages)
@@ -119,14 +159,22 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 	}
 
 	messages <- colored.Add(color.FgGreen).Sprintf("✱") + colored.Sprintf(" Creating docker build session")
-
-	// Create an AWS session
-	session, err := aws.NewSession(
-		aws.Region(aws.AWSRegionUSEast1),
-		aws.AccessKey(aws.Config.AccessKey),
-		aws.SecretKey(aws.Config.SecretKey),
-		aws.Sts(id),
-	)
+	var session *session.Session
+	if serverArch == "s390x" {
+		session, err = aws.NewSession(
+			aws.Region(aws.AWSRegionUSEast1),
+			aws.AccessKey(aws.Config.AccessKey),
+			aws.SecretKey(aws.Config.SecretKey),
+		)
+	} else {
+		// Create an AWS session
+		session, err = aws.NewSession(
+			aws.Region(aws.AWSRegionUSEast1),
+			aws.AccessKey(aws.Config.AccessKey),
+			aws.SecretKey(aws.Config.SecretKey),
+			aws.Sts(id),
+		)
+	}
 	if err != nil {
 		return
 	}
@@ -174,16 +222,27 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 			Password: pushOpts.GetPassword(),
 		},
 	}
+
+	var resources model.Resources
+	if serverArch == "s390x" {
+		resources = model.Resources{
+			CPU: model.CPUResources{
+				Architecture: "s390x",
+			},
+		}
+	} else {
+		resources = model.Resources{
+			CPU: model.CPUResources{
+				Architecture: "ppc64le",
+			},
+		}
+	}
 	buildSpec := model.BuildSpecification{
 		RAI: model.RAIBuildSpecification{
 			Version:        "0.2",
 			ContainerImage: "",
 		},
-		Resources: model.Resources{
-			CPU: model.CPUResources{
-				Architecture: "ppc64le",
-			},
-		},
+		Resources: resources,
 		Commands: model.CommandsBuildSpecification{
 			BuildImage: &model.BuildImageSpecification{
 				ImageName:  req.GetImageName(),
@@ -194,11 +253,11 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 		},
 	}
 
-	serializer := json.New()
 
+	serializer := json.New()
 	jobRequest := model.JobRequest{
+		ID:        bson.ObjectIdHex(req.Id),
 		Base: model.Base{
-			ID:        bson.ObjectIdHex(req.Id),
 			CreatedAt: time.Now(),
 		},
 		ClientVersion:      config.App.Version,
@@ -211,14 +270,23 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 		return err
 	}
 
-	brkr, err := sqs.New(
-		sqs.QueueName(Config.BrokerQueueName),
-		broker.Serializer(serializer),
-		sqs.Session(session),
-	)
+	var brkr broker.Broker
+	if serverArch == "s390x" {
+		brkr = rabbitmq.New(
+			rabbitmq.QueueName(Config.BrokerQueueName),
+			broker.Serializer(serializer),
+		)
+	} else {
+		brkr, err = sqs.New(
+			sqs.QueueName(Config.BrokerQueueName),
+			broker.Serializer(serializer),
+			sqs.Session(session),
+		)
+	}
 	if err != nil {
 		return err
 	}
+	brkr.Connect()
 	defer brkr.Disconnect()
 
 	err = brkr.Publish(

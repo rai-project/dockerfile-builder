@@ -12,6 +12,10 @@ const (
 	DEFAULTPORT = "8088"
 )
 
+var (
+	serverArch string
+)
+
 // serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
@@ -21,10 +25,12 @@ var serveCmd = &cobra.Command{
 		if !found {
 			port = DEFAULTPORT
 		}
+		server.SetServerArch(serverArch)
 		server.Start(fmt.Sprintf(":%s", port))
 	},
 }
 
 func init() {
+	serveCmd.PersistentFlags().StringVarP(&serverArch, "arch", "", "ppc64le", "Architecture to create Docker image on.")
 	RootCmd.AddCommand(serveCmd)
 }
