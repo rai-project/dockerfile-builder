@@ -419,7 +419,7 @@
     "sqs",
   ]
   pruneopts = ""
-  revision = "90fad1be6fa1aadd47fa845763c6201b078ec6c5"
+  revision = "55bbe39e051860611e50d4ea05078dc2cf45c2e5"
 
 [[projects]]
   branch = "master"
