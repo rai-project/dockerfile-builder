@@ -49,11 +49,11 @@
   version = "~0.6.3"
   name = "github.com/improbable-eng/grpc-web"
 
-[[constraint]]
+[[override]]
   name = "github.com/k0kubun/pp"
-  version = "~2.3.0"
+  version = "3.0.1"
 
-[[constraint]]
+[[nocontraint]]
   branch = "master"
   name = "github.com/labstack/echo"
 
@@ -129,3 +129,4 @@
 [[override]]
   branch = "master"
   name = "gopkg.in/mattn/go-isatty.v0"
+
