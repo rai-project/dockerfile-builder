@@ -14,8 +14,8 @@ import (
 
 	"github.com/rai-project/aws"
 	"github.com/rai-project/broker"
-	"github.com/rai-project/broker/sqs"
 	"github.com/rai-project/broker/rabbitmq"
+	"github.com/rai-project/broker/sqs"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 	"github.com/rai-project/model"
@@ -31,7 +31,7 @@ type dockerbuildService struct {
 }
 
 var (
-	colored = color.New(color.FgWhite, color.BgBlack)
+	colored    = color.New(color.FgWhite, color.BgBlack)
 	serverArch string
 )
 
@@ -90,8 +90,8 @@ func UploadCmd(imageName, content string, userName string, password string) (err
 		ImageName: imageName,
 		Content:   content,
 		PushOptions: &pb.PushOptions{
-			Username: userName,
-			Password: password,
+			Username:  userName,
+			Password:  password,
 			ImageName: imageName,
 		},
 	}
@@ -195,7 +195,8 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 		bytes.NewReader(gzipBytes),
 		uploadKey,
 		s3.Lifetime(time.Hour),
-		s3.Metadata(map[string]interface{}{
+
+		store.UploadMetadata(map[string]interface{}{
 			"id":         req.Id,
 			"type":       "dockerfile-builder",
 			"created_at": time.Now(),
@@ -253,10 +254,9 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 		},
 	}
 
-
 	serializer := json.New()
 	jobRequest := model.JobRequest{
-		ID:        bson.ObjectIdHex(req.Id),
+		ID: bson.ObjectIdHex(req.Id),
 		Base: model.Base{
 			CreatedAt: time.Now(),
 		},
