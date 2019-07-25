@@ -42,7 +42,7 @@ export default class Images extends React.Component {
               </a>
             </Table.Cell>
             <Table.Cell singleLine textAlign="left">
-              architecture
+              {architecture}
             </Table.Cell>
             <Table.Cell textAlign="center">
               {published ? "Yes" : "No"}
