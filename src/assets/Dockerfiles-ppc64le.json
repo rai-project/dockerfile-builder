@@ -4,6 +4,7 @@
     "name": "c3sr/bonita:7.4.2",
     "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/bonita",
     "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/bonita/README.md",
+    "architecture": "ppc64le",
     "published": true
   },
   {
@@ -11,6 +12,7 @@
     "name": "c3sr/celery:4.0.2",
     "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/celery",
     "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/celery/README.md",
+    "architecture": "ppc64le",
     "published": true
   },
   {
@@ -18,6 +20,7 @@
     "name": "c3sr/metrics-core:latest",
     "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/metrics-core",
     "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/metrics-core/README.md",
+    "architecture": "ppc64le",
     "published": true
   }
 ]

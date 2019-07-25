@@ -21,7 +21,7 @@ export default class Images extends React.Component {
     const { activeId } = this.state;
     const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
     const rows = imagesJSON.map(
-      ({ id, name, dockerfile, readme, published }) => {
+      ({ id, name, dockerfile, readme, published, architecture }) => {
         const negative = !published;
         const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
         const iconName = activeId === id ? "dropdown" : "triangle right";
@@ -40,6 +40,9 @@ export default class Images extends React.Component {
               <a href={readmeRawURL}>
                 <Icon name="file text outline" />
               </a>
+            </Table.Cell>
+            <Table.Cell singleLine textAlign="left">
+              architecture
             </Table.Cell>
             <Table.Cell textAlign="center">
               {published ? "Yes" : "No"}
@@ -64,6 +67,7 @@ export default class Images extends React.Component {
             </Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Architecture</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Published</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
