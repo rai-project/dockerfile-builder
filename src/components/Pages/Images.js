@@ -25,7 +25,7 @@ export default class Images extends React.Component {
         const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
         const iconName = activeId === id ? "dropdown" : "triangle right";
         return [
-          <Table.Row key={id} negative={negative} active={activeId === id}>
+          <Table.Row key={id} active={activeId === id}>
             <Table.Cell singleLine textAlign="left">
               <Icon name={iconName} onClick={() => this.handleClick(id)} />
               <a href={urlOf(name)}>{name}</a>
