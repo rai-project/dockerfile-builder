@@ -5,8 +5,8 @@ import Markdown from "../Markdown";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 
-//const REPO_PREFIX = "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/";
-//const RAW_REPO_PREFIX = "https://raw.githubusercontent.com/rai-project/Dockerfiles-ppc64le/master/";
+const REPO_PREFIX = "https://github.com/ppc64le/build-scripts/tree/master/";
+const RAW_REPO_PREFIX = "https://raw.githack.com/ppc64le/build-scripts/master/";
 
 export default class Images extends React.Component {
   state = { activeId: 0 };
@@ -22,7 +22,7 @@ export default class Images extends React.Component {
       if (isNil(id)) {
         id = name;
       }
-      //const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
+      const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
       const iconName = activeId === id ? "dropdown" : "triangle right";
       return [
         <Table.Row key={id} active={activeId === id}>
@@ -47,7 +47,7 @@ export default class Images extends React.Component {
         activeId === id ? (
           <Table.Row key={id + "README"}>
             <Table.Cell colSpan="4">
-              <Markdown url={readme} />
+              <Markdown url={readmeRawURL} />
             </Table.Cell>
           </Table.Row>
         ) : null
