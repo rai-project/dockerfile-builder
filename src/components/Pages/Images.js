@@ -5,8 +5,8 @@ import Markdown from "../Markdown";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 
-const REPO_PREFIX = "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/";
-const RAW_REPO_PREFIX = "https://raw.githubusercontent.com/rai-project/Dockerfiles-ppc64le/master/";
+//const REPO_PREFIX = "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/";
+//const RAW_REPO_PREFIX = "https://raw.githubusercontent.com/rai-project/Dockerfiles-ppc64le/master/";
 
 export default class Images extends React.Component {
   state = { activeId: 0 };
