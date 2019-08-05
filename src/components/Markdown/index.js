@@ -65,7 +65,7 @@ export default class Markdown extends React.Component {
     if (isNil(url)) {
       return;
     }
-    fetch(url)
+    fetch(url, {mode: "no-cors"})
       .then(res => res.text())
       .then(urlData => this.setState({ urlData }));
   }
