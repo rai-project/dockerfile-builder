@@ -5,8 +5,8 @@ import Markdown from "../Markdown";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 
-const REPO_PREFIX = "https://github.com/";
-const RAW_REPO_PREFIX = "https://raw.githubusercontent.com/";
+const REPO_PREFIX = "https://github.com/ppc64le/build-scripts/tree/master/";
+const RAW_REPO_PREFIX = "https://cdn.jsdelivr.net/gh/ppc64le/build-scripts@master/";
 
 export default class Images extends React.Component {
   state = { activeId: 0 };
@@ -22,7 +22,7 @@ export default class Images extends React.Component {
       if (isNil(id)) {
         id = name;
       }
-      const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX).replace("/tree", "");
+      const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
       const iconName = activeId === id ? "dropdown" : "triangle right";
       return [
         <Table.Row key={id} active={activeId === id}>
