@@ -36,7 +36,7 @@ export default class Images extends React.Component {
             </a>
           </Table.Cell>
           <Table.Cell textAlign="center">
-            <a href={readmeRawURL}>
+            <a href={readme}>
               <Icon name="file text outline" />
             </a>
           </Table.Cell>
@@ -47,7 +47,7 @@ export default class Images extends React.Component {
         activeId === id ? (
           <Table.Row key={id + "README"}>
             <Table.Cell colSpan="4">
-              <Markdown url={readmeRawURL} />
+              <Markdown url={readme} />
             </Table.Cell>
           </Table.Row>
         ) : null
