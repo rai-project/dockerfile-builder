@@ -14,7 +14,7 @@ export default class Images extends React.Component {
         id = name;
       }
       return [
-        <Table.Row key={id} active={activeId === id}>
+        <Table.Row key={id}>
           <Table.Cell singleLine textAlign="left">
             <a href={urlOf(name)}>{name}</a>
           </Table.Cell>
