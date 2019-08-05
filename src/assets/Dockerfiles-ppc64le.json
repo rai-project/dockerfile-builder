@@ -1,26 +1,1562 @@
 [
   {
-    "name": "c3sr/bonita:7.4.2",
-    "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/bonita",
-    "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/bonita/README.md",
-    "architecture": "ppc64le"
+    "_id" : "5d475ec76977cf4954b60d3b",
+    "name" : "aaargh-ppc64le",
+    "source" : "https://github.com/ppc64le/build-scripts/tree/master/aaargh/Dockerfiles/latest_ubuntu_18.04",
+    "architecture" : "ppc64le"
   },
   {
-    "name": "c3sr/celery:4.0.2",
-    "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/celery",
-    "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/celery/README.md",
-    "architecture": "ppc64le"
+      "_id" : "5d475ec76977cf4954b60d3c",
+      "name" : "abyss-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/abyss/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
   },
   {
-    "name": "c3sr/metrics-core:latest",
-    "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/metrics-core",
-    "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/metrics-core/README.md",
-    "architecture": "ppc64le"
+      "_id" : "5d475ec76977cf4954b60d3d",
+      "name" : "accepts-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/accepts/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
   },
   {
-    "name": "c3sr/aargh:latest",
-    "dockerfile": "https://github.com/rai-project/Dockerfiles-ppc64le/tree/master/metrics-core",
-    "readme": "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/metrics-core/README.md",
-    "architecture": "ppc64le"
+      "_id" : "5d475ec76977cf4954b60d3f",
+      "name" : "ace-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ace/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d3e",
+      "name" : "acepack-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/acepack/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d40",
+      "name" : "activemq-cpp-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/activemq-cpp/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d41",
+      "name" : "activemq-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/activemq/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d42",
+      "name" : "affy-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/affy/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d43",
+      "name" : "akima-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/akima/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d44",
+      "name" : "almond-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/almond.js/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d45",
+      "name" : "apache-freemarker-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/apache-freemarker/Dockerfiles/latest_openjdk_8",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d46",
+      "name" : "archaius-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/archaius/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d47",
+      "name" : "argparse-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/argparse/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d48",
+      "name" : "async-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/async/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d49",
+      "name" : "axon-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/axon/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4a",
+      "name" : "backbone.validation-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/backbone.validation/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4b",
+      "name" : "biobase-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/biobase/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4c",
+      "name" : "blockspring-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/blockspring/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4d",
+      "name" : "bloom-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/bloom/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4e",
+      "name" : "boot-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/boot/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d4f",
+      "name" : "bsdiff4-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/bsdiff4/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d50",
+      "name" : "btrees-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/btrees/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d51",
+      "name" : "chest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/chest/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d52",
+      "name" : "chron-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/chron/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d53",
+      "name" : "clearnlp-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/clearNLP/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d55",
+      "name" : "cluster-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cluster/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d54",
+      "name" : "clustergenomics-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/clusterGenomics/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d56",
+      "name" : "cmake-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cmake/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d57",
+      "name" : "coin-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/coin/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d58",
+      "name" : "colorspace-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/colorspace/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d59",
+      "name" : "conda-verify-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/blob/master/conda-verify/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5a",
+      "name" : "connect-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/connect/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5b",
+      "name" : "constructor-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/constructor/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5c",
+      "name" : "contextify-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/contextify/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5d",
+      "name" : "cookies-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cookies/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5e",
+      "name" : "corenlp-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/corenlp/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d5f",
+      "name" : "cpython-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cpython/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d60",
+      "name" : "cssstyledeclaration-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/CSSStyleDeclaration/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d61",
+      "name" : "cycler-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cycler/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d62",
+      "name" : "cyrus-sasl-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cyrus-sasl/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d63",
+      "name" : "cytoolz-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/cytoolz/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d64",
+      "name" : "d3.js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/d3/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d65",
+      "name" : "datashape-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/datashape/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d66",
+      "name" : "derby-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/derby/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d67",
+      "name" : "dichromat-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/dichromat/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d68",
+      "name" : "digest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/digest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d69",
+      "name" : "dill-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/dill/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6a",
+      "name" : "distributed-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/distributed/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6b",
+      "name" : "double-conversion-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/double-conversion/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6c",
+      "name" : "doxygen-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/doxygen/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6d",
+      "name" : "e1071-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/e1071/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6e",
+      "name" : "entrypoints-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/entrypoints/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d6f",
+      "name" : "ephem-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ephem/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d71",
+      "name" : "express-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/express/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d70",
+      "name" : "expressions-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/expressions/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d72",
+      "name" : "fastcache-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/fastcache/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d73",
+      "name" : "faulthandler-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/faulthandler/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d74",
+      "name" : "ffmpeg-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ffmpeg/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d75",
+      "name" : "foreach-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/foreach/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d76",
+      "name" : "foreign-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/foreign/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d77",
+      "name" : "gam-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/gam/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d78",
+      "name" : "gbm-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/gbm/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d79",
+      "name" : "gcrma-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/gcrma/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7a",
+      "name" : "generator-loopback-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/generator-loopback/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7b",
+      "name" : "ggplot2-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ggplot2/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7c",
+      "name" : "glance-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/glance/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7d",
+      "name" : "go.db-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/go.db/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7e",
+      "name" : "golang-net-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/golang-net/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d7f",
+      "name" : "google-ngrams-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/google-ngrams/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d80",
+      "name" : "gridextra-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/gridExtra/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d81",
+      "name" : "gridmap-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/gridmap/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d82",
+      "name" : "hash-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hash/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d83",
+      "name" : "heapdict-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/heapdict/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d84",
+      "name" : "hexbin-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hexbin/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d87",
+      "name" : "hgu95av2-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hgu95av2/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d85",
+      "name" : "hgu95av2.db-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hgu95av2.db/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d86",
+      "name" : "hgu95av2cdf-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hgu95av2cdf/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d88",
+      "name" : "high-scale-lib-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/high-scale-lib/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d89",
+      "name" : "history.js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/history.js/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8a",
+      "name" : "hmisc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hmisc/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8b",
+      "name" : "httprequest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/httpRequest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8c",
+      "name" : "hystrix-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/hystrix/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8d",
+      "name" : "inf-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/inf/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8e",
+      "name" : "iniparser-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/iniparser/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d8f",
+      "name" : "ipywidgets-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ipywidgets/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d90",
+      "name" : "iranges-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/iranges/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d91",
+      "name" : "iterators-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/iterators/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d92",
+      "name" : "jackson-module-scala-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jackson-module-scala/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d93",
+      "name" : "jemalloc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jemalloc/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d94",
+      "name" : "jquery-cookie-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/js-cookie/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d95",
+      "name" : "jquery-deparam-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jquery-deparam/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d97",
+      "name" : "jquery-trap-input-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jquery-trap-input/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d98",
+      "name" : "jquery-ui-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jquery-ui/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d96",
+      "name" : "jquerytools-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jquerytools/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d99",
+      "name" : "jsap-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/jsap/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9b",
+      "name" : "json-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/json/Dockerfiles/2.9_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9c",
+      "name" : "json-simple-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/json-simple/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9d",
+      "name" : "json-smart-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/json-smart/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9a",
+      "name" : "json4s-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/json4s/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9e",
+      "name" : "kealib-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/kealib/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60d9f",
+      "name" : "kernsmooth-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/kernsmooth/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da0",
+      "name" : "labeling-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/labeling/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da1",
+      "name" : "lancet-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/lancet/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da3",
+      "name" : "lattice-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/lattice/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da2",
+      "name" : "latticeextra-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/laticeextra/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da4",
+      "name" : "less.js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/less.js/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da5",
+      "name" : "libhlc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/libHLC/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da6",
+      "name" : "libsodium-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/libsodium/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da7",
+      "name" : "libuv-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/libuv/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da8",
+      "name" : "log4j-jsonevent-layout-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/log4j-jsonevent-layout/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60da9",
+      "name" : "logging-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/logging/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60daa",
+      "name" : "loopback-boot-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-boot/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dab",
+      "name" : "loopback-component-explorer-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-component-explorer/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dac",
+      "name" : "loopback-component-passport-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-component-passport/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dad",
+      "name" : "loopback-component-push-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-component-push/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dae",
+      "name" : "loopback-component-storage-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-component-storage/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60daf",
+      "name" : "loopback-connector-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-connector/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db0",
+      "name" : "loopback-connector-remote-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-connector-remote/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db1",
+      "name" : "loopback-connector-rest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-connector-rest/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db2",
+      "name" : "loopback-explorer-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-explorer/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db3",
+      "name" : "loopback-phase-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-phase/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db4",
+      "name" : "loopback-sdk-android-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-sdk-android/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db5",
+      "name" : "loopback-sdk-angular-cli-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-sdk-angular-cli/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db6",
+      "name" : "loopback-swagger-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/loopback-swagger/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db7",
+      "name" : "macs-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/macs/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db8",
+      "name" : "mallet-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mallet/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60db9",
+      "name" : "marathon-client-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/marathon-client/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dba",
+      "name" : "marray-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/marray/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dbb",
+      "name" : "mass-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mass/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dbc",
+      "name" : "metrics-core-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/metrics-core/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dbd",
+      "name" : "mgcv-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mgcv/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dbe",
+      "name" : "mock-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mock/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dbf",
+      "name" : "modeltools-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/modeltools/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc0",
+      "name" : "moment.js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/moment/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc1",
+      "name" : "mongo-c-driver-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mongo-c-driver/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc2",
+      "name" : "mongo-java-driver-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mongo-java-driver/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc3",
+      "name" : "multipart-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/multipart/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc4",
+      "name" : "multtest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/multtest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc5",
+      "name" : "mummer-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mummer/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc6",
+      "name" : "munsell-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/munsell/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc7",
+      "name" : "mvtnorm-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mvtnorm/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc8",
+      "name" : "mxnet-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/mxnet/Dockerfiles/latest_ubuntu_18.04_cpu",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dc9",
+      "name" : "nan-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nan/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dca",
+      "name" : "nb_config_manager-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nb_config_manager/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dcb",
+      "name" : "nbsetuptools-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nbsetuptools/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dcc",
+      "name" : "neo4j-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/neo4j/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dcd",
+      "name" : "nestedsortable-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nestedSortable/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dce",
+      "name" : "netflix-governator-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/netflix-governator/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dcf",
+      "name" : "netflix-ribbon-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/netflix-ribbon/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd0",
+      "name" : "nlme-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nlme/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd1",
+      "name" : "node-heapdump-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/node-heapdump/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd2",
+      "name" : "node-http-proxy-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/node-http-proxy/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd3",
+      "name" : "node-jsmin-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/node-jsmin/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd4",
+      "name" : "nvd3-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/nvd3/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd5",
+      "name" : "ordereddict-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/ordereddict/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd6",
+      "name" : "org-hs-eg-db-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/org.Hs.eg.db/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd7",
+      "name" : "param-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/param/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd8",
+      "name" : "passport-local-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/passport-local/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dd9",
+      "name" : "passport-oauth-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/passport-oauth/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dda",
+      "name" : "passport-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/passport/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60ddb",
+      "name" : "pep381client-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pep381client/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60ddc",
+      "name" : "petlx-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/petlx/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60ddd",
+      "name" : "plyr-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/plyr/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dde",
+      "name" : "posix_ipc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/posix_ipc/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60ddf",
+      "name" : "preprocesscore-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/preprocessorCore/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de0",
+      "name" : "prodigal-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/prodigal/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de1",
+      "name" : "prodlim-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/prodlim/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de2",
+      "name" : "proj4-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/proj.4/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de3",
+      "name" : "psqlodbc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/psqlodbc/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de4",
+      "name" : "py4j-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/py4j/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de5",
+      "name" : "pyclaw-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pyclaw/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de6",
+      "name" : "pyopengl-accelerate-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pyopengl-accelerate/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de7",
+      "name" : "pyramid_chameleon-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pyramid_chameleon/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de8",
+      "name" : "pyramid_debugtoolbar-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pyramid_debugtoolbar/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60de9",
+      "name" : "pyramid_mako-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pyramid_mako/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dea",
+      "name" : "pytheas-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/netflix-pytheas/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60deb",
+      "name" : "python-ceilometerclient-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python-ceilometerclient/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dec",
+      "name" : "python-dropbox-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python-dropbox/Dockerfiles/debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dee",
+      "name" : "python-glanceclient-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python-glanceclient/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60def",
+      "name" : "python-memcached-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python_memcached/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df0",
+      "name" : "python-semver-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python-semver/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df1",
+      "name" : "python-sybase-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/python-sybase/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60ded",
+      "name" : "pythonfutures-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/futures/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df2",
+      "name" : "pytz-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/pytz/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df3",
+      "name" : "q-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/q/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df4",
+      "name" : "qpress-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/qpress/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df5",
+      "name" : "randomforest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/randomForest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df6",
+      "name" : "rcolorbrewer-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rcolorbrewer/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df7",
+      "name" : "rcpp-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rcpp/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df8",
+      "name" : "readline-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/readline/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60df9",
+      "name" : "redigo-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/redigo/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dfa",
+      "name" : "reflections-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/reflections/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dfb",
+      "name" : "reshape2-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/reshape2/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dfc",
+      "name" : "rodbc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rodbc/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dfd",
+      "name" : "rsqlite-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rsqlite/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dfe",
+      "name" : "rxjava-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/blob/master/rxjava/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60dff",
+      "name" : "rxnetty-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rxnetty/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e00",
+      "name" : "rxscala-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/rxscala/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e01",
+      "name" : "sax-js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/sax_js/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e02",
+      "name" : "scala-guice-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/scala-guice/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e03",
+      "name" : "scala-logging-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/scala-logging/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e04",
+      "name" : "scalatest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/scalatest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e05",
+      "name" : "script.js-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/script_js/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e06",
+      "name" : "send-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/send/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e07",
+      "name" : "serve-static-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/serve-static/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e08",
+      "name" : "siggenes-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/siggenes/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e09",
+      "name" : "snowball-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/snowball/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0a",
+      "name" : "sparsem-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/sparsem/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0b",
+      "name" : "spatial-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/spatial/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0c",
+      "name" : "stringi-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/stringi/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0d",
+      "name" : "stringr-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/stringr/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0e",
+      "name" : "strong-agent-statsd-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-agent-statsd/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e0f",
+      "name" : "strong-build-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-build/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e10",
+      "name" : "strong-caching-http-client-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-caching-http-client/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e11",
+      "name" : "strong-cluster-connect-store-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-cluster-connect-store/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e12",
+      "name" : "strong-cluster-control-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-cluster-control/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e13",
+      "name" : "strong-cluster-tls-store-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-cluster-tls-store/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e14",
+      "name" : "strong-deploy-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-deploy/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e15",
+      "name" : "strong-log-transformer-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-log-transformer/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e16",
+      "name" : "strong-mesh-models-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-mesh-models/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e17",
+      "name" : "strong-mq-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-mq/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e18",
+      "name" : "strong-nginx-controller-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-nginx-controller/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e19",
+      "name" : "strong-npm-ls-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-npm-ls/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1a",
+      "name" : "strong-pm-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-pm/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1b",
+      "name" : "strong-pubsub-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-pubsub/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1c",
+      "name" : "strong-registry-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-registry/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1d",
+      "name" : "strong-service-install-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-service-install/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1e",
+      "name" : "strong-service-systemd-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-service-systemd/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e1f",
+      "name" : "strong-service-upstart-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-service-upstart/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e20",
+      "name" : "strong-start-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-start/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e21",
+      "name" : "strong-store-cluster-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-store-cluster/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e22",
+      "name" : "strong-url-defaults-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/strong-url-defaults/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e23",
+      "name" : "strong-wait-till-listening-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/blob/master/strong-wait-till-listening/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e24",
+      "name" : "survival-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/survival/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e25",
+      "name" : "svd-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/svd/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e26",
+      "name" : "swagger-core-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/swagger-core/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e27",
+      "name" : "swift-apple-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/swift/Dockerfiles/4.1_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e28",
+      "name" : "tables-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/tables/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e29",
+      "name" : "tlslite-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/tlslite/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2a",
+      "name" : "tree-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/tree/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2b",
+      "name" : "twemproxy-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/twemproxy/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2c",
+      "name" : "twinj-uuid-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/twinj-uuid/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2d",
+      "name" : "typesafehub-config-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/typesafehub-config/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2e",
+      "name" : "uplift-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/uplift/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e2f",
+      "name" : "varnish-cache-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/varnish-cache/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e30",
+      "name" : "vincent-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/vincent/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e31",
+      "name" : "vsn-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/vsn/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e32",
+      "name" : "webcrawler-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/webcrawler/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e33",
+      "name" : "xarray-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xarray/Dockerfiles/latest_ubuntu_18.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e35",
+      "name" : "xml-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xml/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e34",
+      "name" : "xmlhttprequest-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/node-XMLHttpRequest/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e36",
+      "name" : "xmlrpc2-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xmlrpc2/Dockerfiles/latest_debian_jessie",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e37",
+      "name" : "xmlsec-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xmlsec/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e38",
+      "name" : "xregexp-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xregexp/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e39",
+      "name" : "xtable-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xtable/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e3a",
+      "name" : "xxhash-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/xxHash/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e3b",
+      "name" : "yo-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/yo/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e3c",
+      "name" : "zeromq-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/zeromq/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e3d",
+      "name" : "zlibbioc-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/zlibbioc/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
+  },
+  {
+      "_id" : "5d475ec76977cf4954b60e3e",
+      "name" : "zope-interface-ppc64le",
+      "source" : "https://github.com/ppc64le/build-scripts/tree/master/zope-interface/Dockerfiles/latest_ubuntu_16.04",
+      "architecture" : "ppc64le"
   }
 ]
