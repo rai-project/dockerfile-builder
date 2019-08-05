@@ -647,7 +647,7 @@
     "_id" : "5d487ee9ea97b17686d6d0c2",
     "name" : "foreign-ppc64le",
     "dockerfile" : "https://github.com/ppc64le/build-scripts/tree/master/foreign/Dockerfiles/latest_ubuntu_16.04",
-    "readme" : "https://github.com/ppc64le/build-scripts/tree/master/foreign/Dockerfiles/latest_ubuntu_16.04/README.md",
+    "readme" : "https://github.com/ppc64le/build-scripts/tree/master/foreign/Dockerfiles/latest_ubuntu_16.04/README.txt",
     "architecture" : "ppc64le"
 },
 {
