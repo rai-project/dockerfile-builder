@@ -22,7 +22,7 @@ export default class Images extends React.Component {
       if (isNil(id)) {
         id = name;
       }
-      const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
+      //const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
       const iconName = activeId === id ? "dropdown" : "triangle right";
       return [
         <Table.Row key={id} active={activeId === id}>
