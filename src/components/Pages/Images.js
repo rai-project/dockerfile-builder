@@ -1,5 +1,5 @@
 import React from "react";
-import { head, split, flatten, isNil } from "lodash";
+import { flatten, isNil } from "lodash";
 import { Table, Icon } from "semantic-ui-react";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
