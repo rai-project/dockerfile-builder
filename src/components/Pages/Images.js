@@ -8,14 +8,14 @@ export default class Images extends React.Component {
 
   render() {
     //const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
-    const rows = imagesJSON.map(({ id, name, dockerfile, readme, architecture }) => {
+    const rows = imagesJSON.map(({ id, count, name, dockerfile, readme, architecture }) => {
       if (isNil(id)) {
         id = name;
       }
       return [
         <Table.Row key={id}>
           <Table.Cell singleLine textAlign="left">
-            {id}
+            {count}
           </Table.Cell>
           <Table.Cell singleLine textAlign="left">
             {name}
