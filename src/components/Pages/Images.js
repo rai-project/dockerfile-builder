@@ -40,7 +40,7 @@ export default class Images extends React.Component {
       <Table celled striped selectable padded>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell singleLine textAlign="left"></Table.HeaderCell>
+            <Table.HeaderCell singleLine textAlign="right">ID</Table.HeaderCell>
             <Table.HeaderCell singleLine textAlign="left">Image Name</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
