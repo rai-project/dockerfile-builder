@@ -7,7 +7,7 @@ import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
 export default class Images extends React.Component {
 
   render() {
-    const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
+    //const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
     const rows = imagesJSON.map(({ id, name, dockerfile, readme, architecture }) => {
       if (isNil(id)) {
         id = name;
