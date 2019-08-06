@@ -15,7 +15,10 @@ export default class Images extends React.Component {
       return [
         <Table.Row key={id}>
           <Table.Cell singleLine textAlign="left">
-            <a href={urlOf(name)}>{name}</a>
+            {id}
+          </Table.Cell>
+          <Table.Cell singleLine textAlign="left">
+            {name}
           </Table.Cell>
           <Table.Cell textAlign="center">
             <a href={dockerfile}>
@@ -37,12 +40,11 @@ export default class Images extends React.Component {
       <Table celled striped selectable padded>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell singleLine textAlign="center">
-              Name
-            </Table.HeaderCell>
+            <Table.HeaderCell singleLine textAlign="left"></Table.HeaderCell>
+            <Table.HeaderCell singleLine textAlign="left">Image Name</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Architecture</Table.HeaderCell>
+            <Table.HeaderCell textAlign="left">Architecture</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>{flatten(rows)}</Table.Body>
