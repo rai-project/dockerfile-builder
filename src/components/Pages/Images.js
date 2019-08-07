@@ -14,7 +14,7 @@ export default class Images extends React.Component {
       }
       return [
         <Table.Row key={id}>
-          <Table.Cell singleLine textAlign="left">
+          <Table.Cell singleLine textAlign="right">
             {count}
           </Table.Cell>
           <Table.Cell singleLine textAlign="left">
