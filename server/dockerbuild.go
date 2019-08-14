@@ -195,7 +195,7 @@ func build(req *pb.DockerBuildRequest, messages chan string) (err error) {
 		bytes.NewReader(gzipBytes),
 		uploadKey,
 		s3.Lifetime(time.Hour),
-		s3.UploadMetadata(map[string]interface{}{
+		store.UploadMetadata(map[string]interface{}{
 			"id":         req.Id,
 			"type":       "dockerfile-builder",
 			"created_at": time.Now(),
