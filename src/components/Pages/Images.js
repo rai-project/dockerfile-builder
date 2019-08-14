@@ -22,13 +22,13 @@ export default class Images extends React.Component {
     const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
     const rows = imagesJSON.map(
       ({ id, name, dockerfile, readme, architecture }) => {
-        const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
-        const iconName = activeId === id ? "dropdown" : "triangle right";
         return [
           <Table.Row key={id} active={activeId === id}>
+            <Table.Cell textAlign="right">
+              {id}
+            </Table.Cell>
             <Table.Cell singleLine textAlign="left">
-              <Icon name={iconName} onClick={() => this.handleClick(id)} />
-              <a href={urlOf(name)}>{name}</a>
+              (name)
             </Table.Cell>
             <Table.Cell textAlign="center">
               <a href={dockerfile}>
@@ -36,21 +36,14 @@ export default class Images extends React.Component {
               </a>
             </Table.Cell>
             <Table.Cell textAlign="center">
-              <a href={readmeRawURL}>
+              <a href={readme}>
                 <Icon name="file text outline" />
               </a>
             </Table.Cell>
             <Table.Cell singleLine textAlign="left">
               {architecture}
             </Table.Cell>
-          </Table.Row>,
-          activeId === id ? (
-            <Table.Row key={id + "README"}>
-              <Table.Cell colSpan="4">
-                <Markdown url={readmeRawURL} />
-              </Table.Cell>
-            </Table.Row>
-          ) : null
+          </Table.Row>
         ];
       }
     );
@@ -58,6 +51,7 @@ export default class Images extends React.Component {
       <Table celled striped selectable padded>
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell textAlign="right">ID</Table.HeaderCell>
             <Table.HeaderCell singleLine textAlign="center">
               Name
             </Table.HeaderCell>
