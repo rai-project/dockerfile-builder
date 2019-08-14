@@ -14,11 +14,11 @@ export default class Images extends React.Component {
   render() {
     const { activeId } = this.state;
     const rows = imagesJSON.map(
-      ({ id, name, dockerfile, readme, architecture }) => {
+      ({ _id, name, dockerfile, readme, architecture }) => {
         return [
           <Table.Row key={id} active={activeId === id}>
             <Table.Cell textAlign="right">
-              {id}
+              {_id}
             </Table.Cell>
             <Table.Cell singleLine textAlign="left">
               (name)
