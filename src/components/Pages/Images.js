@@ -26,7 +26,7 @@ export default class Images extends React.Component {
         const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
         const iconName = activeId === id ? "dropdown" : "triangle right";
         return [
-          <Table.Row key={id} negative={negative} active={activeId === id}>
+          <Table.Row key={id} active={activeId === id}>
             <Table.Cell singleLine textAlign="left">
               <Icon name={iconName} onClick={() => this.handleClick(id)} />
               <a href={urlOf(name)}>{name}</a>
@@ -41,8 +41,8 @@ export default class Images extends React.Component {
                 <Icon name="file text outline" />
               </a>
             </Table.Cell>
-            <Table.Cell textAlign="center">
-              {published ? "Yes" : "No"}
+            <Table.Cell singleLine textAlign="left">
+              {architecture}
             </Table.Cell>
           </Table.Row>,
           activeId === id ? (
@@ -56,7 +56,7 @@ export default class Images extends React.Component {
       }
     );
     return (
-      <Table celled striped selectable padded>
+`````<Table celled striped selectable padded>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell singleLine textAlign="center">
@@ -64,11 +64,11 @@ export default class Images extends React.Component {
             </Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Published</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Architecture</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>{flatten(rows)}</Table.Body>
-      </Table>
+      </Table>`
     );
   }
 }
