@@ -21,7 +21,7 @@ export default class Images extends React.Component {
     const { activeId } = this.state;
     const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
     const rows = imagesJSON.map(
-      ({ id, name, dockerfile, readme, published }) => {
+      ({ id, name, dockerfile, readme, architecture }) => {
         const negative = !published;
         const readmeRawURL = readme.replace(REPO_PREFIX, RAW_REPO_PREFIX);
         const iconName = activeId === id ? "dropdown" : "triangle right";
