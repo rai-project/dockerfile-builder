@@ -21,7 +21,7 @@ export default class Images extends React.Component {
               {count}
             </Table.Cell>
             <Table.Cell singleLine textAlign="left">
-              (name)
+              {name}
             </Table.Cell>
             <Table.Cell textAlign="center">
               <a href={dockerfile}>
