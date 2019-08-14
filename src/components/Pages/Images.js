@@ -1,14 +1,8 @@
 import React from "react";
 import { head, split, flatten } from "lodash";
 import { Table, Icon } from "semantic-ui-react";
-import Markdown from "../Markdown";
 
 import imagesJSON from "../../assets/Dockerfiles-ppc64le.json";
-
-const REPO_PREFIX =
-  "https://github.com/rai-project/Dockerfiles-ppc64le/blob/master/";
-const RAW_REPO_PREFIX =
-  "https://raw.githubusercontent.com/rai-project/Dockerfiles-ppc64le/master/";
 
 export default class Images extends React.Component {
   state = { activeId: 0 };
@@ -19,7 +13,6 @@ export default class Images extends React.Component {
 
   render() {
     const { activeId } = this.state;
-    const urlOf = name => "https://hub.docker.com/r/" + head(split(name, ":"));
     const rows = imagesJSON.map(
       ({ id, name, dockerfile, readme, architecture }) => {
         return [
