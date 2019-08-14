@@ -55,19 +55,19 @@ export default class Images extends React.Component {
       }
     );
     return (
-`````<Table celled striped selectable padded>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell singleLine textAlign="center">
-              Name
-            </Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Architecture</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>{flatten(rows)}</Table.Body>
-      </Table>`
+    <Table celled striped selectable padded>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell singleLine textAlign="center">
+            Name
+          </Table.HeaderCell>
+          <Table.HeaderCell textAlign="center">Dockerfile</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center">Readme</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center">Architecture</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>{flatten(rows)}</Table.Body>
+    </Table>`
     );
   }
 }
