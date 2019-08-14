@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/labstack/echo"
+	echo "github.com/labstack/echo"
 	"github.com/rai-project/config"
 	pb "github.com/rai-project/dockerfile-builder/proto/build/go/_proto/raiprojectcom/docker"
 )

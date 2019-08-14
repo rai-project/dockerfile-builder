@@ -51,10 +51,10 @@
 
 [[constraint]]
   name = "github.com/k0kubun/pp"
-  version = "~2.3.0"
+  version = "^3.0.1"
 
-[[constraint]]
-  branch = "master"
+[[override]]
+  version = "^3.0"
   name = "github.com/labstack/echo"
 
 [[constraint]]
@@ -98,7 +98,7 @@
   name = "github.com/rai-project/serializer"
 
 [[constraint]]
-  revision = "1314573cc30c44cfbb3c93085824b96e9ddb2bf8"
+  branch = "master"
   name = "github.com/rai-project/store"
 
 

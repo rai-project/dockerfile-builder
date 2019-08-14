@@ -7,8 +7,8 @@ import (
 
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/k0kubun/pp"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	echo "github.com/labstack/echo"
+	middleware "github.com/labstack/echo/middleware"
 )
 
 type assetsManifestTy struct {
