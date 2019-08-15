@@ -26,3 +26,7 @@ and use docker images.  Future work will provide a page which showcases
 work done using container technology on PowerPC. We also plan on adding
 articles detailing the best practices to follow while using containers
 on PowerPC along with some tips and tricks.
+
+# Acknowledgements
+
+Power 8 hardware was provided by IBM and the Oregon State University Open Source Lab.
