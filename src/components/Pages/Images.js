@@ -17,7 +17,7 @@ export default class Images extends React.Component {
       ({ count, name, dockerfile, readme, architecture }) => {
         return [
           <Table.Row key={count} active={activeId === count}>
-            <Table.Cell textAlign="right">
+            <Table.Cell singleLine textAlign="right">
               {count}
             </Table.Cell>
             <Table.Cell singleLine textAlign="left">
