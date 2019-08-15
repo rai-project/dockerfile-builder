@@ -29,4 +29,4 @@ on PowerPC along with some tips and tricks.
 
 # Acknowledgements
 
-Power 8 hardware was provided by IBM and the Oregon State University Open Source Lab.
+Power 8 hardware provided by IBM and the Oregon State University Open Source Lab.
