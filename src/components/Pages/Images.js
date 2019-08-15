@@ -14,9 +14,9 @@ export default class Images extends React.Component {
   render() {
     const { activeId } = this.state;
     const rows = imagesJSON.map(
-      ({ count, name, dockerfile, readme, architecture }) => {
+      ({ id, count, name, dockerfile, readme, architecture }) => {
         return [
-          <Table.Row key={count} active={activeId === count}>
+          <Table.Row key={id} active={activeId === id}>
             <Table.Cell singleLine textAlign="right">
               {count}
             </Table.Cell>
