@@ -23,7 +23,7 @@
     "google-protobuf": "^3.4.0",
     "grpc-web-client": "^0.3.0",
     "hedron": "^0.7.1",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.4.1",
     "idx": "^1.5.0",
     "js-logger": "^1.4.1",
     "jszip": "^3.1.4",
