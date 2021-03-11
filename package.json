@@ -9,7 +9,7 @@
     "@cerebral/storage": "next",
     "@cerebral/useragent": "next",
     "@types/google-protobuf": "^3.2.7",
-    "ansi_up": "^2.0.2",
+    "ansi_up": "^5.0.0",
     "babel-preset-react": "^6.24.1",
     "blob-util": "^1.3.0",
     "cerebral": "^2.2.0",
