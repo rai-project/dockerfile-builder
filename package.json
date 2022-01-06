@@ -50,7 +50,7 @@
     "storyboard": "^3.1.1",
     "styled-components": "^2.1.2",
     "ts-protoc-gen": "^0.4.0",
-    "uppy": "^0.18.0",
+    "uppy": "^2.3.3",
     "uuid": "^3.1.0",
     "whatwg-fetch": "^2.0.3",
     "yeast": "^0.1.2",
